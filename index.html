@@ -687,7 +687,7 @@
                     <div class="flex space-x-4">
                     <div class="flex space-x-4">
                         <button id="play-button" class="glass-button">
-                            <i class="fas fa-play mr-2"></i> Play
+                           <i class="fas fa-play mr-2"></i> Play
                         </button>
                         <button id="more-info-button" class="glass-button">
                             <i class="fas fa-info-circle mr-2"></i> Info
@@ -700,45 +700,9 @@
     </div>
 </section>
 
-    <!-- Dove vuoi che appaiano i generi -->
-<div id="genres-list"></div>
 
-<script>
-// Generi da visualizzare
-const genres = [
-  "Top 10 film di oggi",
-  "Aggiunti di recente",
-  "Action/Adventure",
-  "Animazione/Famiglia",
-  "Commedia",
-  "Sci-Fi & Fantasy",
-  "Horror",
-  "Romance",
-  "Thriller",
-  "Korean Drama",
-  "Soap"
-];
 
-// Selettore del contenitore
-const container = document.getElementById("genres-list");
-
-// Costruzione della lista HTML
-const ul = document.createElement("ul");
-ul.style.listStyle = "none";
-ul.style.padding = "0";
-
-genres.forEach(genre => {
-  const li = document.createElement("li");
-  li.textContent = genre;
-  li.style.padding = "8px 0";
-  ul.appendChild(li);
-});
-
-// Inserisci la lista nel contenitore
-container.appendChild(ul);
-</script>
-
-    <!-- Main Content -->
+     <!-- Main Content -->
     <main class="relative z-20 -mt-20 scrollbar-hide">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <!-- Trending Movies -->
