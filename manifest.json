@@ -1,6 +1,6 @@
 {
-  "name": "LeleFlix",
-  "short_name": "LeleFlix",
+  "name": "VixFlix",
+  "short_name": "VixFlix",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#000000",
