@@ -694,3 +694,46 @@ backdrop-filter: blur(12.5px);
   color: #aaa;
   margin: 0;
 }
+
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 1rem;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-btn {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.carousel-btn:hover {
+  background: rgba(229, 9, 20, 0.8);
+}
+
+.carousel-btn.left {
+  margin-right: 0.5rem;
+}
+
+.carousel-btn.right {
+  margin-left: 0.5rem;
+}
