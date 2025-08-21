@@ -667,45 +667,30 @@ backdrop-filter: blur(12.5px);
     pointer-events: all !important;
 }
 
-.genre-section {
-  padding: 1rem;
-}
-
-.genre-section h2 {
-  font-size: 1.5rem;
-  color: #ff3c00;
-  margin-bottom: 0.5rem;
-}
-
-.carousel {
-  display: flex;
-  overflow-x: auto;
-  gap: 1rem;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 1rem;
-}
-
 .card {
-  min-width: 200px;
+  min-width: 120px;
   scroll-snap-align: start;
-  background-color: #1e1e1e;
-  border-radius: 8px;
-  padding: 0.5rem;
+  background-color: transparent;
   color: white;
+  text-align: center;
   flex-shrink: 0;
 }
 
 .card img {
-  width: 100%;
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
   border-radius: 4px;
+  margin-bottom: 0.3rem;
 }
 
 .card h3 {
-  font-size: 1rem;
-  margin: 0.5rem 0 0.2rem;
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 .card p {
-  font-size: 0.9rem;
-  color: #ccc;
+  font-size: 0.8rem;
+  color: #aaa;
+  margin: 0;
 }
