@@ -666,3 +666,56 @@ backdrop-filter: blur(12.5px);
     opacity: 1 !important;
     pointer-events: all !important;
 }
+
+.genres-scrollbar {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.genres-list {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 0;
+}
+
+.genre {
+  background: #232323;
+  color: #fff;
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.genre:hover {
+  background: #ff9800;
+  color: #232323;
+}
+
+.scroll-btn {
+  background: #232323;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 22px;
+  cursor: pointer;
+  margin: 0 8px;
+  transition: background 0.2s;
+  z-index: 1;
+}
+
+.scroll-btn:hover {
+  background: #ff9800;
+  color: #232323;
+}
