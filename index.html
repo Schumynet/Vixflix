@@ -2401,7 +2401,7 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
 
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
   const apiKey = '1e8c9083f94c62dd66fb2105cd7b613b'; // ← Inserisci la tua chiave TMDB
   const genreId = 28; // Azione
   const container = document.getElementById('carousel-azione');
@@ -2419,8 +2419,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         card.innerHTML = `
           <img src="https://image.tmdb.org/t/p/w185${movie.poster_path}" alt="${movie.title}" />
-          <h3>${movie.title}</h3>
-          <p>${year}</p>
+          <div>
+            <h3>${movie.title}</h3>
+            <p>${year}</p>
+          </div>
         `;
 
         container.appendChild(card);
@@ -2428,6 +2430,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(err => console.error('Errore nel caricamento dei film:', err));
 });
+    
     </script>  
 
     
