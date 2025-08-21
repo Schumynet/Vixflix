@@ -731,6 +731,14 @@ backdrop-filter: blur(12.5px);
   margin-left: 0.5rem;
 }
 
+#carousel-azione {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
 @media (max-width: 600px) {
   .card {
     min-width: 120px;
