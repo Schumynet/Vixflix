@@ -2402,11 +2402,10 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const apiKey = '1e8c9083f94c62dd66fb2105cd7b613b'; // ← Inserisci qui la tua chiave TMDB
+  const apiKey = '1e8c9083f94c62dd66fb2105cd7b613b'; // ← Inserisci la tua chiave TMDB
   const genreId = 28; // Azione
   const container = document.getElementById('carousel-azione');
 
-  // Carica i film del genere Azione
   fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&language=it-IT`)
     .then(res => res.json())
     .then(data => {
@@ -2416,45 +2415,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'card';
 
+        const year = movie.release_date?.slice(0, 4) || 'N/D';
+
         card.innerHTML = `
-          <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
+          <img src="https://image.tmdb.org/t/p/w185${movie.poster_path}" alt="${movie.title}" />
           <h3>${movie.title}</h3>
-          <p>${movie.release_date?.slice(0, 4) || 'N/D'}</p>
+          <p>${year}</p>
         `;
 
-        card.addEventListener('click', () => openModal(movie.id));
         container.appendChild(card);
       });
     })
     .catch(err => console.error('Errore nel caricamento dei film:', err));
-
-  // Funzione per aprire il modale con i dettagli del film
-  function openModal(movieId) {
-    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=it-IT&append_to_response=credits`)
-      .then(res => res.json())
-      .then(movie => {
-        document.getElementById('modal-title').textContent = movie.title;
-        document.getElementById('modal-overview').textContent = movie.overview;
-        document.getElementById('modal-year').textContent = movie.release_date?.slice(0, 4) || 'N/D';
-        document.getElementById('modal-rating').textContent = movie.vote_average || 'N/D';
-        document.getElementById('modal-runtime').textContent = movie.runtime || 'N/D';
-        document.getElementById('modal-poster').src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
-
-        const genres = movie.genres.map(g => g.name).join(', ');
-        document.getElementById('modal-genres').textContent = genres;
-
-        const cast = movie.credits.cast.slice(0, 5).map(actor => actor.name).join(', ');
-        document.getElementById('modal-cast').textContent = cast;
-
-        document.getElementById('movie-modal').classList.remove('hidden');
-      })
-      .catch(err => console.error('Errore nel caricamento dettagli film:', err));
-  }
-
-  // Chiudi il modale
-  document.querySelector('.close-btn').addEventListener('click', () => {
-    document.getElementById('movie-modal').classList.add('hidden');
-  });
 });
     </script>  
 
