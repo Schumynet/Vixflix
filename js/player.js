@@ -929,3 +929,10 @@ function playMovie(content, type = null) {
         container.webkitRequestFullscreen();
     }
 }
+
+document.querySelector('.scroll-btn.left').addEventListener('click', function() {
+  document.getElementById('genres-list').scrollBy({ left: -150, behavior: 'smooth' });
+});
+document.querySelector('.scroll-btn.right').addEventListener('click', function() {
+  document.getElementById('genres-list').scrollBy({ left: 150, behavior: 'smooth' });
+});
