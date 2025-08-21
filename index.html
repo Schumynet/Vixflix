@@ -2398,5 +2398,30 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
       .catch(err => console.error('❌ Service Worker errore:', err));
   }
 </script>
+
+<script>
+const apiKey = 'YOUR_API_KEY';
+const genreId = 28; // Azione
+const container = document.getElementById('carousel-azione');
+
+fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&language=it-IT`)
+  .then(res => res.json())
+  .then(data => {
+    data.results.forEach(movie => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      card.innerHTML = `
+        <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
+        <h3>${movie.title}</h3>
+        <p>${movie.overview.slice(0, 100)}...</p>
+      `;
+
+      container.appendChild(card);
+    });
+  })
+  .catch(err => console.error('Errore TMDB:', err));
+</script>
+    
 </body>
 </html>
