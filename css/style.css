@@ -685,13 +685,13 @@ backdrop-filter: blur(12.5px);
 }
 
 .card h3 {
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin: 0;
 }
 
 .card p {
-  font-size: 0.8rem;
-  color: #aaa;
+  font-size: 0.85rem;
+  color: #ccc;
   margin: 0;
 }
 
