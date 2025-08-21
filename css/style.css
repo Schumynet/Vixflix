@@ -1,6 +1,6 @@
 
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-        
+
         /* Add these styles to your existing style section */
 
         /* Season/Episode Selector Styles */
@@ -188,11 +188,11 @@ h2[trending] {
     .seasons-grid, .episodes-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
-    
+
     .selection-container {
         padding: 15px;
     }
-    
+
     .season-info h3, .episode-info h3 {
         font-size: 0.9rem;
     }
@@ -224,12 +224,12 @@ h2[trending] {
     .controls-container {
         padding: 1.2rem;
     }
-    
+
     .progress-container {
         height: 10px;
         margin-bottom: 15px;
     }
-    
+
     button {
         min-width: 44px;
         min-height: 44px;
@@ -407,16 +407,16 @@ h2[trending] {
     .controls-container {
         padding: 2rem;
     }
-    
+
     button {
         font-size: 1.2rem;
         padding: 15px;
     }
-    
+
     .progress-container {
         height: 12px;
     }
-    
+
     .settings-menu {
         min-width: 200px;
         font-size: 1.1rem;
@@ -428,46 +428,46 @@ h2[trending] {
             background-color: #141414;
             color: #fff;
         }
-        
+
         .hero-gradient {
             background: linear-gradient(to right, rgba(20, 20, 20, 0.9) 0%, rgba(20, 20, 20, 0.6) 100%);
         }
-        
+
         .movie-card:hover .movie-poster {
             transform: scale(1.05);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
-        
+
         .movie-poster {
             transition: all 0.3s ease;
         }
-        
+
         .loader {
             border-top-color: #E50914;
             animation: spinner 1.5s linear infinite;
         }
-        
+
         @keyframes spinner {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
+
         .movie-modal {
             transition: opacity 0.3s ease;
             overflow-y: auto; /* Abilita scroll solo nel modale se necessario */
 
         }
-        
+
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
         }
-        
+
         ::-webkit-scrollbar-track {
             background: #141414;
         }
-        
+
         ::-webkit-scrollbar-thumb {
             background: #E50914;
             border-radius: 4px;
@@ -520,7 +520,7 @@ backdrop-filter: blur(12.5px);
             rgba(20, 20, 20, 0.7) 50%,
             rgba(20, 20, 20, 0.4) 100%);
     }
-    
+
     .hero-fade {
         height: 150px;
         background: linear-gradient(to bottom, 
@@ -536,22 +536,22 @@ backdrop-filter: blur(12.5px);
     .mobile-contrast {
         background-color: rgba(0, 0, 0, 0.5) !important;
     }
-    
+
     .mobile-text-contrast {
         color: #fff !important;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
-    
+
     #hero-section .relative.z-10 h1 {
         font-size: 2rem;
         line-height: 1.2;
     }
-    
+
     #hero-section .relative.z-10 p {
         font-size: 1rem;
         line-height: 1.4;
     }
-    
+
     #hero-rating {
         background-color: rgba(229, 9, 20, 0.9) !important;
         padding: 0.25rem 0.5rem;
@@ -570,15 +570,15 @@ backdrop-filter: blur(12.5px);
             left: 0;
             z-index: 40;
         }
-        
+
         #mobile-search-box.active {
             display: block; /* Mostrato quando attivo */
         }
-        
+
         .search-input-container {
             position: relative;
         }
-        
+
         #mobile-search-input {
             width: 100%;
             padding: 8px 40px 8px 15px;
@@ -587,7 +587,7 @@ backdrop-filter: blur(12.5px);
             background: #333;
             color: white;
         }
-        
+
         #mobile-search-button {
             position: absolute;
             right: 10px;
@@ -608,7 +608,7 @@ backdrop-filter: blur(12.5px);
             z-index: 1000;
             overflow: hidden;
         }
-        
+
         /* Contenitore header */
         #backButtonContainer {
             position: absolute;
@@ -623,13 +623,13 @@ backdrop-filter: blur(12.5px);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        
+
         /* Mostra header al passaggio del mouse o al tap */
         #videoContainer:hover #backButtonContainer,
         #videoContainer:focus-within #backButtonContainer {
             opacity: 1;
         }
-        
+
         /* Stile freccia back */
         #close-player {
             color: white;
@@ -643,7 +643,7 @@ backdrop-filter: blur(12.5px);
             justify-content: center;
             margin-right: 10px;
         }
-        
+
         /* Stile titolo */
         #player-title {
             color: white;
@@ -666,69 +666,3 @@ backdrop-filter: blur(12.5px);
     opacity: 1 !important;
     pointer-events: all !important;
 }
-
-
-.carousel-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.carousel-btn {
-  background: #222;
-  color: #ffb800;
-  border: none;
-  font-size: 1.8rem;
-  width: 40px;
-  height: 250px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.carousel-btn:disabled {
-  color: #555;
-  cursor: default;
-}
-
-.carousel {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 8px 0;
-  width: 100%;
-}
-
-.card {
-  min-width: 200px;
-  max-width: 200px;
-  background: #232323;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px #000a;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  display: block;
-}
-
-.card .info {
-  padding: 10px;
-  font-size: 1rem;
-  text-align: center;
-  color: #eee;
-}
-
-.card.clicked {
-  border: 2px solid #ffb800;
-  box-shadow: 0 0 20px #ffb80099;
-}
-
