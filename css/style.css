@@ -668,22 +668,15 @@ backdrop-filter: blur(12.5px);
 }
 
 .card {
-  min-width: 120px;
-  scroll-snap-align: start;
-  background-color: transparent;
-  color: white;
-  text-align: center;
-  flex-shrink: 0;
+  min-width: 140px;
+  max-width: 160px;
+  flex: 0 0 auto;
+  height: auto;
 }
-
 .card img {
-  width: 140px;
-  height: 210px;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 0.4rem;
+  width: 100%;
+  border-radius: 8px;
 }
-
 .card h3 {
   font-size: 1rem;
   margin: 0;
@@ -736,4 +729,10 @@ backdrop-filter: blur(12.5px);
 
 .carousel-btn.right {
   margin-left: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .card {
+    min-width: 120px;
+  }
 }
