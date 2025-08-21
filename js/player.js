@@ -51,6 +51,105 @@ class VideoPlayer {
 
 
 // Avvia il caricamento delle sezioni subito o al DOMContentLoaded
+
+// === SEZIONI HOME PAGE VIXFLIX ===
+const API_KEY = 'be78689897669066bef6906e501b0e10';
+const endpoints = {
+  trending: 'trending/all/week',
+  nowPlaying: 'movie/now_playing',
+  popularMovies: 'movie/popular',
+  onTheAir: 'tv/on_the_air',
+  popularTV: 'tv/popular'
+};
+
+// Fetch dati
+async function fetchList(type) {
+  const url = `https://api.themoviedb.org/3/${endpoints[type]}?api_key=${API_KEY}&language=it-IT`;
+  const res = await fetch(url);
+  const j = await res.json();
+  return j.results;
+}
+
+// Card film/serie
+function makeCard(item) {
+  const div = document.createElement('div');
+  div.className = 'card';
+  const posterPath = item.poster_path ? `https://image.tmdb.org/t/p/w300${item.poster_path}` : 'https://via.placeholder.com/300x450/333/fff?text=No+Image';
+  div.innerHTML = `
+    <img src="${posterPath}" alt="${item.title || item.name}">
+    <div class="info">${item.title || item.name}</div>
+  `;
+  div.onclick = () => {
+    div.classList.add('clicked');
+    setTimeout(() => {
+      alert(`Dettagli: ${item.title || item.name}`); // Personalizza qui!
+    }, 300);
+  };
+  return div;
+}
+
+// Riempie una sezione
+function fillSection(sectionId, items) {
+  const carousel = document.querySelector(`#${sectionId} .carousel`);
+  if (!carousel) return;
+  carousel.innerHTML = '';
+  items.slice(0, 20).forEach(item => carousel.appendChild(makeCard(item)));
+  updateCarouselButtons(sectionId);
+}
+
+// Carica tutte le sezioni
+async function loadHomeSections() {
+  try {
+    const [trending, np, pm, ota, ptv] = await Promise.all([
+      fetchList('trending'),
+      fetchList('nowPlaying'),
+      fetchList('popularMovies'),
+      fetchList('onTheAir'),
+      fetchList('popularTV')
+    ]);
+    fillSection('trending', trending);
+    fillSection('nowPlaying', np);
+    fillSection('popularMovies', pm);
+    fillSection('onTheAir', ota);
+    fillSection('popularTV', ptv);
+
+    ['trending','nowPlaying','popularMovies','onTheAir','popularTV'].forEach(sectionId => {
+      const carousel = document.querySelector(`#${sectionId} .carousel`);
+      if (carousel) carousel.addEventListener('scroll', () => updateCarouselButtons(sectionId));
+    });
+  } catch (error) {
+    console.error('Errore nel caricamento:', error);
+  }
+}
+
+// Carousel scroll
+function scrollCarousel(sectionId, direction) {
+  const carousel = document.querySelector(`#${sectionId} .carousel`);
+  if (!carousel) return;
+  const scrollAmount = 220;
+  const currentScroll = carousel.scrollLeft;
+  const targetScroll = currentScroll + (direction * scrollAmount * 3);
+  carousel.scrollTo({
+    left: targetScroll,
+    behavior: 'smooth'
+  });
+  setTimeout(() => updateCarouselButtons(sectionId), 300);
+}
+
+// Aggiorna bottoni
+function updateCarouselButtons(sectionId) {
+  const carousel = document.querySelector(`#${sectionId} .carousel`);
+  const prevBtn = document.querySelector(`#${sectionId} .carousel-btn.prev`);
+  const nextBtn = document.querySelector(`#${sectionId} .carousel-btn.next`);
+  if (!carousel || !prevBtn || !nextBtn) return;
+  prevBtn.disabled = carousel.scrollLeft <= 0;
+  nextBtn.disabled = carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth - 1);
+}
+
+// Avvia le sezioni della home appena la pagina è pronta
+document.addEventListener('DOMContentLoaded', loadHomeSections);
+// === FINE SEZIONI HOME ===
+    
 document.addEventListener('DOMContentLoaded', loadHomeSections);
 
 toggleNextEpisodeButton() {
@@ -934,96 +1033,4 @@ function playMovie(content, type = null) {
 }
 
 
-    // API TMDB
-const API_KEY = 'be78689897669066bef6906e501b0e10';
-const endpoints = {
-  trending: 'trending/all/week',
-  nowPlaying: 'movie/now_playing',
-  popularMovies: 'movie/popular',
-  onTheAir: 'tv/on_the_air',
-  popularTV: 'tv/popular'
-};
-
-// Fetch dati
-async function fetchList(type) {
-  const url = `https://api.themoviedb.org/3/${endpoints[type]}?api_key=${API_KEY}&language=it-IT`;
-  const res = await fetch(url);
-  const j = await res.json();
-  return j.results;
-}
-
-// Card film/serie
-function makeCard(item) {
-  const div = document.createElement('div');
-  div.className = 'card';
-  const posterPath = item.poster_path ? `https://image.tmdb.org/t/p/w300${item.poster_path}` : 'https://via.placeholder.com/300x450/333/fff?text=No+Image';
-  div.innerHTML = `
-    <img src="${posterPath}" alt="${item.title || item.name}">
-    <div class="info">${item.title || item.name}</div>
-  `;
-  div.onclick = () => {
-    div.classList.add('clicked');
-    setTimeout(() => {
-      alert(`Dettagli: ${item.title || item.name}`); // Personalizza qui!
-    }, 300);
-  };
-  return div;
-}
-
-// Riempie una sezione
-function fillSection(sectionId, items) {
-  const carousel = document.querySelector(`#${sectionId} .carousel`);
-  if (!carousel) return;
-  carousel.innerHTML = '';
-  items.slice(0, 20).forEach(item => carousel.appendChild(makeCard(item)));
-  updateCarouselButtons(sectionId);
-}
-
-// Carica tutte le sezioni
-async function loadHomeSections() {
-  try {
-    const [trending, np, pm, ota, ptv] = await Promise.all([
-      fetchList('trending'),
-      fetchList('nowPlaying'),
-      fetchList('popularMovies'),
-      fetchList('onTheAir'),
-      fetchList('popularTV')
-    ]);
-    fillSection('trending', trending);
-    fillSection('nowPlaying', np);
-    fillSection('popularMovies', pm);
-    fillSection('onTheAir', ota);
-    fillSection('popularTV', ptv);
-
-    ['trending','nowPlaying','popularMovies','onTheAir','popularTV'].forEach(sectionId => {
-      const carousel = document.querySelector(`#${sectionId} .carousel`);
-      if (carousel) carousel.addEventListener('scroll', () => updateCarouselButtons(sectionId));
-    });
-  } catch (error) {
-    console.error('Errore nel caricamento:', error);
-  }
-}
-
-// Carousel scroll
-function scrollCarousel(sectionId, direction) {
-  const carousel = document.querySelector(`#${sectionId} .carousel`);
-  if (!carousel) return;
-  const scrollAmount = 220;
-  const currentScroll = carousel.scrollLeft;
-  const targetScroll = currentScroll + (direction * scrollAmount * 3);
-  carousel.scrollTo({
-    left: targetScroll,
-    behavior: 'smooth'
-  });
-  setTimeout(() => updateCarouselButtons(sectionId), 300);
-}
-
-// Aggiorna bottoni
-function updateCarouselButtons(sectionId) {
-  const carousel = document.querySelector(`#${sectionId} .carousel`);
-  const prevBtn = document.querySelector(`#${sectionId} .carousel-btn.prev`);
-  const nextBtn = document.querySelector(`#${sectionId} .carousel-btn.next`);
-  if (!carousel || !prevBtn || !nextBtn) return;
-  prevBtn.disabled = carousel.scrollLeft <= 0;
-  nextBtn.disabled = carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth - 1);
-}
+   
