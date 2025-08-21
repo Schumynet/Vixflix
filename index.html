@@ -2399,29 +2399,35 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
   }
 </script>
 
+
 <script>
-const apiKey = '1e8c9083f94c62dd66fb2105cd7b613b';
-const genreId = 28; // Azione
-const container = document.getElementById('carousel-azione');
+document.addEventListener('DOMContentLoaded', () => {
+  const apiKey = '1e8c9083f94c62dd66fb2105cd7b613b';
+  const genreId = 28; // Azione
+  const container = document.getElementById('carousel-azione');
 
-fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&language=it-IT`)
-  .then(res => res.json())
-  .then(data => {
-    data.results.forEach(movie => {
-      const card = document.createElement('div');
-      card.className = 'card';
+  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&language=it-IT`)
+    .then(res => res.json())
+    .then(data => {
+      data.results.forEach(movie => {
+        if (!movie.poster_path) return;
 
-      card.innerHTML = `
-        <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
-        <h3>${movie.title}</h3>
-        <p>${movie.overview.slice(0, 100)}...</p>
-      `;
+        const card = document.createElement('div');
+        card.className = 'card';
 
-      container.appendChild(card);
-    });
-  })
-  .catch(err => console.error('Errore TMDB:', err));
-</script>
+        card.innerHTML = `
+          <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
+          <h3>${movie.title}</h3>
+          <p>${movie.overview.slice(0, 100)}...</p>
+        `;
+
+        container.appendChild(card);
+      });
+    })
+    .catch(err => console.error('Errore TMDB:', err));
+});
+    </script>  
+
     
 </body>
 </html>
