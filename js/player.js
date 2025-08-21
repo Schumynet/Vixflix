@@ -74,16 +74,15 @@ async function fetchList(type) {
 function makeCard(item) {
   const div = document.createElement('div');
   div.className = 'card';
-  const posterPath = item.poster_path ? `https://image.tmdb.org/t/p/w300${item.poster_path}` : 'https://via.placeholder.com/300x450/333/fff?text=No+Image';
+  const posterPath = item.poster_path 
+    ? `https://image.tmdb.org/t/p/w300${item.poster_path}`
+    : 'https://via.placeholder.com/300x450/333/fff?text=No+Image';
   div.innerHTML = `
     <img src="${posterPath}" alt="${item.title || item.name}">
     <div class="info">${item.title || item.name}</div>
   `;
   div.onclick = () => {
-    div.classList.add('clicked');
-    setTimeout(() => {
-      alert(`Dettagli: ${item.title || item.name}`); // Personalizza qui!
-    }, 300);
+    playMovie(item, item.media_type || (item.first_air_date ? 'tv' : 'movie'));
   };
   return div;
 }
