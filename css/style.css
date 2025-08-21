@@ -1,67 +1,3 @@
-.carousel-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.carousel-btn {
-  background: #222;
-  color: #ffb800;
-  border: none;
-  font-size: 1.8rem;
-  width: 40px;
-  height: 250px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.carousel-btn:disabled {
-  color: #555;
-  cursor: default;
-}
-
-.carousel {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 8px 0;
-  width: 100%;
-}
-
-.card {
-  min-width: 200px;
-  max-width: 200px;
-  background: #232323;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px #000a;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  display: block;
-}
-
-.card .info {
-  padding: 10px;
-  font-size: 1rem;
-  text-align: center;
-  color: #eee;
-}
-
-.card.clicked {
-  border: 2px solid #ffb800;
-  box-shadow: 0 0 20px #ffb80099;
-}
-
 
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
         
@@ -730,3 +666,69 @@ backdrop-filter: blur(12.5px);
     opacity: 1 !important;
     pointer-events: all !important;
 }
+
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-btn {
+  background: #222;
+  color: #ffb800;
+  border: none;
+  font-size: 1.8rem;
+  width: 40px;
+  height: 250px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.carousel-btn:disabled {
+  color: #555;
+  cursor: default;
+}
+
+.carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 8px 0;
+  width: 100%;
+}
+
+.card {
+  min-width: 200px;
+  max-width: 200px;
+  background: #232323;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px #000a;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.card .info {
+  padding: 10px;
+  font-size: 1rem;
+  text-align: center;
+  color: #eee;
+}
+
+.card.clicked {
+  border: 2px solid #ffb800;
+  box-shadow: 0 0 20px #ffb80099;
+}
+
