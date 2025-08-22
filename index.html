@@ -2521,35 +2521,38 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
 
    <script>
   async function getGenreMovies(genreId, containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
+  const container = document.getElementById(containerId);
+  if (!container) return;
 
-    try {
-      const res = await fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&language=it-IT`);
-      const data = await res.json();
+  try {
+    const res = await fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&language=it-IT`);
+    const data = await res.json();
 
-      const filtered = data.results.filter(item =>
-        availableContent.some(content => content.tmdb_id === item.id)
-      );
+    const filtered = data.results.filter(item =>
+      availableContent.some(content => content.tmdb_id === item.id)
+    );
 
-      filtered.slice(0, 10).forEach(item => {
-        const card = createMovieCard(item, 'movie');
-        container.appendChild(card);
-      });
+    filtered.slice(0, 10).forEach(item => {
+      const card = createMovieCard(item, 'movie');
+      container.appendChild(card);
+    });
 
-      document.getElementById(`scroll-left-${containerId.split('-')[1]}`).addEventListener('click', () => {
-        container.scrollBy({ left: -300, behavior: 'smooth' });
-      });
+    document.getElementById(`scroll-left-${containerId.split('-')[1]}`).addEventListener('click', () => {
+      container.scrollBy({ left: -300, behavior: 'smooth' });
+    });
 
-      document.getElementById(`scroll-right-${containerId.split('-')[1]}`).addEventListener('click', () => {
-        container.scrollBy({ left: 300, behavior: 'smooth' });
-      });
-    } catch (err) {
-      console.error(`Errore nel caricamento del genere ${containerId}:`, err);
-    }
+    document.getElementById(`scroll-right-${containerId.split('-')[1]}`).addEventListener('click', () => {
+      container.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+  } catch (err) {
+    console.error(`Errore nel caricamento del genere ${containerId}:`, err);
   }
+}
 
-  // Esempi di chiamata
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadAvailableContent();
+
+  // Chiamate per ogni genere
   getGenreMovies(35, 'carousel-commedia');      // Commedia
   getGenreMovies(27, 'carousel-horror');        // Horror
   getGenreMovies(12, 'carousel-avventura');     // Avventura
@@ -2557,7 +2560,7 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
   getGenreMovies(878, 'carousel-fantascienza'); // Fantascienza
   getGenreMovies(10749, 'carousel-romance');    // Romance
   getGenreMovies(53, 'carousel-thriller');      // Thriller
-</script>
+});
 
 
  
