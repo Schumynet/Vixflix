@@ -2507,7 +2507,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!container) return;
 
   try {
-    const res = await fetch(`${API_URL}/discover/tv?api_key=${API_KEY}&with_origin_country=KR&language=it-IT`);
+    const res = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_origin_country=KR&language=it-IT`);
     const data = await res.json();
 
     const filtered = data.results.filter(item =>
