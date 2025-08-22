@@ -2411,5 +2411,25 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
       .catch(err => console.error('❌ Service Worker errore:', err));
   }
 </script>
+
+<script>
+function setupCarouselScroll(id, containerId) {
+  const leftBtn = document.getElementById(`scroll-left-${id}`);
+  const rightBtn = document.getElementById(`scroll-right-${id}`);
+  const container = document.getElementById(containerId);
+
+  if (leftBtn && rightBtn && container) {
+    leftBtn.addEventListener('click', () => {
+      container.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+    rightBtn.addEventListener('click', () => {
+      container.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+  }
+}
+</script>
+
+
+
 </body>
 </html>
