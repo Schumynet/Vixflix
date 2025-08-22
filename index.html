@@ -641,6 +641,22 @@
         document.addEventListener('DOMContentLoaded', function() {
             const navbar = document.querySelector('.glass-nav');
 
+setupCarouselScroll('trending', 'trending-movies');
+setupCarouselScroll('popular-tv', 'popular-tv');
+setupCarouselScroll('top-rated', 'top-rated-movies');
+setupCarouselScroll('upcoming', 'upcoming-movies');
+setupCarouselScroll('azione', 'carousel-azione');
+setupCarouselScroll('commedia', 'carousel-commedia');
+setupCarouselScroll('horror', 'carousel-horror');
+setupCarouselScroll('avventura', 'carousel-avventura');
+setupCarouselScroll('dramma', 'carousel-dramma');
+setupCarouselScroll('fantascienza', 'carousel-fantascienza');
+setupCarouselScroll('romance', 'carousel-romance');
+setupCarouselScroll('thriller', 'carousel-thriller');
+setupCarouselScroll('korean-drama', 'carousel-korean-drama');
+
+
+          
             // Gestione scroll con effetto parallax
             function handleScroll() {
                 const scrollY = window.scrollY;
@@ -1879,7 +1895,15 @@ async function loadAvailableContent() {
     getTopRatedMovies();
     getUpcomingMovies();
     getRandomHeroContent(); // Updated function name
-
+getKoreanDrama();
+loadGenreMovies(28, 'carousel-azione');         // Azione
+loadGenreMovies(35, 'carousel-commedia');       // Commedia
+loadGenreMovies(27, 'carousel-horror');         // Horror
+loadGenreMovies(12, 'carousel-avventura');      // Avventura
+loadGenreMovies(18, 'carousel-dramma');         // Dramma
+loadGenreMovies(878, 'carousel-fantascienza');  // Fantascienza
+loadGenreMovies(10749, 'carousel-romance');     // Romance
+loadGenreMovies(53, 'carousel-thriller');       // Thriller
 
     document.getElementById('search-button').addEventListener('click', () => searchMedia());
 document.getElementById('search-input').addEventListener('keydown', e => {
@@ -2413,6 +2437,8 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
 </script>
 
 <script>
+<script>
+// 🔄 Scroll orizzontale
 function setupCarouselScroll(id, containerId) {
   const leftBtn = document.getElementById(`scroll-left-${id}`);
   const rightBtn = document.getElementById(`scroll-right-${id}`);
@@ -2427,6 +2453,181 @@ function setupCarouselScroll(id, containerId) {
     });
   }
 }
+
+// 🔥 Film in tendenza
+async function getTrendingMovies() {
+  const container = document.getElementById('trending-movies');
+  if (!container) return;
+
+  try {
+    const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&language=it-IT`);
+    const data = await res.json();
+    data.results.slice(0, 10).forEach(item => {
+      if (!item.poster_path) return;
+      const card = createMovieCard(item, 'movie');
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error('Errore nel caricamento dei film in tendenza:', err);
+  }
+}
+
+// 📺 Serie TV popolari
+async function getPopularTv() {
+  const container = document.getElementById('popular-tv');
+  if (!container) return;
+
+  try {
+    const res = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=it-IT&page=1`);
+    const data = await res.json();
+    data.results.slice(0, 10).forEach(item => {
+      if (!item.poster_path) return;
+      const card = createMovieCard(item, 'tv');
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error('Errore nel caricamento delle serie TV popolari:', err);
+  }
+}
+
+// 🌟 Film più votati
+async function getTopRatedMovies() {
+  const container = document.getElementById('top-rated-movies');
+  if (!container) return;
+
+  try {
+    const res = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=it-IT&page=1`);
+    const data = await res.json();
+    data.results.slice(0, 10).forEach(item => {
+      if (!item.poster_path) return;
+      const card = createMovieCard(item, 'movie');
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error('Errore nel caricamento dei film più votati:', err);
+  }
+}
+
+// 🎬 Film al cinema
+async function getUpcomingMovies() {
+  const container = document.getElementById('upcoming-movies');
+  if (!container) return;
+
+  try {
+    const res = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=it-IT&page=1`);
+    const data = await res.json();
+    data.results.slice(0, 10).forEach(item => {
+      if (!item.poster_path) return;
+      const card = createMovieCard(item, 'movie');
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error('Errore nel caricamento dei film al cinema:', err);
+  }
+}
+
+// 🎥 Hero dinamica
+async function getRandomHeroContent() {
+  try {
+    const res = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&language=it-IT`);
+    const data = await res.json();
+    const items = data.results.filter(item => item.backdrop_path);
+
+    if (items.length === 0) return;
+
+    const randomItem = items[Math.floor(Math.random() * items.length)];
+    const type = randomItem.media_type || (randomItem.title ? 'movie' : 'tv');
+    const details = await getMovieDetails(randomItem.id, type);
+
+    showHeroContent(details, type);
+  } catch (err) {
+    console.error('Errore nel caricamento della Hero:', err);
+  }
+}
+
+// 🎭 Generi specifici
+async function loadGenreMovies(genreId, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  try {
+    const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&language=it-IT&sort_by=popularity.desc`);
+    const data = await res.json();
+    data.results.slice(0, 10).forEach(item => {
+      if (!item.poster_path) return;
+      const card = createMovieCard(item, 'movie');
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error(`Errore nel caricamento del genere ${genreId}:`, err);
+  }
+}
+
+// 🇰🇷 Korean Drama
+async function getKoreanDrama() {
+  const container = document.getElementById('carousel-korean-drama');
+  if (!container) return;
+
+  try {
+    const res = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_original_language=ko&sort_by=popularity.desc&language=it-IT`);
+    const data = await res.json();
+    data.results.slice(0, 10).forEach(item => {
+      if (!item.poster_path) return;
+      const card = createMovieCard(item, 'tv');
+      container.appendChild(card);
+    });
+
+    const countLabel = document.getElementById('korean-drama-count');
+    if (countLabel) {
+      countLabel.textContent = `${data.results.length} titoli disponibili`;
+      countLabel.style.display = 'block';
+    }
+  } catch (err) {
+    console.error('Errore nel caricamento dei Korean Drama:', err);
+  }
+}
+
+// 🚀 Inizializzazione dell'app
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadAvailableContent();
+
+  getTrendingMovies();
+  getPopularTv();
+  getTopRatedMovies();
+  getUpcomingMovies();
+  getRandomHeroContent(); // Updated function name
+  getKoreanDrama();
+
+  loadGenreMovies(28, 'carousel-azione');         // Azione
+  loadGenreMovies(35, 'carousel-commedia');       // Commedia
+  loadGenreMovies(27, 'carousel-horror');         // Horror
+  loadGenreMovies(12, 'carousel-avventura');      // Avventura
+  loadGenreMovies(18, 'carousel-dramma');         // Dramma
+  loadGenreMovies(878, 'carousel-fantascienza');  // Fantascienza
+  loadGenreMovies(10749, 'carousel-romance');     // Romance
+  loadGenreMovies(53, 'carousel-thriller');       // Thriller
+
+  const sections = [
+    ['trending', 'trending-movies'],
+    ['popular-tv', 'popular-tv'],
+    ['top-rated', 'top-rated-movies'],
+    ['upcoming', 'upcoming-movies'],
+    ['azione', 'carousel-azione'],
+    ['commedia', 'carousel-commedia'],
+    ['horror', 'carousel-horror'],
+    ['avventura', 'carousel-avventura'],
+    ['dramma', 'carousel-dramma'],
+    ['fantascienza', 'carousel-fantascienza'],
+    ['romance', 'carousel-romance'],
+    ['thriller', 'carousel-thriller'],
+    ['korean-drama', 'carousel-korean-drama']
+  ];
+
+  sections.forEach(([id, containerId]) => {
+    setupCarouselScroll(id, containerId);
+  });
+});
+</script>
 </script>
 
 
