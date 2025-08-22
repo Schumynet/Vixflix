@@ -2526,24 +2526,7 @@ async function getUpcomingMovies() {
   }
 }
 
-// 🎥 Hero dinamica
-async function getRandomHeroContent() {
-  try {
-    const res = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&language=it-IT`);
-    const data = await res.json();
-    const items = data.results.filter(item => item.backdrop_path);
 
-    if (items.length === 0) return;
-
-    const randomItem = items[Math.floor(Math.random() * items.length)];
-    const type = randomItem.media_type || (randomItem.title ? 'movie' : 'tv');
-    const details = await getMovieDetails(randomItem.id, type);
-
-    showHeroContent(details, type);
-  } catch (err) {
-    console.error('Errore nel caricamento della Hero:', err);
-  }
-}
 
 // 🎭 Generi specifici
 async function loadGenreMovies(genreId, containerId) {
@@ -2591,7 +2574,7 @@ async function getKoreanDrama() {
 document.addEventListener('DOMContentLoaded', async () => {
   await loadAvailableContent();
 
-  getTrendingMovies();
+  
   getPopularTv();
   getTopRatedMovies();
   getUpcomingMovies();
@@ -2608,7 +2591,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   loadGenreMovies(53, 'carousel-thriller');       // Thriller
 
   const sections = [
-    ['trending', 'trending-movies'],
+    
     ['popular-tv', 'popular-tv'],
     ['top-rated', 'top-rated-movies'],
     ['upcoming', 'upcoming-movies'],
