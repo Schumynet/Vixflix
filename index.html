@@ -832,7 +832,7 @@
 <!-- Korean Drama -->
 <section id="korean-drama" class="mb-12 relative">
   <h2 class="text-xl font-bold mb-2">Korean Drama</h2>
-  <p id="korean-count" class="text-sm text-gray-400 mb-4">Caricamento...</p>
+  <p id="korean-drama-count" class="text-sm text-gray-400 mb-4">Caricamento...</p>
   <div class="carousel-wrapper">
     <button id="scroll-left-korean-drama" class="carousel-btn absolute left-0 top-1/2 transform -translate-y-1/2 z-10">◀</button>
     <div class="carousel-korean-drama" id="carousel-korean-drama"></div>
@@ -2504,20 +2504,33 @@ document.addEventListener("DOMContentLoaded", async () => {
 </script>
 
 <script>
-    async function getKoreanDrama() {
+     async function getKoreanDrama() {
   const container = document.getElementById('carousel-korean-drama');
   if (!container) return;
 
   try {
-    const res = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_origin_country=KR&language=it-IT`);
-    const data = await res.json();
+    const [resMovies, resTv] = await Promise.all([
+      fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&with_origin_country=KR&language=it-IT`),
+      fetch(`${API_URL}/discover/tv?api_key=${API_KEY}&with_origin_country=KR&language=it-IT`)
+    ]);
 
-    const filtered = data.results.filter(item =>
+    const [dataMovies, dataTv] = await Promise.all([
+      resMovies.json(),
+      resTv.json()
+    ]);
+
+    const combined = [...dataMovies.results, ...dataTv.results].filter(item =>
       availableContent.some(content => content.tmdb_id === item.id)
     );
 
-    filtered.slice(0, 10).forEach(item => {
-      const card = createMovieCard(item, 'tv');
+    const countElement = document.getElementById('korean-drama-count');
+    if (countElement) {
+      countElement.textContent = `Risultati trovati: ${combined.length}`;
+    }
+
+    combined.slice(0, 10).forEach(item => {
+      const type = item.title ? 'movie' : 'tv';
+      const card = createMovieCard(item, type);
       container.appendChild(card);
     });
 
@@ -2531,7 +2544,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (err) {
     console.error('Errore nel caricamento dei Korean Drama:', err);
   }
-}
+     }
 </script>
     
 </body>
