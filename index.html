@@ -831,7 +831,7 @@
 
 <!-- Korean Drama -->
 <section id="korean-drama" class="mb-12 relative">
-  <h2 class="text-xl font-bold mb-2">Korean Drama</h2>
+  <h2 id="korean-drama-title" class="text-xl font-bold mb-2">Korean Drama</h2>
   <p id="korean-drama-count" class="text-sm text-gray-400 mb-4" style="display: none;"></p>
   <div class="carousel-wrapper">
     <button id="scroll-left-korean-drama" class="carousel-btn absolute left-0 top-1/2 transform -translate-y-1/2 z-10">◀</button>
@@ -2505,7 +2505,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 </script>
 
 <script>
-     async function getKoreanDrama() {
+   async function getKoreanDrama() {
   const container = document.getElementById('carousel-korean-drama');
   if (!container) return;
 
@@ -2520,9 +2520,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       resTv.json()
     ]);
 
-    const combined = [...dataMovies.results, ...dataTv.results].filter(item =>
-      availableContent.some(content => content.tmdb_id === item.id)
-    );
+    const combined = [...dataMovies.results, ...dataTv.results];
 
     const countElement = document.getElementById('korean-drama-count');
     if (countElement) {
@@ -2530,7 +2528,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       countElement.style.display = 'block';
     }
 
+    const titleElement = document.getElementById('korean-drama-title');
+    if (titleElement) {
+      const year = new Date().getFullYear();
+      titleElement.textContent = `Korean Drama (${year})`;
+    }
+
     combined.slice(0, 10).forEach(item => {
+      if (!item.poster_path) return;
+
       const type = item.title ? 'movie' : 'tv';
       const card = createMovieCard(item, type);
       container.appendChild(card);
