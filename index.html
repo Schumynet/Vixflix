@@ -2284,7 +2284,7 @@ document.addEventListener('click', (e) => {
         e.stopPropagation();
         const id = parseInt(playBtn.dataset.id);
         const type = playBtn.dataset.type;
-        saveToContinueWatching(item.id); // 👈 Salva il contenuto nella lista "Continua a guardare"
+      
         playMovie(id, type);
     }
 });
