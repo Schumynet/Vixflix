@@ -704,116 +704,140 @@
     <main class="relative z-20 -mt-20 scrollbar-hide">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <!-- Trending Movies -->
-            <section id="movie-trend" class="mb-12">
-                <h2   id="trending" class="text-xl font-bold mb-4">Film in tendenza</h2>
-                <div id="trending-movies" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <!-- Loading skeleton -->
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                </div>
-            </section>
+              <!-- Film in tendenza -->
+<section id="movie-trend" class="mb-12">
+  <h2 class="text-xl font-bold mb-4">Film in tendenza</h2>
+  <div class="carousel-wrapper">
+    <button id="scroll-left-trending" class="carousel-btn">◀</button>
+    <div class="carousel-trending" id="trending-movies"></div>
+    <button id="scroll-right-trending" class="carousel-btn">▶</button>
+  </div>
+</section>
 
-            <!-- Popular TV Shows -->
-            <section id="tv-popular" class="mb-12">
-                <h2 class="text-xl font-bold mb-4">Serie TV popolari</h2>
-                <div id="popular-tv" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <!-- Loading skeleton -->
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                </div>
-            </section>
+<!-- Serie TV popolari -->
+<section id="tv-popular" class="mb-12">
+  <h2 class="text-xl font-bold mb-4">Serie TV popolari</h2>
+  <div class="carousel-wrapper">
+    <button id="scroll-left-popular-tv" class="carousel-btn">◀</button>
+    <div class="carousel-popular-tv" id="popular-tv"></div>
+    <button id="scroll-right-popular-tv" class="carousel-btn">▶</button>
+  </div>
+</section>
 
-            <!-- Top Rated Movies -->
-            <section id="critics" class="mb-12">
-                <h2 class="text-xl font-bold mb-4">Film più votati</h2>
-                <div id="top-rated-movies" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <!-- Loading skeleton -->
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                </div>
-            </section>
+<!-- Film più votati -->
+<section id="critics" class="mb-12">
+  <h2 class="text-xl font-bold mb-4">Film più votati</h2>
+  <div class="carousel-wrapper">
+    <button id="scroll-left-top-rated" class="carousel-btn">◀</button>
+    <div class="carousel-top-rated" id="top-rated-movies"></div>
+    <button id="scroll-right-top-rated" class="carousel-btn">▶</button>
+  </div>
+</section>
 
-            <!-- Upcoming Movies -->
-            <section id="new" class="mb-12">
-                <h2 class="text-xl font-bold mb-4">Film al cinema</h2>
-                <div id="upcoming-movies" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <!-- Loading skeleton -->
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                </div>
-            </section>
+<!-- Film al cinema -->
+<section id="new" class="mb-12">
+  <h2 class="text-xl font-bold mb-4">Film al cinema</h2>
+  <div class="carousel-wrapper">
+    <button id="scroll-left-upcoming" class="carousel-btn">◀</button>
+    <div class="carousel-upcoming" id="upcoming-movies"></div>
+    <button id="scroll-right-upcoming" class="carousel-btn">▶</button>
+  </div>
+</section>
+        </div>
+
+
+        <section class="genre-section" id="azione">
+  <h2 class="section-title">Film d'Azione</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-azione">◀</button>
+    <div class="carousel" id="carousel-azione">
+      <!-- Card generate dinamicamente -->
+    </div>
+    <button class="carousel-btn right" id="scroll-right-azione">▶</button>
+  </div>
+</section>
+
+
+<!-- Commedia -->
+<section class="genre-section" id="commedia">
+  <h2 class="section-title">Commedia</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-commedia">◀</button>
+    <div class="carousel" id="carousel-commedia"></div>
+    <button class="carousel-btn right" id="scroll-right-commedia">▶</button>
+  </div>
+</section>
+
+<!-- Horror -->
+<section class="genre-section" id="horror">
+  <h2 class="section-title">Horror</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-horror">◀</button>
+    <div class="carousel" id="carousel-horror"></div>
+    <button class="carousel-btn right" id="scroll-right-horror">▶</button>
+  </div>
+</section>
+
+<!-- Avventura -->
+<section class="genre-section" id="avventura">
+  <h2 class="section-title">Avventura</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-avventura">◀</button>
+    <div class="carousel" id="carousel-avventura"></div>
+    <button class="carousel-btn right" id="scroll-right-avventura">▶</button>
+  </div>
+</section>
+
+<!-- Dramma -->
+<section class="genre-section" id="dramma">
+  <h2 class="section-title">Dramma</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-dramma">◀</button>
+    <div class="carousel" id="carousel-dramma"></div>
+    <button class="carousel-btn right" id="scroll-right-dramma">▶</button>
+  </div>
+</section>
+
+<!-- Fantascienza -->
+<section class="genre-section" id="fantascienza">
+  <h2 class="section-title">Fantascienza</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-fantascienza">◀</button>
+    <div class="carousel" id="carousel-fantascienza"></div>
+    <button class="carousel-btn right" id="scroll-right-fantascienza">▶</button>
+  </div>
+</section>
+
+<!-- Romance -->
+<section class="genre-section" id="romance">
+  <h2 class="section-title">Romance</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-romance">◀</button>
+    <div class="carousel" id="carousel-romance"></div>
+    <button class="carousel-btn right" id="scroll-right-romance">▶</button>
+  </div>
+</section>
+
+<!-- Thriller -->
+<section class="genre-section" id="thriller">
+  <h2 class="section-title">Thriller</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-thriller">◀</button>
+    <div class="carousel" id="carousel-thriller"></div>
+    <button class="carousel-btn right" id="scroll-right-thriller">▶</button>
+  </div>
+</section>
+
+<!-- Korean Drama -->
+<section id="korean-drama" class="mb-12 relative">
+  <h2 id="korean-drama-title" class="text-xl font-bold mb-2">Korean Drama</h2>
+  <p id="korean-drama-count" class="text-sm text-gray-400 mb-4" style="display: none;"></p>
+  <div class="carousel-wrapper">
+    <button id="scroll-left-korean-drama" class="carousel-btn absolute left-0 top-1/2 transform -translate-y-1/2 z-10">◀</button>
+    <div class="carousel-korean-drama" id="carousel-korean-drama"></div>
+    <button id="scroll-right-korean-drama" class="carousel-btn absolute right-0 top-1/2 transform -translate-y-1/2 z-10">▶</button>
+  </div>
+</section>
         </div>
     </main>
 
