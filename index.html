@@ -2564,6 +2564,34 @@ if (!availableContent.some(content => content.tmdb_id === item.id)) {
 }
     
 </script>
+   <script>
+       // funzione di gestione dati
+       function getFavorites() {
+  return JSON.parse(localStorage.getItem('favorites')) || [];
+}
+
+function toggleFavorite(id) {
+  let favorites = getFavorites();
+  if (favorites.includes(id)) {
+    favorites = favorites.filter(favId => favId !== id);
+  } else {
+    favorites.push(id);
+  }
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+}
+
+function getContinueWatching() {
+  return JSON.parse(localStorage.getItem('continueWatching')) || [];
+}
+
+function saveToContinueWatching(id) {
+  let list = getContinueWatching();
+  list = list.filter(existing => existing !== id); // rimuove duplicati
+  list.unshift(id); // aggiunge in cima
+  localStorage.setItem('continueWatching', JSON.stringify(list.slice(0, 10))); // max 10
+}
+   </script>
+
     
 </body>
 </html>
