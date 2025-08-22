@@ -2526,6 +2526,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const countElement = document.getElementById('korean-drama-count');
     if (countElement) {
       countElement.textContent = `Risultati trovati: ${combined.length}`;
+      countElement.style.display = 'block';
     }
 
     combined.slice(0, 10).forEach(item => {
@@ -2534,17 +2535,22 @@ document.addEventListener("DOMContentLoaded", async () => {
       container.appendChild(card);
     });
 
-    document.getElementById('scroll-left-korean-drama').addEventListener('click', () => {
-      container.scrollBy({ left: -300, behavior: 'smooth' });
-    });
+    const scrollLeftBtn = document.getElementById('scroll-left-korean-drama');
+    const scrollRightBtn = document.getElementById('scroll-right-korean-drama');
 
-    document.getElementById('scroll-right-korean-drama').addEventListener('click', () => {
-      container.scrollBy({ left: 300, behavior: 'smooth' });
-    });
+    if (scrollLeftBtn && scrollRightBtn) {
+      scrollLeftBtn.addEventListener('click', () => {
+        container.scrollBy({ left: -300, behavior: 'smooth' });
+      });
+
+      scrollRightBtn.addEventListener('click', () => {
+        container.scrollBy({ left: 300, behavior: 'smooth' });
+      });
+    }
   } catch (err) {
     console.error('Errore nel caricamento dei Korean Drama:', err);
   }
-     }
+}
 </script>
     
 </body>
