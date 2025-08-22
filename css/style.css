@@ -1044,15 +1044,8 @@ backdrop-filter: blur(12.5px);
 
 /* pulsanti aggiungi hai preferiti */
 .fav-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: transparent;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
+  background: red;
   color: white;
-}
-.fav-btn.active {
-  color: red;
+  padding: 4px;
+  border-radius: 4px;
 }
