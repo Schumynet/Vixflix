@@ -828,6 +828,15 @@
     <button class="carousel-btn right" id="scroll-right-thriller">▶</button>
   </div>
 </section>
+
+<section id="korean-drama" class="mb-12">
+  <h2 class="text-xl font-bold mb-4">Korean Drama</h2>
+  <div class="carousel-wrapper">
+    <button id="scroll-left-korean-drama" class="carousel-btn">◀</button>
+    <div class="carousel-korean-drama" id="carousel-korean-drama"></div>
+    <button id="scroll-right-korean-drama" class="carousel-btn">▶</button>
+  </div>
+</section>
        
     </main>
 
@@ -2491,6 +2500,37 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 </script>
- 
+
+<script>
+    async function getKoreanDrama() {
+  const container = document.getElementById('carousel-korean-drama');
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${API_URL}/discover/tv?api_key=${API_KEY}&with_origin_country=KR&language=it-IT`);
+    const data = await res.json();
+
+    const filtered = data.results.filter(item =>
+      availableContent.some(content => content.tmdb_id === item.id)
+    );
+
+    filtered.slice(0, 10).forEach(item => {
+      const card = createMovieCard(item, 'tv');
+      container.appendChild(card);
+    });
+
+    document.getElementById('scroll-left-korean-drama').addEventListener('click', () => {
+      container.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+
+    document.getElementById('scroll-right-korean-drama').addEventListener('click', () => {
+      container.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+  } catch (err) {
+    console.error('Errore nel caricamento dei Korean Drama:', err);
+  }
+}
+</script>
+    
 </body>
 </html>
