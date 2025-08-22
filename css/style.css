@@ -753,3 +753,100 @@ backdrop-filter: blur(12.5px);
     min-width: 120px;
   }
 }
+
+
+/* Commedia */
+.carousel-commedia {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.carousel-commedia::-webkit-scrollbar {
+  display: none;
+}
+
+/* Horror */
+.carousel-horror {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.carousel-horror::-webkit-scrollbar {
+  display: none;
+}
+
+/* Avventura */
+.carousel-avventura {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.carousel-avventura::-webkit-scrollbar {
+  display: none;
+}
+
+/* Dramma */
+.carousel-dramma {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.carousel-dramma::-webkit-scrollbar {
+  display: none;
+}
+
+/* Fantascienza */
+.carousel-fantascienza {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.carousel-fantascienza::-webkit-scrollbar {
+  display: none;
+}
+
+/* Romance */
+.carousel-romance {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.carousel-romance::-webkit-scrollbar {
+  display: none;
+}
+
+/* Thriller */
+.carousel-thriller {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.carousel-thriller::-webkit-scrollbar {
+  display: none;
+}
+
+/* Korean Drama */
+.carousel-korean-drama {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.carousel-korean-drama::-webkit-scrollbar {
+  display: none;
+}
