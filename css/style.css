@@ -739,6 +739,15 @@ backdrop-filter: blur(12.5px);
   scroll-behavior: smooth;
 }
 
+#carousel-azione::-webkit-scrollbar {
+  display: none;
+}
+
+.movie-card {
+  min-width: 140px;
+  flex: 0 0 auto;
+}
+
 @media (max-width: 600px) {
   .card {
     min-width: 120px;
