@@ -2511,8 +2511,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const [resMovies, resTv] = await Promise.all([
-      fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_origin_country=KR&language=it-IT`),
-      fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_origin_country=KR&language=it-IT`)
+      fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_original_language=ko&region=KR&sort_by=popularity.desc&language=it-IT`),
+      fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_original_language=ko&region=KR&sort_by=popularity.desc&language=it-IT`)
     ]);
 
     const [dataMovies, dataTv] = await Promise.all([
@@ -2520,10 +2520,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       resTv.json()
     ]);
 
-    const combined = [...dataMovies.results, ...dataTv.results];
+    const combined = [...dataMovies.results, ...dataTv.results].filter(item =>
+      availableContent.some(content => content.tmdb_id === item.id)
+    );
 
-    // 🔥 Rimuovi temporaneamente il filtro
-    // const filtered = combined.filter(...);
     const countElement = document.getElementById('korean-drama-count');
     if (countElement) {
       countElement.textContent = `Risultati trovati: ${combined.length}`;
@@ -2546,7 +2546,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (err) {
     console.error('Errore nel caricamento dei Korean Drama:', err);
   }
-  }
+}
 </script>
     
 </body>
