@@ -894,10 +894,14 @@ backdrop-filter: blur(12.5px);
 @media (max-width: 640px) {
   .movie-card {
     min-width: 100px;
+    max-width: 100px;
     height: auto;
+    border-radius: 6px;
   }
 
   .movie-card img {
+    width: 100%;
+    height: auto;
     border-radius: 6px;
   }
 
@@ -907,5 +911,10 @@ backdrop-filter: blur(12.5px);
 
   .carousel-btn {
     font-size: 1.5rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
   }
 }
