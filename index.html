@@ -2555,5 +2555,32 @@ if (!availableContent.some(content => content.tmdb_id === item.id)) {
 }
 
 </script>
+<script>
+
+document.getElementById('play-button').addEventListener('click', () => {
+  const modal = document.getElementById('movie-modal');
+  const content = JSON.parse(modal.dataset.currentContent || '{}');
+
+  if (!content.id || !content.media_type) {
+    alert('Nessun contenuto selezionato.');
+    return;
+  }
+
+  playMovie(content.id, content.media_type);
+});
+
+document.getElementById('more-info-button').addEventListener('click', () => {
+  const modal = document.getElementById('movie-modal');
+  const content = JSON.parse(modal.dataset.currentContent || '{}');
+
+  if (!content.id || !content.media_type) {
+    alert('Nessun contenuto selezionato.');
+    return;
+  }
+
+  showMovieDetails(content, content.media_type);
+});
+
+</script>
 </body>
 </html>
