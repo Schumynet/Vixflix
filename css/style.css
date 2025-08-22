@@ -1030,3 +1030,14 @@ backdrop-filter: blur(12.5px);
 #scroll-right-korean-drama {
   right: 0;
 }
+
+.badge-unavailable {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(255, 0, 0, 0.8);
+  color: white;
+  padding: 4px 6px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+}
