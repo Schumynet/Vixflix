@@ -705,6 +705,21 @@
      <!-- Main Content -->
     <main class="relative z-20 -mt-20 scrollbar-hide">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+            <section id="favorites" class="mb-12">
+  <h2 class="text-xl font-bold mb-2">I miei preferiti</h2>
+  <div class="carousel-wrapper">
+    <div class="carousel-favorites" id="carousel-favorites"></div>
+  </div>
+</section>
+
+<section id="continue-watching" class="mb-12">
+  <h2 class="text-xl font-bold mb-2">Continua a guardare</h2>
+  <div class="carousel-wrapper">
+    <div class="carousel-continue" id="carousel-continue"></div>
+  </div>
+</section>
+            
             <!-- Film in tendenza -->
 <section id="movie-trend" class="mb-12">
   <h2 class="text-xl font-bold mb-4">Film in tendenza</h2>
@@ -2281,7 +2296,11 @@ card.appendChild(favBtn);
         const details = await getMovieDetails(item.id, type);
         type === "tv" ? showTVSeasons(item.id, type) : showMovieDetails(details, type);
     });
-    
+
+     
+    saveToContinueWatching(item.id); // 👈 Salva il contenuto nella lista "Continua a guardare"
+
+     
 document.addEventListener('click', (e) => {
     const playBtn = e.target.closest('.play-button-glass');
     if (playBtn) {
@@ -2606,6 +2625,31 @@ function saveToContinueWatching(id) {
 }
    </script>
 
+    <script>
+
+function loadFavoritesSection() {
+  const ids = getFavorites();
+  const container = document.getElementById('carousel-favorites');
+  const items = availableContent.filter(item => ids.includes(item.tmdb_id));
+  items.forEach(item => {
+    const type = item.title ? 'movie' : 'tv';
+    const card = createMovieCard(item, type);
+    container.appendChild(card);
+  });
+}
+
+function loadContinueWatchingSection() {
+  const ids = getContinueWatching();
+  const container = document.getElementById('carousel-continue');
+  const items = availableContent.filter(item => ids.includes(item.tmdb_id));
+  items.forEach(item => {
+    const type = item.title ? 'movie' : 'tv';
+    const card = createMovieCard(item, type);
+    container.appendChild(card);
+  });
+}
+        
+    </script>
     
 </body>
 </html>
