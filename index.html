@@ -668,37 +668,32 @@
     </script>
 
     <!-- Hero Section -->
-    <section id="hero-section" class="relative">
-    <div id="hero-backdrop" class="absolute inset-0 bg-cover bg-center"></div>
-    <div class="hero-gradient absolute inset-0"></div>
-    <div class="hero-fade"></div>
-
-    <div class="relative z-10 h-full flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="hero-content-container  from-black/80 via-black/50 to-transparent md:bg-none">
+        <!-- Hero Section -->
+    <section id="hero-section" class="relative h-screen">
+        <div id="hero-backdrop" class="absolute inset-0 bg-cover bg-center"></div>
+        <div class="hero-gradient absolute inset-0"></div>
+        <div class="relative z-10 h-full flex items-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="w-full lg:w-1/2">
-                    <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"></h1>
+                    <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Caricamento...</h1>
                     <div class="flex items-center mb-4">
-                        <span id="hero-rating" class="bg-primary text-white px-2 py-1 rounded-md text-sm font-bold mr-4"></span>
-                        <span id="hero-year" class="text-gray-300 mr-4"></span>
-                        <span id="hero-runtime" class="text-gray-300"></span>
+                        <span id="hero-rating" class="bg-primary text-white px-2 py-1 rounded-md text-sm font-bold mr-4">0.0</span>
+                        <span id="hero-year" class="text-gray-300 mr-4">2023</span>
+                        <span id="hero-runtime" class="text-gray-300">120 min</span>
                     </div>
-                    <p id="hero-overview" class="text-gray-300 mb-6 text-sm md:text-base"></p>
+                    <p id="hero-overview" class="text-gray-300 mb-6 text-sm md:text-base">Caricamento descrizione Film...</p>
                     <div class="flex space-x-4">
-                    <div class="flex space-x-4">
-                        <button id="play-button" class="glass-button">
+                        <button id="play-button" class="bg-primary hover:bg-red-700 text-white px-6 py-2 rounded-md flex items-center">
                             <i class="fas fa-play mr-2"></i> Play
                         </button>
-                        <button id="more-info-button" class="glass-button">
+                        <button id="more-info-button" class="bg-gray-600 bg-opacity-70 hover:bg-opacity-90 text-white px-6 py-2 rounded-md flex items-center">
                             <i class="fas fa-info-circle mr-2"></i> Info
                         </button>
-
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Main Content -->
     <main class="relative z-20 -mt-20 scrollbar-hide">
