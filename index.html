@@ -2231,6 +2231,18 @@ async function getMovieDetails(id, type = 'movie') {
     card.className = "movie-card cursor-pointer";
     card.dataset.id = item.id;
     card.dataset.type = type;
+
+     // pulsanti preferiti è rimuovi
+     const favBtn = document.createElement('button');
+favBtn.className = 'fav-btn';
+favBtn.innerHTML = '❤️';
+favBtn.title = 'Aggiungi ai preferiti';
+favBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleFavorite(item.id);
+  favBtn.classList.toggle('active');
+});
+card.appendChild(favBtn);
     
     // Aggiungi classe tv-card se è una serie TV
     if (type === "tv") {
