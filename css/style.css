@@ -890,3 +890,22 @@ backdrop-filter: blur(12.5px);
   border-radius: 8px;
   overflow: hidden;
 }
+
+@media (max-width: 640px) {
+  .movie-card {
+    min-width: 100px;
+    height: auto;
+  }
+
+  .movie-card img {
+    border-radius: 6px;
+  }
+
+  .carousel-wrapper {
+    gap: 0.5rem;
+  }
+
+  .carousel-btn {
+    font-size: 1.5rem;
+  }
+}
