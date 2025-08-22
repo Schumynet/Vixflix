@@ -706,19 +706,7 @@
     <main class="relative z-20 -mt-20 scrollbar-hide">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-            <section id="favorites" class="mb-12">
-  <h2 class="text-xl font-bold mb-2">I miei preferiti</h2>
-  <div class="carousel-wrapper">
-    <div class="carousel-favorites" id="carousel-favorites"></div>
-  </div>
-</section>
 
-<section id="continue-watching" class="mb-12">
-  <h2 class="text-xl font-bold mb-2">Continua a guardare</h2>
-  <div class="carousel-wrapper">
-    <div class="carousel-continue" id="carousel-continue"></div>
-  </div>
-</section>
             
             <!-- Film in tendenza -->
 <section id="movie-trend" class="mb-12">
@@ -1906,8 +1894,7 @@ async function loadAvailableContent() {
     getHorrorMovies();
     getFantascienzaMovies();
     getKoreanDrama();
-    loadFavoritesSection();
-    loadContinueWatchingSection();
+    
 
 
     document.getElementById('search-button').addEventListener('click', () => searchMedia());
@@ -2249,17 +2236,7 @@ async function getMovieDetails(id, type = 'movie') {
     card.dataset.id = item.id;
     card.dataset.type = type;
 
-     // pulsanti preferiti è rimuovi
-     const favBtn = document.createElement('button');
-favBtn.className = 'fav-btn';
-favBtn.innerHTML = '❤️';
-favBtn.title = 'Aggiungi ai preferiti';
-favBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  toggleFavorite(item.id);
-  favBtn.classList.toggle('active');
-});
-card.appendChild(favBtn);
+     
     
     // Aggiungi classe tv-card se è una serie TV
     if (type === "tv") {
@@ -2597,59 +2574,8 @@ if (!availableContent.some(content => content.tmdb_id === item.id)) {
 }
     
 </script>
-   <script>
-       // funzione di gestione dati
-       function getFavorites() {
-  return JSON.parse(localStorage.getItem('favorites')) || [];
-}
-
-function toggleFavorite(id) {
-  let favorites = getFavorites();
-  if (favorites.includes(id)) {
-    favorites = favorites.filter(favId => favId !== id);
-  } else {
-    favorites.push(id);
-  }
-  localStorage.setItem('favorites', JSON.stringify(favorites));
-}
-
-function getContinueWatching() {
-  return JSON.parse(localStorage.getItem('continueWatching')) || [];
-}
-
-function saveToContinueWatching(id) {
-  let list = getContinueWatching();
-  list = list.filter(existing => existing !== id); // rimuove duplicati
-  list.unshift(id); // aggiunge in cima
-  localStorage.setItem('continueWatching', JSON.stringify(list.slice(0, 10))); // max 10
-}
-   </script>
-
-    <script>
-
-function loadFavoritesSection() {
-  const ids = getFavorites();
-  const container = document.getElementById('carousel-favorites');
-  const items = availableContent.filter(item => ids.includes(item.tmdb_id));
-  items.forEach(item => {
-    const type = item.title ? 'movie' : 'tv';
-    const card = createMovieCard(item, type);
-    container.appendChild(card);
-  });
-}
-
-function loadContinueWatchingSection() {
-  const ids = getContinueWatching();
-  const container = document.getElementById('carousel-continue');
-  const items = availableContent.filter(item => ids.includes(item.tmdb_id));
-  items.forEach(item => {
-    const type = item.title ? 'movie' : 'tv';
-    const card = createMovieCard(item, type);
-    container.appendChild(card);
-  });
-}
-        
-    </script>
+   
+    
     
 </body>
 </html>
