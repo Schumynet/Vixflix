@@ -654,7 +654,8 @@ setupCarouselScroll('fantascienza', 'carousel-fantascienza');
 setupCarouselScroll('romance', 'carousel-romance');
 setupCarouselScroll('thriller', 'carousel-thriller');
 setupCarouselScroll('korean-drama', 'carousel-korean-drama');
-
+setupCarouselScroll('korean-movies', 'carousel-korean-movies');
+getKoreanMovies();
 
           
             // Gestione scroll con effetto parallax
@@ -843,6 +844,16 @@ setupCarouselScroll('korean-drama', 'carousel-korean-drama');
     <button class="carousel-btn right" id="scroll-right-thriller">▶</button>
   </div>
 </section>
+
+        <!-- Korean Film -->
+   <section id="korean-movies" class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-2">Film Coreani</h2>
+  <div class="carousel-wrapper">
+    <button id="scroll-left-korean-movies" class="carousel-btn absolute left-0 top-1/2 transform -translate-y-1/2 z-10">◀</button>
+    <div class="carousel-korean-movies" id="carousel-korean-movies"></div>
+    <button id="scroll-right-korean-movies" class="carousel-btn absolute right-0 top-1/2 transform -translate-y-1/2 z-10">▶</button>
+  </div>
+</section>     
 
 <!-- Korean Drama -->
 <section id="korean-drama" class="mb-12 relative">
@@ -2611,7 +2622,27 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 });
 </script>
+    
+<script>
+async function getKoreanMovies() {
+  const container = document.getElementById('carousel-korean-movies');
+  if (!container) return;
 
+  try {
+    const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_original_language=ko&sort_by=popularity.desc&language=it-IT`);
+    const data = await res.json();
+    const items = data.results.slice(0, 10);
+
+    items.forEach(item => {
+      if (!item.poster_path) return;
+      const card = createMovieCard(item, 'movie');
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error('Errore nel caricamento dei Film Coreani:', err);
+  }
+}
+</script>
 
 
 </body>
