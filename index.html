@@ -829,6 +829,77 @@
     <button class="carousel-btn right" id="scroll-right-azione">▶</button>
   </div>
 </section>
+
+
+<!-- Commedia -->
+<section class="genre-section" id="commedia">
+  <h2 class="section-title">Commedia</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-commedia">◀</button>
+    <div class="carousel" id="carousel-commedia"></div>
+    <button class="carousel-btn right" id="scroll-right-commedia">▶</button>
+  </div>
+</section>
+
+<!-- Horror -->
+<section class="genre-section" id="horror">
+  <h2 class="section-title">Horror</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-horror">◀</button>
+    <div class="carousel" id="carousel-horror"></div>
+    <button class="carousel-btn right" id="scroll-right-horror">▶</button>
+  </div>
+</section>
+
+<!-- Avventura -->
+<section class="genre-section" id="avventura">
+  <h2 class="section-title">Avventura</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-avventura">◀</button>
+    <div class="carousel" id="carousel-avventura"></div>
+    <button class="carousel-btn right" id="scroll-right-avventura">▶</button>
+  </div>
+</section>
+
+<!-- Dramma -->
+<section class="genre-section" id="dramma">
+  <h2 class="section-title">Dramma</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-dramma">◀</button>
+    <div class="carousel" id="carousel-dramma"></div>
+    <button class="carousel-btn right" id="scroll-right-dramma">▶</button>
+  </div>
+</section>
+
+<!-- Fantascienza -->
+<section class="genre-section" id="fantascienza">
+  <h2 class="section-title">Fantascienza</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-fantascienza">◀</button>
+    <div class="carousel" id="carousel-fantascienza"></div>
+    <button class="carousel-btn right" id="scroll-right-fantascienza">▶</button>
+  </div>
+</section>
+
+<!-- Romance -->
+<section class="genre-section" id="romance">
+  <h2 class="section-title">Romance</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-romance">◀</button>
+    <div class="carousel" id="carousel-romance"></div>
+    <button class="carousel-btn right" id="scroll-right-romance">▶</button>
+  </div>
+</section>
+
+<!-- Thriller -->
+<section class="genre-section" id="thriller">
+  <h2 class="section-title">Thriller</h2>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" id="scroll-left-thriller">◀</button>
+    <div class="carousel" id="carousel-thriller"></div>
+    <button class="carousel-btn right" id="scroll-right-thriller">▶</button>
+  </div>
+</section>
        
     </main>
 
@@ -2438,6 +2509,47 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
     
     </script>  
 
-    
+   <script>
+  async function getGenreMovies(genreId, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    try {
+      const res = await fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&language=it-IT`);
+      const data = await res.json();
+
+      const filtered = data.results.filter(item =>
+        availableContent.some(content => content.tmdb_id === item.id)
+      );
+
+      filtered.slice(0, 10).forEach(item => {
+        const card = createMovieCard(item, 'movie');
+        container.appendChild(card);
+      });
+
+      document.getElementById(`scroll-left-${containerId.split('-')[1]}`).addEventListener('click', () => {
+        container.scrollBy({ left: -300, behavior: 'smooth' });
+      });
+
+      document.getElementById(`scroll-right-${containerId.split('-')[1]}`).addEventListener('click', () => {
+        container.scrollBy({ left: 300, behavior: 'smooth' });
+      });
+    } catch (err) {
+      console.error(`Errore nel caricamento del genere ${containerId}:`, err);
+    }
+  }
+
+  // Esempi di chiamata
+  getGenreMovies(35, 'carousel-commedia');      // Commedia
+  getGenreMovies(27, 'carousel-horror');        // Horror
+  getGenreMovies(12, 'carousel-avventura');     // Avventura
+  getGenreMovies(18, 'carousel-dramma');        // Dramma
+  getGenreMovies(878, 'carousel-fantascienza'); // Fantascienza
+  getGenreMovies(10749, 'carousel-romance');    // Romance
+  getGenreMovies(53, 'carousel-thriller');      // Thriller
+</script>
+
+
+ 
 </body>
 </html>
