@@ -2511,8 +2511,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const [resMovies, resTv] = await Promise.all([
-      fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&with_origin_country=KR&language=it-IT`),
-      fetch(`${API_URL}/discover/tv?api_key=${API_KEY}&with_origin_country=KR&language=it-IT`)
+      fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_origin_country=KR&language=it-IT`),
+      fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_origin_country=KR&language=it-IT`)
     ]);
 
     const [dataMovies, dataTv] = await Promise.all([
@@ -2520,10 +2520,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       resTv.json()
     ]);
 
-    const combined = [...dataMovies.results, ...dataTv.results].filter(item =>
-      availableContent.some(content => content.tmdb_id === item.id)
-    );
+    const combined = [...dataMovies.results, ...dataTv.results];
 
+    // 🔥 Rimuovi temporaneamente il filtro
+    // const filtered = combined.filter(...);
     const countElement = document.getElementById('korean-drama-count');
     if (countElement) {
       countElement.textContent = `Risultati trovati: ${combined.length}`;
@@ -2536,22 +2536,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       container.appendChild(card);
     });
 
-    const scrollLeftBtn = document.getElementById('scroll-left-korean-drama');
-    const scrollRightBtn = document.getElementById('scroll-right-korean-drama');
+    document.getElementById('scroll-left-korean-drama').addEventListener('click', () => {
+      container.scrollBy({ left: -300, behavior: 'smooth' });
+    });
 
-    if (scrollLeftBtn && scrollRightBtn) {
-      scrollLeftBtn.addEventListener('click', () => {
-        container.scrollBy({ left: -300, behavior: 'smooth' });
-      });
-
-      scrollRightBtn.addEventListener('click', () => {
-        container.scrollBy({ left: 300, behavior: 'smooth' });
-      });
-    }
+    document.getElementById('scroll-right-korean-drama').addEventListener('click', () => {
+      container.scrollBy({ left: 300, behavior: 'smooth' });
+    });
   } catch (err) {
     console.error('Errore nel caricamento dei Korean Drama:', err);
   }
-}
+  }
 </script>
     
 </body>
