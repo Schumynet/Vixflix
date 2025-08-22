@@ -919,3 +919,35 @@ backdrop-filter: blur(12.5px);
     font-size: 1rem;
   }
         }
+
+.movie-card {
+  min-width: 90px;
+  max-width: 90px;
+  flex: 0 0 auto;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+@media (max-width: 640px) {
+  .movie-card {
+    min-width: 80px;
+    max-width: 80px;
+  }
+
+  .carousel-btn {
+    font-size: 1.2rem;
+    padding: 0.25rem;
+  }
+}
