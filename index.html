@@ -2555,6 +2555,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 }
 
     getKoreanDrama(); // ← avvia il caricamento della sezione Korean Drama
+
+if (!availableContent.some(content => content.tmdb_id === item.id)) {
+  const badge = document.createElement('div');
+  badge.textContent = 'Non disponibile';
+  badge.className = 'badge-unavailable';
+  card.appendChild(badge);
+}
     
 </script>
     
