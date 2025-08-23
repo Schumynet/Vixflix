@@ -2122,45 +2122,53 @@ async function getPopularTv() {
 
 
 
-        // Get a random movie for hero section
-// Modified getRandomHeroContent function
+// Get a random movie or TV show for hero section
 async function getRandomHeroContent() {
-    // First get popular movies and TV shows
+  try {
+    // Fetch popular movies and TV shows
     const [moviesRes, tvRes] = await Promise.all([
-        fetch(`${API_URL}/movie/popular?api_key=${API_KEY}`),
-        fetch(`${API_URL}/tv/popular?api_key=${API_KEY}`)
+      fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=it-IT`),
+      fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=it-IT`)
     ]);
 
     const moviesData = await moviesRes.json();
     const tvData = await tvRes.json();
 
-    // Combine and filter available content
+    // Combine both types and tag media_type
     const allContent = [
-        ...moviesData.results.map(item => ({ ...item, media_type: 'movie' }))
+      ...moviesData.results.map(item => ({ ...item, media_type: 'movie' })),
+      ...tvData.results.map(item => ({ ...item, media_type: 'tv' }))
     ];
 
-    const availablePopularContent = allContent.filter(item => 
-        availableContent.some(avail => avail.tmdb_id === item.id)
+    // Filter by availableContent
+    const availablePopularContent = allContent.filter(item =>
+      availableContent.some(avail => avail.tmdb_id === item.id)
     );
 
+    // Fallback if nothing is available
     if (availablePopularContent.length === 0) {
-        console.log('No available popular content found for hero section');
-        heroTitleEl.textContent = 'Welcome to LeleFlix';
-        heroOverviewEl.textContent = 'Browse our collection of movies and TV shows';
-        return;
+      console.warn('Nessun contenuto disponibile per la Hero');
+      heroSection.style.backgroundImage = 'url(default.jpg)';
+      heroTitleEl.textContent = 'Welcome to LeleFlix';
+      heroOverviewEl.textContent = 'Browse our collection of movies and TV shows';
+      return;
     }
 
-    // Get a random item from the available ones
+    // Pick a random item
     const randomIndex = Math.floor(Math.random() * availablePopularContent.length);
     const content = availablePopularContent[randomIndex];
 
-    // Get full details
+    // Fetch full details
     const contentDetails = await getMovieDetails(content.id, content.media_type);
 
     currentHeroMovie = { ...contentDetails, media_type: content.media_type };
     displayHeroMovie(currentHeroMovie);
+  } catch (err) {
+    console.error('Errore nel caricamento della Hero:', err);
+    heroTitleEl.textContent = 'Errore di rete';
+    heroOverviewEl.textContent = 'Impossibile caricare il contenuto in evidenza';
+  }
 }
-
 
 // Update displayHeroMovie to handle both types
 function displayHeroMovie(content) {
