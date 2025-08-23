@@ -2124,42 +2124,54 @@ async function getPopularTv() {
         // Get a random movie for hero section
 // Modified getRandomHeroContent function
 async function getRandomHeroContent() {
-    // First get popular movies and TV shows
+  const API_URL = "https://api.themoviedb.org/3";
+  const API_KEY = "a3b1e6f6b9b8c9d7f8e1a2c3d4e5f6g7"; // ← tua chiave API principale
+
+  try {
     const [moviesRes, tvRes] = await Promise.all([
-        fetch(`${API_URL}/movie/popular?api_key=${API_KEY}`),
-        fetch(`${API_URL}/tv/popular?api_key=${API_KEY}`)
+      fetch(`${API_URL}/movie/popular?api_key=${API_KEY}&language=it-IT`),
+      fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`)
     ]);
+
+    if (!moviesRes.ok || !tvRes.ok) {
+      throw new Error("Errore nel recupero dei dati da TMDB");
+    }
 
     const moviesData = await moviesRes.json();
     const tvData = await tvRes.json();
 
-    // Combine and filter available content
-    const allContent = [
-        ...moviesData.results.map(item => ({ ...item, media_type: 'movie' }))
-    ];
+    const combined = [...moviesData.results, ...tvData.results].filter(item => item.backdrop_path);
 
-    const availablePopularContent = allContent.filter(item => 
-        availableContent.some(avail => avail.tmdb_id === item.id)
-    );
-
-    if (availablePopularContent.length === 0) {
-        console.log('No available popular content found for hero section');
-        heroTitleEl.textContent = 'Welcome to LeleFlix';
-        heroOverviewEl.textContent = 'Browse our collection of movies and TV shows';
-        return;
+    if (combined.length === 0) {
+      console.warn("Nessun contenuto valido per la Hero Section");
+      return;
     }
 
-    // Get a random item from the available ones
-    const randomIndex = Math.floor(Math.random() * availablePopularContent.length);
-    const content = availablePopularContent[randomIndex];
+    const hero = combined[Math.floor(Math.random() * combined.length)];
+    const backdropUrl = `https://image.tmdb.org/t/p/original${hero.backdrop_path}`;
 
-    // Get full details
-    const contentDetails = await getMovieDetails(content.id, content.media_type);
+    document.getElementById("hero-title").textContent = hero.title || hero.name || "Titolo non disponibile";
+    document.getElementById("hero-rating").textContent = `★ ${hero.vote_average.toFixed(1)}`;
+    document.getElementById("hero-year").textContent = (hero.release_date || hero.first_air_date || "").slice(0, 4);
+    document.getElementById("hero-runtime").textContent = ""; // runtime richiede seconda chiamata
+    document.getElementById("hero-overview").textContent = hero.overview || "Descrizione non disponibile";
+    document.getElementById("hero-backdrop").style.backgroundImage = `url('${backdropUrl}')`;
 
-    currentHeroMovie = { ...contentDetails, media_type: content.media_type };
-    displayHeroMovie(currentHeroMovie);
+    // Seconda chiamata per runtime
+    const type = hero.title ? "movie" : "tv";
+    const detailsRes = await fetch(`${API_URL}/${type}/${hero.id}?api_key=${API_KEY}&language=it-IT`);
+    if (detailsRes.ok) {
+      const details = await detailsRes.json();
+      const runtime = details.runtime || (details.episode_run_time?.[0] || null);
+      if (runtime) {
+        document.getElementById("hero-runtime").textContent = `${runtime} min`;
+      }
+    }
+
+  } catch (error) {
+    console.error("Errore nella Hero Section:", error);
+  }
 }
-
 // Update displayHeroMovie to handle both types
 function displayHeroMovie(content) {
     const isMobile = window.innerWidth <= 768;
