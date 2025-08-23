@@ -2754,7 +2754,37 @@ document.addEventListener('DOMContentLoaded', () => {
 }); 
     </script>
 
+<script>
 
+const highlightSection = document.getElementById('featured-highlight');
+const highlightTitleEl = document.querySelector('.highlight-title');
+const highlightOverviewEl = document.querySelector('.highlight-overview');
+
+async function loadFeaturedHighlight() {
+  try {
+    const res = await fetch(`${API_URL}/movie/top_rated?api_key=${API_KEY}&language=it-IT`);
+    const data = await res.json();
+    const items = data.results.filter(item => item.backdrop_path);
+
+    if (items.length === 0) return;
+
+    const featured = items[0]; // Mostra il primo film top-rated
+
+    highlightSection.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${featured.backdrop_path})`;
+    highlightTitleEl.textContent = featured.title || 'Titolo non disponibile';
+    highlightOverviewEl.textContent = featured.overview || 'Descrizione non disponibile';
+  } catch (err) {
+    console.error('Errore nel caricamento della sezione In Evidenza:', err);
+    highlightTitleEl.textContent = 'Errore di rete';
+    highlightOverviewEl.textContent = 'Impossibile caricare il contenuto in evidenza';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadFeaturedHighlight();
+});
+    
+</script>
 
 
     
