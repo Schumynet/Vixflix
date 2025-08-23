@@ -1076,3 +1076,54 @@ backdrop-filter: blur(12.5px);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
+
+.hero-section {
+  position: relative;
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  color: white;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #000, transparent);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero-overview {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-buttons button {
+  background-color: #e50914;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.hero-buttons button:hover {
+  background-color: #f40612;
+}
