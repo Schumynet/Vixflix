@@ -2122,13 +2122,13 @@ async function getPopularTv() {
 
 
 
-// Get a random movie for hero section
+        // Get a random movie for hero section
 // Modified getRandomHeroContent function
 async function getRandomHeroContent() {
     // First get popular movies and TV shows
     const [moviesRes, tvRes] = await Promise.all([
-        fetch(${APIURL}/movie/popular?apikey=${API_KEY}),
-        fetch(${APIURL}/tv/popular?apikey=${API_KEY})
+        fetch(`${API_URL}/movie/popular?api_key=${API_KEY}`),
+        fetch(`${API_URL}/tv/popular?api_key=${API_KEY}`)
     ]);
 
     const moviesData = await moviesRes.json();
@@ -2157,10 +2157,9 @@ async function getRandomHeroContent() {
     // Get full details
     const contentDetails = await getMovieDetails(content.id, content.media_type);
 
-    currentHeroMovie = { ...contentDetails, mediatype: content.mediatype };
+    currentHeroMovie = { ...contentDetails, media_type: content.media_type };
     displayHeroMovie(currentHeroMovie);
 }
-
 
 // Update displayHeroMovie to handle both types
 function displayHeroMovie(content) {
