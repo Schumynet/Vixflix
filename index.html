@@ -2122,57 +2122,45 @@ async function getPopularTv() {
 
 
 
-        const heroTitleEl = document.querySelector('.hero-title');
-const heroOverviewEl = document.querySelector('.hero-overview');
-const heroSection = document.getElementById('hero');
-
-// Get a random movie or TV show for hero section
+// Get a random movie for hero section
+// Modified getRandomHeroContent function
 async function getRandomHeroContent() {
-  try {
-    // Fetch popular movies and TV shows
+    // First get popular movies and TV shows
     const [moviesRes, tvRes] = await Promise.all([
-      fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=it-IT`),
-      fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=it-IT`)
+        fetch(${APIURL}/movie/popular?apikey=${API_KEY}),
+        fetch(${APIURL}/tv/popular?apikey=${API_KEY})
     ]);
 
     const moviesData = await moviesRes.json();
     const tvData = await tvRes.json();
 
-    // Combine both types and tag media_type
+    // Combine and filter available content
     const allContent = [
-      ...moviesData.results.map(item => ({ ...item, media_type: 'movie' })),
-      ...tvData.results.map(item => ({ ...item, media_type: 'tv' }))
+        ...moviesData.results.map(item => ({ ...item, media_type: 'movie' }))
     ];
 
-    // Filter by availableContent
-    const availablePopularContent = allContent.filter(item =>
-      availableContent.some(avail => avail.tmdb_id === item.id)
+    const availablePopularContent = allContent.filter(item => 
+        availableContent.some(avail => avail.tmdb_id === item.id)
     );
 
-    // Fallback if nothing is available
     if (availablePopularContent.length === 0) {
-      console.warn('Nessun contenuto disponibile per la Hero');
-      heroSection.style.backgroundImage = 'url(default.jpg)';
-      heroTitleEl.textContent = 'Welcome to LeleFlix';
-      heroOverviewEl.textContent = 'Browse our collection of movies and TV shows';
-      return;
+        console.log('No available popular content found for hero section');
+        heroTitleEl.textContent = 'Welcome to LeleFlix';
+        heroOverviewEl.textContent = 'Browse our collection of movies and TV shows';
+        return;
     }
 
-    // Pick a random item
+    // Get a random item from the available ones
     const randomIndex = Math.floor(Math.random() * availablePopularContent.length);
     const content = availablePopularContent[randomIndex];
 
-    // Fetch full details
+    // Get full details
     const contentDetails = await getMovieDetails(content.id, content.media_type);
 
-    currentHeroMovie = { ...contentDetails, media_type: content.media_type };
+    currentHeroMovie = { ...contentDetails, mediatype: content.mediatype };
     displayHeroMovie(currentHeroMovie);
-  } catch (err) {
-    console.error('Errore nel caricamento della Hero:', err);
-    heroTitleEl.textContent = 'Errore di rete';
-    heroOverviewEl.textContent = 'Impossibile caricare il contenuto in evidenza';
-  }
 }
+
 
 // Update displayHeroMovie to handle both types
 function displayHeroMovie(content) {
