@@ -1127,3 +1127,55 @@ backdrop-filter: blur(12.5px);
 .hero-buttons button:hover {
   background-color: #f40612;
 }
+
+
+.highlight-section {
+  position: relative;
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  color: white;
+}
+
+.highlight-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #000, transparent);
+  z-index: 1;
+}
+
+.highlight-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  max-width: 600px;
+}
+
+.highlight-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.highlight-overview {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.highlight-buttons button {
+  background-color: #e50914;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.highlight-buttons button:hover {
+  background-color: #f40612;
+}
