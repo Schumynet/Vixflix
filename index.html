@@ -2690,16 +2690,17 @@ async function loadFeaturedHighlight() {
 
 // 🎯 Collegamento pulsanti
 btnPlay.addEventListener('click', () => {
-  if (currentHighlighted) {
-    window.location.href = `player.html?id=${currentHighlighted.id}&type=${currentHighlighted.media_type}`;
+  if (currentHighlighted && typeof playContent === 'function') {
+    playContent(currentHighlighted);
   }
 });
 
 btnInfo.addEventListener('click', () => {
-  if (currentHighlighted) {
-    openModal(currentHighlighted); // Funzione già presente nel tuo sistema
+  if (currentHighlighted && typeof openModal === 'function') {
+    openModal(currentHighlighted);
   }
 });
+    
     
 </script>
     
