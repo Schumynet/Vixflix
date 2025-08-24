@@ -2651,8 +2651,8 @@ async function getFeaturedHighlight() {
 
   try {
     const [moviesRes, tvRes] = await Promise.all([
-      fetch(`${API_URL}/movie/popular?api_key=${API_KEY}&language=it-IT`),
-      fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`)
+      fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=it-IT`),
+      fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=it-IT`)
     ]);
 
     const moviesData = await moviesRes.json();
@@ -2663,14 +2663,15 @@ async function getFeaturedHighlight() {
       ...tvData.results.map(item => ({ ...item, media_type: 'tv' }))
     ].filter(item => item.backdrop_path);
 
-    if (!allContent.length) {
+    if (allContent.length === 0) {
       titleEl.textContent = 'Nessun contenuto disponibile';
       overviewEl.textContent = 'Controlla la connessione o riprova più tardi.';
       return;
     }
 
     const randomItem = allContent[Math.floor(Math.random() * allContent.length)];
-    const detailsRes = await fetch(`${API_URL}/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT`);
+
+    const detailsRes = await fetch(`https://api.themoviedb.org/3/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT`);
     const details = await detailsRes.json();
 
     const content = { ...details, media_type: randomItem.media_type };
@@ -2682,11 +2683,11 @@ async function getFeaturedHighlight() {
     btnPlay.onclick = () => playContent(content);
     btnInfo.onclick = () => openModal(content);
   } catch (err) {
-    console.error('Errore nella sezione In Evidenza:', err);
+    console.error('Errore nel caricamento del contenuto in evidenza:', err);
     titleEl.textContent = 'Errore di rete';
     overviewEl.textContent = 'Impossibile caricare il contenuto';
   }
-}
+  }
     
 </script>
     
