@@ -2663,14 +2663,13 @@ async function getFeaturedHighlight() {
       ...tvData.results.map(item => ({ ...item, media_type: 'tv' }))
     ].filter(item => item.backdrop_path);
 
-    if (allContent.length === 0) {
+    if (!allContent.length) {
       titleEl.textContent = 'Nessun contenuto disponibile';
       overviewEl.textContent = 'Controlla la connessione o riprova più tardi.';
       return;
     }
 
     const randomItem = allContent[Math.floor(Math.random() * allContent.length)];
-
     const detailsRes = await fetch(`${API_URL}/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT`);
     const details = await detailsRes.json();
 
@@ -2683,7 +2682,7 @@ async function getFeaturedHighlight() {
     btnPlay.onclick = () => playContent(content);
     btnInfo.onclick = () => openModal(content);
   } catch (err) {
-    console.error('Errore nel caricamento del contenuto in evidenza:', err);
+    console.error('Errore nella sezione In Evidenza:', err);
     titleEl.textContent = 'Errore di rete';
     overviewEl.textContent = 'Impossibile caricare il contenuto';
   }
