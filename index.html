@@ -2659,6 +2659,12 @@ function getFeaturedHighlight() {
         ...tvData.results.map(item => ({ ...item, media_type: 'tv' }))
       ].filter(item => item.backdrop_path);
 
+      if (allContent.length === 0) {
+        titleEl.textContent = 'Nessun contenuto disponibile';
+        overviewEl.textContent = 'Controlla la connessione o riprova più tardi.';
+        return;
+      }
+
       const randomItem = allContent[Math.floor(Math.random() * allContent.length)];
 
       return fetch(`${API_URL}/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT`)
@@ -2666,20 +2672,14 @@ function getFeaturedHighlight() {
         .then(details => ({ ...details, media_type: randomItem.media_type }));
     })
     .then(content => {
-      if (!content) return;
+      if (!content || !content.backdrop_path) return;
 
       section.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${content.backdrop_path})`;
       titleEl.textContent = content.title || content.name || 'Titolo non disponibile';
       overviewEl.textContent = content.overview || 'Descrizione non disponibile';
 
-      // Bottoni collegati alle funzioni già esistenti
-      btnPlay.onclick = () => {
-        if (typeof playContent === 'function') playContent(content);
-      };
-
-      btnInfo.onclick = () => {
-        if (typeof openModal === 'function') openModal(content);
-      };
+      btnPlay.onclick = () => playContent(content);
+      btnInfo.onclick = () => openModal(content);
     })
     .catch(err => {
       console.error('Errore nella sezione In Evidenza:', err);
