@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>VixFlix</title>
+  <title>LeleFlix</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icon.svg" type="image/svg+xml">    
   <script src="https://cdn.tailwindcss.com"></script>
@@ -103,7 +103,7 @@
             height: 4rem;
             perspective: 1000px;
         }
-
+        
         /* Navbar con effetto glass premium */
         .glass-nav {
             position: relative;
@@ -118,7 +118,7 @@
             overflow: hidden;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
+        
         /* Effetto liquido dinamico */
         .glass-nav::before {
             content: '';
@@ -134,7 +134,7 @@
             mix-blend-mode: overlay;
             opacity: 0.8;
         }
-
+        
         /* Riflessi dinamici */
         .glass-nav::after {
             content: '';
@@ -152,7 +152,7 @@
             animation: shine 8s infinite;
             z-index: -1;
         }
-
+        
         /* Animazione fluida */
         @keyframes liquidMotion {
             0% {
@@ -168,7 +168,7 @@
                 background-position: 100% 100%;
             }
         }
-
+        
         /* Animazione riflessi */
         @keyframes shine {
             0% {
@@ -181,21 +181,21 @@
                 left: 100%;
             }
         }
-
+        
         /* Stato scroll */
         .glass-nav.scrolled {
             background: rgba(34, 31, 31, 0.8);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
             height: 3.5rem;
         }
-
+        
         /* Contenuto navbar */
         .nav-content {
             position: relative;
             z-index: 10;
             height: 100%;
         }
-
+        
         /* Filtro SVG per distorsione liquida */
         .glass-filter {
             position: absolute;
@@ -356,22 +356,22 @@
             width: 10px;
             height: 10px;
         }
-
+        
         ::-webkit-scrollbar-track {
             background: transparent;
         }
-
+        
         ::-webkit-scrollbar-thumb {
             background: rgba(229, 9, 20, 0.5);
             border-radius: 5px;
             border: 2px solid transparent;
             background-clip: padding-box;
         }
-
+        
         ::-webkit-scrollbar-thumb:hover {
             background: rgba(229, 9, 20, 0.8);
         }
-
+        
         /* Dissolvenza hero section */
         .hero-fade {
             position: absolute;
@@ -386,7 +386,7 @@
                           rgba(20, 20, 20, 1) 100%);
             z-index: 5;
         }
-
+        
         /* Hero section modificata */
         #hero-section {
             position: relative;
@@ -398,7 +398,7 @@
     transition: opacity 0.5s ease-in-out;
     will-change: opacity; /* Ottimizzazione prestazioni */
 }
-
+        
         #hero-backdrop {
             position: absolute;
             top: 0;
@@ -409,7 +409,7 @@
             background-position: center;
             z-index: 0;
         }
-
+        
         .hero-gradient {
             position: absolute;
             top: 0;
@@ -440,19 +440,19 @@
             cursor: pointer;
             padding: 0.5rem 1.5rem;
         }
-
+        
         /* Effetto glass per il pulsante Play */
         #play-button {
             background: rgba(229, 9, 20, 0.85);
             color: white;
         }
-
+        
         /* Effetto glass per il pulsante Info */
         #more-info-button {
             background: rgba(109, 109, 109, 0.7);
             color: white;
         }
-
+        
         /* Overlay glass per entrambi i pulsanti */
         .glass-button::before {
             content: '';
@@ -464,7 +464,7 @@
             z-index: -1;
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
-
+        
         /* Effetto liquido dinamico */
         .glass-button::after {
             content: '';
@@ -481,31 +481,31 @@
             mix-blend-mode: overlay;
             opacity: 0.8;
         }
-
+        
         /* Effetti hover */
         .glass-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
-
+        
         #play-button:hover {
             background: rgba(229, 9, 20, 0.95);
             box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
         }
-
+        
         #more-info-button:hover {
             background: rgba(109, 109, 109, 0.85);
         }
-
+        
         /* Icone all'interno dei pulsanti */
         .glass-button i {
             transition: transform 0.3s ease;
         }
-
+        
         .glass-button:hover i {
             transform: scale(1.1);
         }
-
+        
         /* Animazione liquida */
         @keyframes liquidMotion {
             0% {
@@ -529,12 +529,12 @@
         padding-bottom: 70px;
         flex-direction: column-reverse;
     }
-
+    
     #videoContainer:not(.fullscreen) .progress-container {
         width: 100%;
         margin: 10px 0;
     }
-
+    
     #videoContainer:not(.fullscreen) #fullscreenBtn {
         position: fixed;
         right: 15px;
@@ -546,7 +546,7 @@
         display: flex !important;
         z-index: 100;
     }
-
+    
     #videoContainer:not(.fullscreen) #mobileFullscreenBtn {
         display: flex;
         position: fixed;
@@ -584,7 +584,7 @@
         <nav class="glass-nav">
             <!-- Filtro liquido avanzato -->
             <div class="glass-filter"></div>
-
+            
             <!-- Contenuto navbar -->
             <div class="nav-content">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
@@ -622,7 +622,7 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Mobile search box - DEVE essere dentro il <nav> -->
         <div id="mobile-search-box">
             <div class="relative">
@@ -635,37 +635,20 @@
         </div>
     </nav>
          </div>
-
+    
     <script>
         // Inizializzazione effetto liquid glass avanzato
         document.addEventListener('DOMContentLoaded', function() {
             const navbar = document.querySelector('.glass-nav');
             
-setupCarouselScroll('trending', 'trending-movies');
-setupCarouselScroll('popular-tv', 'popular-tv');
-setupCarouselScroll('top-rated', 'top-rated-movies');
-setupCarouselScroll('upcoming', 'upcoming-movies');
-setupCarouselScroll('azione', 'carousel-azione');
-setupCarouselScroll('commedia', 'carousel-commedia');
-setupCarouselScroll('horror', 'carousel-horror');
-setupCarouselScroll('avventura', 'carousel-avventura');
-setupCarouselScroll('dramma', 'carousel-dramma');
-setupCarouselScroll('fantascienza', 'carousel-fantascienza');
-setupCarouselScroll('romance', 'carousel-romance');
-setupCarouselScroll('thriller', 'carousel-thriller');
-setupCarouselScroll('korean-drama', 'carousel-korean-drama');
-setupCarouselScroll('korean-movies', 'carousel-korean-movies');
-getKoreanMovies();
-
-          
             // Gestione scroll con effetto parallax
             function handleScroll() {
                 const scrollY = window.scrollY;
                 const scrollRatio = Math.min(scrollY / 200, 1);
-
+                
                 if (scrollY > 10) {
                     navbar.classList.add('scrolled');
-
+                    
                     // Effetto parallax leggero
                     navbar.style.transform = `translateZ(-${scrollRatio * 5}px)`;
                 } else {
@@ -673,177 +656,164 @@ getKoreanMovies();
                     navbar.style.transform = 'translateZ(0)';
                 }
             }
-
+            
             // Controllo iniziale
             handleScroll();
-
+            
             // Listener per scroll
             window.addEventListener('scroll', handleScroll);
-
+            
             // ... (resto del tuo JavaScript) ...
         });
     </script>
 
     <!-- Hero Section -->
-<section id="featured-highlight" class="highlight-section">
-  <div class="highlight-overlay"></div>
-  <div class="highlight-content">
-    <h1 class="highlight-title">Caricamento...</h1>
-    <p class="highlight-overview">Attendi mentre carichiamo un contenuto in evidenza.</p>
-    <div class="highlight-buttons">
-      <button class="btn-play">Play</button>
-      <button class="btn-info">Info</button>
+    <section id="hero-section" class="relative">
+    <div id="hero-backdrop" class="absolute inset-0 bg-cover bg-center"></div>
+    <div class="hero-gradient absolute inset-0"></div>
+    <div class="hero-fade"></div>
+    
+    <div class="relative z-10 h-full flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="hero-content-container  from-black/80 via-black/50 to-transparent md:bg-none">
+                <div class="w-full lg:w-1/2">
+                    <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"></h1>
+                    <div class="flex items-center mb-4">
+                        <span id="hero-rating" class="bg-primary text-white px-2 py-1 rounded-md text-sm font-bold mr-4"></span>
+                        <span id="hero-year" class="text-gray-300 mr-4"></span>
+                        <span id="hero-runtime" class="text-gray-300"></span>
+                    </div>
+                    <p id="hero-overview" class="text-gray-300 mb-6 text-sm md:text-base"></p>
+                    <div class="flex space-x-4">
+                    <div class="flex space-x-4">
+                        <button id="play-button" class="glass-button">
+                            <i class="fas fa-play mr-2"></i> Play
+                        </button>
+                        <button id="more-info-button" class="glass-button">
+                            <i class="fas fa-info-circle mr-2"></i> Info
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
+
     <!-- Main Content -->
     <main class="relative z-20 -mt-20 scrollbar-hide">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <!-- Trending Movies -->
-              <!-- Film in tendenza -->
-<section id="movie-trend" class="mb-12">
-  <h2 class="text-xl font-bold mb-4">Film in tendenza</h2>
-  <div class="carousel-wrapper">
-    <button id="scroll-left-trending" class="carousel-btn">◀</button>
-    <div class="carousel-trending" id="trending-movies"></div>
-    <button id="scroll-right-trending" class="carousel-btn">▶</button>
-  </div>
-</section>
+            <section id="movie-trend" class="mb-12">
+                <h2   id="trending" class="text-xl font-bold mb-4">Film in tendenza</h2>
+                <div id="trending-movies" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <!-- Loading skeleton -->
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                </div>
+            </section>
 
-<!-- Serie TV popolari -->
-<section id="tv-popular" class="mb-12">
-  <h2 class="text-xl font-bold mb-4">Serie TV popolari</h2>
-  <div class="carousel-wrapper">
-    <button id="scroll-left-popular-tv" class="carousel-btn">◀</button>
-    <div class="carousel-popular-tv" id="popular-tv"></div>
-    <button id="scroll-right-popular-tv" class="carousel-btn">▶</button>
-  </div>
-</section>
+            <!-- Popular TV Shows -->
+            <section id="tv-popular" class="mb-12">
+                <h2 class="text-xl font-bold mb-4">Serie TV popolari</h2>
+                <div id="popular-tv" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <!-- Loading skeleton -->
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                </div>
+            </section>
 
-<!-- Film più votati -->
-<section id="critics" class="mb-12">
-  <h2 class="text-xl font-bold mb-4">Film più votati</h2>
-  <div class="carousel-wrapper">
-    <button id="scroll-left-top-rated" class="carousel-btn">◀</button>
-    <div class="carousel-top-rated" id="top-rated-movies"></div>
-    <button id="scroll-right-top-rated" class="carousel-btn">▶</button>
-  </div>
-</section>
+            <!-- Top Rated Movies -->
+            <section id="critics" class="mb-12">
+                <h2 class="text-xl font-bold mb-4">Film più votati</h2>
+                <div id="top-rated-movies" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <!-- Loading skeleton -->
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                </div>
+            </section>
 
-<!-- Film al cinema -->
-<section id="new" class="mb-12">
-  <h2 class="text-xl font-bold mb-4">Film al cinema</h2>
-  <div class="carousel-wrapper">
-    <button id="scroll-left-upcoming" class="carousel-btn">◀</button>
-    <div class="carousel-upcoming" id="upcoming-movies"></div>
-    <button id="scroll-right-upcoming" class="carousel-btn">▶</button>
-  </div>
-</section>
-        </div>
-
-
-        <section class="genre-section" id="azione">
-  <h2 class="section-title">Film d'Azione</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-btn left" id="scroll-left-azione">◀</button>
-    <div class="carousel" id="carousel-azione">
-      <!-- Card generate dinamicamente -->
-    </div>
-    <button class="carousel-btn right" id="scroll-right-azione">▶</button>
-  </div>
-</section>
-
-
-<!-- Commedia -->
-<section class="genre-section" id="commedia">
-  <h2 class="section-title">Commedia</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-btn left" id="scroll-left-commedia">◀</button>
-    <div class="carousel" id="carousel-commedia"></div>
-    <button class="carousel-btn right" id="scroll-right-commedia">▶</button>
-  </div>
-</section>
-
-<!-- Horror -->
-<section class="genre-section" id="horror">
-  <h2 class="section-title">Horror</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-btn left" id="scroll-left-horror">◀</button>
-    <div class="carousel" id="carousel-horror"></div>
-    <button class="carousel-btn right" id="scroll-right-horror">▶</button>
-  </div>
-</section>
-
-<!-- Avventura -->
-<section class="genre-section" id="avventura">
-  <h2 class="section-title">Avventura</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-btn left" id="scroll-left-avventura">◀</button>
-    <div class="carousel" id="carousel-avventura"></div>
-    <button class="carousel-btn right" id="scroll-right-avventura">▶</button>
-  </div>
-</section>
-
-<!-- Dramma -->
-<section class="genre-section" id="dramma">
-  <h2 class="section-title">Dramma</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-btn left" id="scroll-left-dramma">◀</button>
-    <div class="carousel" id="carousel-dramma"></div>
-    <button class="carousel-btn right" id="scroll-right-dramma">▶</button>
-  </div>
-</section>
-
-<!-- Fantascienza -->
-<section class="genre-section" id="fantascienza">
-  <h2 class="section-title">Fantascienza</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-btn left" id="scroll-left-fantascienza">◀</button>
-    <div class="carousel" id="carousel-fantascienza"></div>
-    <button class="carousel-btn right" id="scroll-right-fantascienza">▶</button>
-  </div>
-</section>
-
-<!-- Romance -->
-<section class="genre-section" id="romance">
-  <h2 class="section-title">Romance</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-btn left" id="scroll-left-romance">◀</button>
-    <div class="carousel" id="carousel-romance"></div>
-    <button class="carousel-btn right" id="scroll-right-romance">▶</button>
-  </div>
-</section>
-
-<!-- Thriller -->
-<section class="genre-section" id="thriller">
-  <h2 class="section-title">Thriller</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-btn left" id="scroll-left-thriller">◀</button>
-    <div class="carousel" id="carousel-thriller"></div>
-    <button class="carousel-btn right" id="scroll-right-thriller">▶</button>
-  </div>
-</section>
-
-        <!-- Korean Film -->
-<section id="korean-movies" class="mb-12 relative">
-  <h2 class="text-xl font-bold mb-2">Film Coreani</h2>
-  <div class="carousel-wrapper">
-    <button id="scroll-left-korean-movies" class="carousel-btn absolute left-0 top-1/2 transform -translate-y-1/2 z-10">◀</button>
-    <div class="carousel-korean-movies" id="carousel-korean-movies"></div>
-    <button id="scroll-right-korean-movies" class="carousel-btn absolute right-0 top-1/2 transform -translate-y-1/2 z-10">▶</button>
-  </div>
-</section>     
-
-<!-- Korean Drama -->
-<section id="korean-drama" class="mb-12 relative">
-  <h2 id="korean-drama-title" class="text-xl font-bold mb-2">Korean Drama</h2>
-  <p id="korean-drama-count" class="text-sm text-gray-400 mb-4" style="display: none;"></p>
-  <div class="carousel-wrapper">
-    <button id="scroll-left-korean-drama" class="carousel-btn absolute left-0 top-1/2 transform -translate-y-1/2 z-10">◀</button>
-    <div class="carousel-korean-drama" id="carousel-korean-drama"></div>
-    <button id="scroll-right-korean-drama" class="carousel-btn absolute right-0 top-1/2 transform -translate-y-1/2 z-10">▶</button>
-  </div>
-</section>
+            <!-- Upcoming Movies -->
+            <section id="new" class="mb-12">
+                <h2 class="text-xl font-bold mb-4">Film al cinema</h2>
+                <div id="upcoming-movies" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <!-- Loading skeleton -->
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 
@@ -873,7 +843,7 @@ getKoreanMovies();
                         &times;
                     </button>
                 </div>
-
+                
                 <div class="flex flex-col md:flex-row gap-6">
                      <div class="w-full md:w-1/3 p-4 flex justify-center">
                 <img id="modal-poster" 
@@ -883,21 +853,21 @@ getKoreanMovies();
             </div>
                     <div class="w-full md:w-2/3">
                         <p id="modal-overview" class="text-gray-300 mb-4">Movie overview goes here...</p>
-
+                        
                         <div class="mb-4">
                             <h4 class="text-white font-semibold mb-2">Generi:</h4>
                             <div id="modal-genres" class="flex flex-wrap gap-2">
                                 <!-- Genres will be added here -->
                             </div>
                         </div>
-
+                        
                         <div class="mb-4">
                             <h4 class="text-white font-semibold mb-2">Cast:</h4>
                             <div id="modal-cast" class="flex flex-wrap gap-2">
                                 <!-- Cast will be added here -->
                             </div>
                         </div>
-
+                        
                         <div class="flex space-x-4 mt-6">
                             <button id="modal-play-button" class="glass-button bg-red-700 text-white px-6 py-2 rounded-md flex items-center transition-colors duration-300">
                                 <i class="fas fa-play mr-2"></i> Play
@@ -925,7 +895,7 @@ getKoreanMovies();
     width: 95% !important;
     max-width: 360px !important;
     max-height: 85vh !important;
-
+    
   }
 
   /* Mobile-first responsive adjustments */
@@ -935,7 +905,7 @@ getKoreanMovies();
         width: auto !important;
         margin: 0 auto; /* Centratura */
     }
-
+    
     .glass-modal-content {
         max-height: 90vh !important;
     }
@@ -996,7 +966,7 @@ getKoreanMovies();
     position: fixed;
     width: 100%;
 }
-
+        
         .glass-modal-content {
             position: relative;
             background: rgba(34, 31, 31, 0.65);
@@ -1011,10 +981,10 @@ getKoreanMovies();
             transform-style: preserve-3d;
             animation: modalAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow-y: auto; /* Abilita scroll solo nel modale se necessario */
-
+            
 
         }
-
+        
         .glass-modal-content::before {
             content: '';
             position: absolute;
@@ -1029,7 +999,7 @@ getKoreanMovies();
             mix-blend-mode: overlay;
             opacity: 0.9;
         }
-
+        
         .glass-modal-content::after {
             content: '';
             position: absolute;
@@ -1046,7 +1016,7 @@ getKoreanMovies();
             animation: shine 6s infinite;
             z-index: -1;
         }
-
+        
         @keyframes modalAppear {
             from {
                 opacity: 0;
@@ -1069,18 +1039,18 @@ getKoreanMovies();
                         <i class="fas fa-arrow-left text-xl"></i>
                     </button>
                     <h2 class="text-lg font-medium" id="player-title">Titolo Film</h2>
-
+                    
                 </div>
-
+                
                 <video id="videoPlayer" class="w-full h-full"></video>
-
+                
                 <!-- Loading overlay -->
                 <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden" id="loadingOverlay">
                     <div class="loading-spinner text-4xl">
                         <i class="fas fa-circle-notch"></i>
                     </div>
                 </div>
-
+                
                 <!-- Skip animations -->
                 <div class="skip-animation skip-forward" id="skipForward">
                     +10s
@@ -1180,7 +1150,7 @@ getKoreanMovies();
                     <div class="progress-container" id="progressContainer">
                         <div class="progress-bar" id="progressBar"></div>
                     </div>
-
+                    
                     <!-- Bottom controls -->
                     <div class="flex items-center justify-between">
                         <!-- Left controls -->
@@ -1188,7 +1158,7 @@ getKoreanMovies();
                             <button class="text-white hover:text-primary transition" id="playPauseBtn">
                                 <i class="fas fa-play text-xl" id="playIcon"></i>
                             </button>
-
+                            
                             <div class="flex items-center">
                                 <button class="text-white hover:text-primary transition mr-2" id="volumeBtn">
                                     <i class="fas fa-volume-up text-lg" id="volumeIcon"></i>
@@ -1198,13 +1168,13 @@ getKoreanMovies();
                                            class="volume-slider accent-primary h-1" id="volumeSlider">
                                 </div>
                             </div>
-
+                            
                             <div class="text-sm text-gray-300">
                                 <span id="currentTime">00:00</span> / 
                                 <span id="duration">00:00</span>
                             </div>
                         </div>
-
+                        
                         <!-- Right controls -->
                         <div class="flex items-center space-x-4">
                             <!-- Aggiungi questo accanto agli altri controlli del player -->
@@ -1213,7 +1183,7 @@ getKoreanMovies();
                                 <i class="fas fa-step-forward"></i>
                             </button>
 
-
+                                
                             <div class="relative">
                                 <button class="text-white hover:text-primary transition relative" id="captionsBtn">
                                     <i class="fas fa-closed-captioning text-lg"></i>
@@ -1245,7 +1215,7 @@ getKoreanMovies();
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="relative">
                                 <button class="text-white hover:text-primary transition" id="settingsBtn">
                                     <i class="fas fa-cog text-lg"></i>
@@ -1263,7 +1233,7 @@ getKoreanMovies();
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <button class="text-white hover:text-primary transition" id="zoomBtn">
                                 <i class="fas fa-search-plus text-lg"></i>
                             </button>
@@ -1488,16 +1458,16 @@ getKoreanMovies();
         </div>
     </footer>
 <!-- Aggiungi questo script prima del tuo script principale -->
-
+     
     <script src="js/player.js" defer></script>
     <script>
         // TMDB API Configuration
-        const API_KEY = 'be78689897669066bef6906e501b0e10';
+        const API_KEY = '1e8c9083f94c62dd66fb2105cd7b613b';
         const API_URL = 'https://api.themoviedb.org/3';
         const IMG_PATH = 'https://image.tmdb.org/t/p/w1280';
         const POSTER_PATH = 'https://image.tmdb.org/t/p/w500';
         const PROXY_URL = 'https://api.leleflix.store/proxy/';
-
+        
         // DOM Elements
         const trendingMoviesEl = document.getElementById('trending-movies');
         const popularTvEl = document.getElementById('popular-tv');
@@ -1519,7 +1489,7 @@ getKoreanMovies();
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const closeMobileMenu = document.getElementById('close-mobile-menu');
         const mobileMenu = document.getElementById('mobile-menu');
-
+        
 document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', () => {
     clearSearch(); // nasconde la vista ricerca se attiva
@@ -1608,7 +1578,7 @@ async function handleResultClick(id, type, itemData = null) {
             showTVSeasons(id, type);
         } else {
             playMovie(detail);
-
+            
             // Gestione fullscreen
             const container = document.getElementById('videoContainer');
             if (container.requestFullscreen) {
@@ -1640,20 +1610,20 @@ async function showTVSeasons(tvId, type) {
     const selector = document.getElementById('seasonEpisodeSelector');
     const selectorTitle = document.getElementById('selectorTitle');
     const selectorContent = document.getElementById('selectorContent');
-
+    
     // Reset animation classes
     selector.classList.remove('opacity-100', 'scale-100');
     selector.classList.add('opacity-0', 'scale-95');
-
+    
     // Show modal
     selector.style.display = 'flex';
-
+    
     // Start animation
     setTimeout(() => {
         selector.classList.remove('opacity-0', 'scale-95');
         selector.classList.add('opacity-100', 'scale-100');
     }, 10);
-
+    
     selectorTitle.textContent = 'Caricamento...';
     selectorContent.innerHTML = `
         <div class="loading-state">
@@ -1661,17 +1631,17 @@ async function showTVSeasons(tvId, type) {
             <p>Caricamento stagioni...</p>
         </div>
     `;
-
+    
     try {
         // Fetch TV show details
         const response = await fetch(
             `https://api.themoviedb.org/3/tv/${tvId}?api_key=1e8c9083f94c62dd66fb2105cd7b613b&language=it-IT`
         );
         const data = await response.json();
-
+        
         // Filter out seasons with 0 episodes
         const validSeasons = data.seasons.filter(season => season.episode_count > 0);
-
+        
         // Update UI
         selectorTitle.textContent = 'Seleziona Stagione';
         selectorContent.innerHTML = `
@@ -1695,7 +1665,7 @@ async function showTVSeasons(tvId, type) {
                 `).join('')}
             </div>
         `;
-
+        
     } catch (error) {
         console.error("Error loading seasons:", error);
         selectorContent.innerHTML = `
@@ -1828,7 +1798,7 @@ async function performSearch(query) {
 
 
 
-
+ 
 // Aggiungere in cima allo script
 
 
@@ -1850,20 +1820,20 @@ async function loadAvailableContent() {
   try {
     const response = await fetch('https://api.leleflix.store/home/available');
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
+    
     const data = await response.json();
     availableContent = [...data.movies, ...data.tv];
     console.log('Loaded available content:', availableContent.length);
-
+    
     // Aggiorna UI se necessario
     if (availableContent.length === 0) {
       console.warn('Nessun contenuto disponibile trovato');
     }
-
+    
   } catch (error) {
     console.error('Error loading available content:', error);
     availableContent = [];
-
+    
     // Mostra messaggio all'utente se necessario
     const errorEl = document.createElement('div');
     errorEl.className = 'bg-red-900 text-white p-4 rounded mb-4';
@@ -1874,30 +1844,19 @@ async function loadAvailableContent() {
     document.querySelector('main').prepend(errorEl);
   }
 }
-
+        
         // Initialize the app
         document.addEventListener('DOMContentLoaded', async () => {
     await loadAvailableContent();
-
+    
     // Then load all data
-            
-    getRandomHeroContent(); // ✅ corretto
     getTrendingMovies();
     getPopularTv();
     getTopRatedMovies();
     getUpcomingMovies();
     getRandomHeroContent(); // Updated function name
-getKoreanDrama();
-loadGenreMovies(28, 'carousel-azione');         // Azione
-loadGenreMovies(35, 'carousel-commedia');       // Commedia
-loadGenreMovies(27, 'carousel-horror');         // Horror
-loadGenreMovies(12, 'carousel-avventura');      // Avventura
-loadGenreMovies(18, 'carousel-dramma');         // Dramma
-loadGenreMovies(878, 'carousel-fantascienza');  // Fantascienza
-loadGenreMovies(10749, 'carousel-romance');     // Romance
-loadGenreMovies(53, 'carousel-thriller');       // Thriller
-loadFeaturedHighlight(); // nuova sezione evidenza
-            
+
+
     document.getElementById('search-button').addEventListener('click', () => searchMedia());
 document.getElementById('search-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') searchMedia();
@@ -1906,7 +1865,7 @@ document.getElementById('mobile-search-button').addEventListener('click', () => 
 document.getElementById('mobile-search-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') searchMedia(e.target.value);
 });
-
+    
     // Update event listeners to handle both types
 playButton.addEventListener('click', () => playMovie(currentHeroMovie));
 
@@ -1965,12 +1924,12 @@ if (window.lastPlayedTV) {
 
            const mobileSearchToggle = document.getElementById('mobile-search-toggle');
             const mobileSearchBox = document.getElementById('mobile-search-box');
-
+            
             // 1. Gestione click sull'icona
             mobileSearchToggle.addEventListener('click', function(e) {
                 e.stopPropagation();
                 mobileSearchBox.classList.toggle('active');
-
+                
                 // Focus sull'input quando appare
                 if(mobileSearchBox.classList.contains('active')) {
                     setTimeout(() => {
@@ -1978,14 +1937,14 @@ if (window.lastPlayedTV) {
                     }, 50);
                 }
             });
-
+            
             // 2. Chiudi quando si clicca fuori
             document.addEventListener('click', function(e) {
                 if(!mobileSearchBox.contains(e.target) && !mobileSearchToggle.contains(e.target)) {
                     mobileSearchBox.classList.remove('active');
                 }
             });
-
+            
             // 3. Chiudi dopo la ricerca
             document.getElementById('mobile-search-button').addEventListener('click', function() {
                 mobileSearchBox.classList.remove('active');
@@ -1993,7 +1952,7 @@ if (window.lastPlayedTV) {
 
 
 
-
+            
             // Close modals when clicking outside
             window.addEventListener('click', (e) => {
                 if (e.target === movieModal) {
@@ -2005,7 +1964,7 @@ if (window.lastPlayedTV) {
             });
 
         });
-
+        
         // Fetch trending movies
 // Modified getTrendingMovies function
 // Modificare le funzioni di fetch per gestire meglio gli errori
@@ -2014,23 +1973,23 @@ async function getTrendingMovies() {
         const res = await fetch(`${API_URL}/trending/movie/week?api_key=${API_KEY}&language=it-IT`);
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         const data = await res.json();
-
+        
         trendingMoviesEl.innerHTML = '';
-
+        
 const filteredMovies = data.results.filter(movie => 
         availableContent.some(item => item.tmdb_id === movie.id)
     );
-
+        
         if (filteredMovies.length === 0) {
             trendingMoviesEl.innerHTML = '<p class="text-gray-400">Nessun film disponibile in tendenza</p>';
             return;
         }
-
+        
         filteredMovies.slice(0, 10).forEach(movie => {
             const movieEl = createMovieCard(movie, 'movie');
             trendingMoviesEl.appendChild(movieEl);
         });
-
+        
     } catch (error) {
         console.error('Error fetching trending movies:', error);
         trendingMoviesEl.innerHTML = '<p class="text-gray-400">Errore nel caricamento dei film</p>';
@@ -2041,18 +2000,18 @@ const filteredMovies = data.results.filter(movie =>
 async function getTopRatedMovies() {
     const res = await fetch(`${API_URL}/movie/top_rated?api_key=${API_KEY}&language=it-IT`);
     const data = await res.json();
-
+    
     topRatedMoviesEl.innerHTML = '';
-
+    
     const filteredMovies = data.results.filter(movie => 
         availableContent.some(item => item.tmdb_id === movie.id)
     );
-
+    
     filteredMovies.slice(0, 10).forEach(movie => {
         const movieEl = createMovieCard(movie, 'movie');
         topRatedMoviesEl.appendChild(movieEl);
     });
-
+    
     if (filteredMovies.length === 0) {
         topRatedMoviesEl.innerHTML = '<p class="text-gray-400">No available movies found in top rated</p>';
     }
@@ -2062,99 +2021,88 @@ async function getTopRatedMovies() {
 async function getUpcomingMovies() {
     const res = await fetch(`${API_URL}/movie/upcoming?api_key=${API_KEY}&language=it-IT`);
     const data = await res.json();
-
+    
     upcomingMoviesEl.innerHTML = '';
-
+    
     const filteredMovies = data.results.filter(movie => 
         availableContent.some(item => item.tmdb_id === movie.id)
     );
-
+    
     filteredMovies.slice(0, 10).forEach(movie => {
         const movieEl = createMovieCard(movie, 'movie');
         upcomingMoviesEl.appendChild(movieEl);
     });
-
+    
     if (filteredMovies.length === 0) {
         upcomingMoviesEl.innerHTML = '<p class="text-gray-400">No available movies found in upcoming</p>';
     }
 }
-
+        
         // Fetch popular TV shows
 // Modified getPopularTv function
 async function getPopularTv() {
     const res = await fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`);
     const data = await res.json();
-
+    
     popularTvEl.innerHTML = '';
-
+    
     // Filter TV shows to only those in our available list
     const filteredTvShows = data.results.filter(tv => 
         availableContent.some(item => item.tmdb_id === tv.id)
     );
-
+    
     filteredTvShows.slice(0, 10).forEach(tv => {
         const tvEl = createMovieCard(tv, 'tv');
         popularTvEl.appendChild(tvEl);
     });
-
+    
     if (filteredTvShows.length === 0) {
         popularTvEl.innerHTML = '<p class="text-gray-400">No available TV shows found</p>';
     }
 }
+        
 
-
-
+        
         // Get a random movie for hero section
 // Modified getRandomHeroContent function
 async function getRandomHeroContent() {
-  const API_URL = "https://api.themoviedb.org/3";
-  const API_KEY = "a3b1e6f6b9b8c9d7f8e1a2c3d4e5f6g7"; // ← tua chiave API principale
-
-  try {
+    // First get popular movies and TV shows
     const [moviesRes, tvRes] = await Promise.all([
-      fetch(`${API_URL}/movie/popular?api_key=${API_KEY}&language=it-IT`),
-      fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`)
+        fetch(`${API_URL}/movie/popular?api_key=${API_KEY}`),
+        fetch(`${API_URL}/tv/popular?api_key=${API_KEY}`)
     ]);
-
-    if (!moviesRes.ok || !tvRes.ok) {
-      throw new Error("Errore nel recupero dei dati da TMDB");
-    }
-
+    
     const moviesData = await moviesRes.json();
     const tvData = await tvRes.json();
-
-    const combined = [...moviesData.results, ...tvData.results].filter(item => item.backdrop_path);
-
-    if (combined.length === 0) {
-      console.warn("Nessun contenuto valido per la Hero Section");
-      return;
+    
+    // Combine and filter available content
+    const allContent = [
+        ...moviesData.results.map(item => ({ ...item, media_type: 'movie' }))
+    ];
+    
+    const availablePopularContent = allContent.filter(item => 
+        availableContent.some(avail => avail.tmdb_id === item.id)
+    );
+    
+    if (availablePopularContent.length === 0) {
+        console.log('No available popular content found for hero section');
+        heroTitleEl.textContent = 'Welcome to LeleFlix';
+        heroOverviewEl.textContent = 'Browse our collection of movies and TV shows';
+        return;
     }
-
-    const hero = combined[Math.floor(Math.random() * combined.length)];
-    const backdropUrl = `https://image.tmdb.org/t/p/original${hero.backdrop_path}`;
-
-    document.getElementById("hero-title").textContent = hero.title || hero.name || "Titolo non disponibile";
-    document.getElementById("hero-rating").textContent = `★ ${hero.vote_average.toFixed(1)}`;
-    document.getElementById("hero-year").textContent = (hero.release_date || hero.first_air_date || "").slice(0, 4);
-    document.getElementById("hero-runtime").textContent = ""; // runtime richiede seconda chiamata
-    document.getElementById("hero-overview").textContent = hero.overview || "Descrizione non disponibile";
-    document.getElementById("hero-backdrop").style.backgroundImage = `url('${backdropUrl}')`;
-
-    // Seconda chiamata per runtime
-    const type = hero.title ? "movie" : "tv";
-    const detailsRes = await fetch(`${API_URL}/${type}/${hero.id}?api_key=${API_KEY}&language=it-IT`);
-    if (detailsRes.ok) {
-      const details = await detailsRes.json();
-      const runtime = details.runtime || (details.episode_run_time?.[0] || null);
-      if (runtime) {
-        document.getElementById("hero-runtime").textContent = `${runtime} min`;
-      }
-    }
-
-  } catch (error) {
-    console.error("Errore nella Hero Section:", error);
-  }
+    
+    // Get a random item from the available ones
+    const randomIndex = Math.floor(Math.random() * availablePopularContent.length);
+    const content = availablePopularContent[randomIndex];
+    
+    // Get full details
+    const contentDetails = await getMovieDetails(content.id, content.media_type);
+    
+    currentHeroMovie = { ...contentDetails, media_type: content.media_type };
+    displayHeroMovie(currentHeroMovie);
 }
+
+
 // Update displayHeroMovie to handle both types
 function displayHeroMovie(content) {
     const isMobile = window.innerWidth <= 768;
@@ -2168,25 +2116,25 @@ function displayHeroMovie(content) {
     clone.style.left = '0';
     clone.style.width = '100%';
     clone.style.height = '100%';
-
+    
     // 2. Aggiungi il clone al DOM
     heroBackdropEl.parentNode.appendChild(clone);
-
+    
     // 3. Attiva la transizione
     setTimeout(() => {
         clone.style.opacity = '1';
     }, 10);
-
+    
     // 4. Al termine della transizione, aggiorna l'elemento originale e rimuovi il clone
     clone.addEventListener('transitionend', () => {
         heroBackdropEl.style.backgroundImage = `url(${IMG_PATH}${content.backdrop_path})`;
         clone.remove();
     }, { once: true });
-
+    
     // Aggiorna il testo
     heroTitleEl.textContent = content.title || content.name;
     heroRatingEl.textContent = content.vote_average.toFixed(1);
-
+    
     if (content.media_type === 'movie') {
         heroYearEl.textContent = content.release_date ? content.release_date.split('-')[0] : 'N/A';
         heroRuntimeEl.textContent = `${content.runtime} min`;
@@ -2194,9 +2142,9 @@ function displayHeroMovie(content) {
         heroYearEl.textContent = content.first_air_date ? content.first_air_date.split('-')[0] : 'N/A';
         heroRuntimeEl.textContent = `${content.episode_run_time?.[0] || 'N/A'} min/ep`;
     }
-
+    
     heroOverviewEl.textContent = content.overview;
-
+    
     // Aggiungi classi per mobile
     if (isMobile) {
         document.querySelector('.hero-gradient').classList.add('mobile-contrast');
@@ -2208,18 +2156,18 @@ function displayHeroMovie(content) {
         heroOverviewEl.classList.remove('mobile-text-contrast');
     }
 }
-
+        
         // Get movie or TV show details
 async function getMovieDetails(id, type = 'movie') {
     try {
         // Get basic details
         const detailsRes = await fetch(`${API_URL}/${type}/${id}?api_key=${API_KEY}&language=it-IT`);
         const details = await detailsRes.json();
-
+        
         // Get credits (cast)
         const creditsRes = await fetch(`${API_URL}/${type}/${id}/credits?api_key=${API_KEY}&language=it-IT`);
         const credits = await creditsRes.json();
-
+        
         return {
             ...details,
             credits,
@@ -2238,21 +2186,21 @@ async function getMovieDetails(id, type = 'movie') {
         };
     }
 }
-
-
-
+        
+        
+        
         // Create movie card element
  function createMovieCard(item, type = "movie") {
     const card = document.createElement("div");
     card.className = "movie-card cursor-pointer";
     card.dataset.id = item.id;
     card.dataset.type = type;
-
+    
     // Aggiungi classe tv-card se è una serie TV
     if (type === "tv") {
         card.classList.add("tv-card");
     }
-
+    
     card.innerHTML = `
         <div class="movie-card-content">
             <div class="relative overflow-hidden rounded-lg h-64">
@@ -2277,13 +2225,13 @@ async function getMovieDetails(id, type = 'movie') {
             </p>
         </div>
     `;
-
+    
     // Aggiungi gestore eventi al click sulla card
     card.addEventListener("click", async () => {
         const details = await getMovieDetails(item.id, type);
         type === "tv" ? showTVSeasons(item.id, type) : showMovieDetails(details, type);
     });
-
+    
 document.addEventListener('click', (e) => {
     const playBtn = e.target.closest('.play-button-glass');
     if (playBtn) {
@@ -2317,7 +2265,7 @@ function unlockScroll() {
 async function showMovieDetails(content, type = null) {
     const contentType = content.media_type || type || 'movie';
     const movieModal = document.getElementById('movie-modal');
-
+    
     // Salva TUTTI i dati nel modale, non solo ID e tipo
     movieModal.dataset.currentContent = JSON.stringify({
         ...content,
@@ -2329,11 +2277,11 @@ async function showMovieDetails(content, type = null) {
         movieModal.classList.remove('opacity-0', 'scale-95');
         movieModal.classList.add('opacity-100', 'scale-100');
     }, 10);
-
+    
     // Set basic info
     document.getElementById('modal-title').textContent = content.title || content.name || 'Untitled';
     document.getElementById('modal-rating').textContent = content.vote_average?.toFixed(1) || 'N/A';
-
+    
     if (contentType === 'movie') {
         document.getElementById('modal-year').textContent = content.release_date ? content.release_date.split('-')[0] : 'N/A';
         document.getElementById('modal-runtime').textContent = `${content.runtime || 'N/A'} min`;
@@ -2341,7 +2289,7 @@ async function showMovieDetails(content, type = null) {
         document.getElementById('modal-year').textContent = content.first_air_date ? content.first_air_date.split('-')[0] : 'N/A';
         document.getElementById('modal-runtime').textContent = `${content.episode_run_time?.[0] || 'N/A'} min/ep`;
     }
-
+    
     // Set poster image
     const posterImg = document.getElementById('modal-poster');
     if (content.poster_path) {
@@ -2350,16 +2298,16 @@ async function showMovieDetails(content, type = null) {
     } else {
         posterImg.src = 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22300%22%20height%3D%22450%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20450%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_189b4b8b7b9%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A15pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_189b4b8b7b9%22%3E%3Crect%20width%3D%22300%22%20height%3D%22450%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22112.5%22%20y%3D%22230.7%22%3ENo%20Poster%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E';
     }
-
+    
     // Set overview
     document.getElementById('modal-overview').textContent = content.overview || 'No overview available.';
-
+    
     // Clear previous genres and cast
     const genresEl = document.getElementById('modal-genres');
     const castEl = document.getElementById('modal-cast');
     genresEl.innerHTML = '';
     castEl.innerHTML = '';
-
+    
     // Set genres
     if (content.genres && content.genres.length > 0) {
         content.genres.forEach(genre => {
@@ -2371,7 +2319,7 @@ async function showMovieDetails(content, type = null) {
     } else {
         genresEl.innerHTML = '<span class="text-gray-400 text-sm">No genre information</span>';
     }
-
+    
     // Set cast (if available)
     if (content.credits?.cast) {
         content.credits.cast.slice(0, 5).forEach(actor => {
@@ -2391,7 +2339,7 @@ async function showMovieDetails(content, type = null) {
     } else {
         castEl.innerHTML = '<span class="text-gray-400 text-sm">No cast information</span>';
     }
-
+    
     // Set play button data
     const modalPlayButton = document.getElementById('modal-play-button');
     modalPlayButton.dataset.id = content.id;
@@ -2402,7 +2350,7 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
     const content = JSON.parse(movieModal.dataset.currentContent);
     playMovie(content);
 });
-
+    
     // Close modal handler
     document.getElementById('close-modal').addEventListener('click', () => {
                 setTimeout(() => {
@@ -2411,8 +2359,8 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
             movieModal.classList.remove('opacity-100', 'scale-100');
         }, 300);
     });
-
-
+    
+    
     // Close with Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !movieModal.classList.contains('hidden')) {
@@ -2426,10 +2374,10 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
 }
 
 
-
+        
         // Show movie details in modal
-
-
+ 
+        
     </script>
 
       <script>
@@ -2439,279 +2387,5 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
       .catch(err => console.error('❌ Service Worker errore:', err));
   }
 </script>
-
-
-<script>
-// 🔄 Scroll orizzontale
-function setupCarouselScroll(id, containerId) {
-  const leftBtn = document.getElementById(`scroll-left-${id}`);
-  const rightBtn = document.getElementById(`scroll-right-${id}`);
-  const container = document.getElementById(containerId);
-
-  if (leftBtn && rightBtn && container) {
-    leftBtn.addEventListener('click', () => {
-      container.scrollBy({ left: -300, behavior: 'smooth' });
-    });
-    rightBtn.addEventListener('click', () => {
-      container.scrollBy({ left: 300, behavior: 'smooth' });
-    });
-  }
-}
-
-// 🔥 Film in tendenza
-async function getTrendingMovies() {
-  const container = document.getElementById('trending-movies');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&language=it-IT`);
-    const data = await res.json();
-    data.results.slice(0, 10).forEach(item => {
-      if (!item.poster_path) return;
-      const card = createMovieCard(item, 'movie');
-      container.appendChild(card);
-    });
-  } catch (err) {
-    console.error('Errore nel caricamento dei film in tendenza:', err);
-  }
-}
-
-// 📺 Serie TV popolari
-async function getPopularTv() {
-  const container = document.getElementById('popular-tv');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=it-IT&page=1`);
-    const data = await res.json();
-    data.results.slice(0, 10).forEach(item => {
-      if (!item.poster_path) return;
-      const card = createMovieCard(item, 'tv');
-      container.appendChild(card);
-    });
-  } catch (err) {
-    console.error('Errore nel caricamento delle serie TV popolari:', err);
-  }
-}
-
-// 🌟 Film più votati
-async function getTopRatedMovies() {
-  const container = document.getElementById('top-rated-movies');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=it-IT&page=1`);
-    const data = await res.json();
-    data.results.slice(0, 10).forEach(item => {
-      if (!item.poster_path) return;
-      const card = createMovieCard(item, 'movie');
-      container.appendChild(card);
-    });
-  } catch (err) {
-    console.error('Errore nel caricamento dei film più votati:', err);
-  }
-}
-
-// 🎬 Film al cinema
-async function getUpcomingMovies() {
-  const container = document.getElementById('upcoming-movies');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=it-IT&page=1`);
-    const data = await res.json();
-    data.results.slice(0, 10).forEach(item => {
-      if (!item.poster_path) return;
-      const card = createMovieCard(item, 'movie');
-      container.appendChild(card);
-    });
-  } catch (err) {
-    console.error('Errore nel caricamento dei film al cinema:', err);
-  }
-}
-
-
-
-// 🎭 Generi specifici
-async function loadGenreMovies(genreId, containerId) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-
-  try {
-    const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&language=it-IT&sort_by=popularity.desc`);
-    const data = await res.json();
-    data.results.slice(0, 10).forEach(item => {
-      if (!item.poster_path) return;
-      const card = createMovieCard(item, 'movie');
-      container.appendChild(card);
-    });
-  } catch (err) {
-    console.error(`Errore nel caricamento del genere ${genreId}:`, err);
-  }
-}
-
-// 🇰🇷 Korean Drama
-async function getKoreanDrama() {
-  const container = document.getElementById('carousel-korean-drama');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_original_language=ko&sort_by=popularity.desc&language=it-IT`);
-    const data = await res.json();
-    data.results.slice(0, 10).forEach(item => {
-      if (!item.poster_path) return;
-      const card = createMovieCard(item, 'tv');
-      container.appendChild(card);
-    });
-
-    const countLabel = document.getElementById('korean-drama-count');
-    if (countLabel) {
-      countLabel.textContent = `${data.results.length} titoli disponibili`;
-      countLabel.style.display = 'block';
-    }
-  } catch (err) {
-    console.error('Errore nel caricamento dei Korean Drama:', err);
-  }
-}
-
-// 🚀 Inizializzazione dell'app
-document.addEventListener('DOMContentLoaded', async () => {
-  await loadAvailableContent();
-
-  
-  getPopularTv();
-  getTopRatedMovies();
-  getUpcomingMovies();
-  getRandomHeroContent(); // Updated function name
-  getKoreanDrama();
-
-  loadGenreMovies(28, 'carousel-azione');         // Azione
-  loadGenreMovies(35, 'carousel-commedia');       // Commedia
-  loadGenreMovies(27, 'carousel-horror');         // Horror
-  loadGenreMovies(12, 'carousel-avventura');      // Avventura
-  loadGenreMovies(18, 'carousel-dramma');         // Dramma
-  loadGenreMovies(878, 'carousel-fantascienza');  // Fantascienza
-  loadGenreMovies(10749, 'carousel-romance');     // Romance
-  loadGenreMovies(53, 'carousel-thriller');       // Thriller
-
-  const sections = [
-    
-    ['popular-tv', 'popular-tv'],
-    ['top-rated', 'top-rated-movies'],
-    ['upcoming', 'upcoming-movies'],
-    ['azione', 'carousel-azione'],
-    ['commedia', 'carousel-commedia'],
-    ['horror', 'carousel-horror'],
-    ['avventura', 'carousel-avventura'],
-    ['dramma', 'carousel-dramma'],
-    ['fantascienza', 'carousel-fantascienza'],
-    ['romance', 'carousel-romance'],
-    ['thriller', 'carousel-thriller'],
-    ['korean-drama', 'carousel-korean-drama']
-  ];
-
-  sections.forEach(([id, containerId]) => {
-    setupCarouselScroll(id, containerId);
-  });
-});
-</script>
-    
-<script>
-async function getKoreanMovies() {
-  const container = document.getElementById('carousel-korean-movies');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_original_language=ko&sort_by=popularity.desc&language=it-IT`);
-    const data = await res.json();
-    const items = data.results.slice(0, 10);
-
-    items.forEach(item => {
-      if (!item.poster_path) return;
-      const card = createMovieCard(item, 'movie');
-      container.appendChild(card);
-    });
-  } catch (err) {
-    console.error('Errore nel caricamento dei Film Coreani:', err);
-  }
-}
-</script>
-
-
-<script>
-
-  // 🔗 Elementi DOM
-const highlightSection = document.getElementById('featured-highlight');
-const highlightTitleEl = document.querySelector('.highlight-title');
-const highlightOverviewEl = document.querySelector('.highlight-overview');
-const btnPlay = document.querySelector('.btn-play');
-const btnInfo = document.querySelector('.btn-info');
-
-// 🎬 Contenuto attualmente in evidenza
-let currentHighlighted = null;
-
-// 🚀 Carica un contenuto casuale per la sezione In Evidenza
-async function loadFeaturedHighlight() {
-  try {
-    const [moviesRes, tvRes] = await Promise.all([
-      fetch(`${API_URL}/movie/popular?api_key=${API_KEY}&language=it-IT`),
-      fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`)
-    ]);
-
-    const moviesData = await moviesRes.json();
-    const tvData = await tvRes.json();
-
-    const allContent = [
-      ...moviesData.results.map(item => ({ ...item, media_type: 'movie' })),
-      ...tvData.results.map(item => ({ ...item, media_type: 'tv' }))
-    ].filter(item => item.backdrop_path);
-
-    if (allContent.length === 0) {
-      highlightTitleEl.textContent = 'Nessun contenuto disponibile';
-      highlightOverviewEl.textContent = 'Controlla la connessione o riprova più tardi.';
-      return;
-    }
-
-    const randomItem = allContent[Math.floor(Math.random() * allContent.length)];
-    const detailsRes = await fetch(`${API_URL}/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT&append_to_response=credits`);
-    const details = await detailsRes.json();
-
-    currentHighlighted = {
-      id: details.id,
-      media_type: randomItem.media_type,
-      title: details.title || details.name,
-      overview: details.overview,
-      poster_path: details.poster_path || details.backdrop_path,
-      backdrop_path: details.backdrop_path,
-      vote_average: details.vote_average,
-      genres: details.genres,
-      cast: details.credits?.cast?.slice(0, 5) || []
-    };
-
-    highlightSection.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${currentHighlighted.backdrop_path})`;
-    highlightTitleEl.textContent = currentHighlighted.title;
-    highlightOverviewEl.textContent = currentHighlighted.overview;
-  } catch (err) {
-    console.error('Errore nel caricamento della sezione In Evidenza:', err);
-    highlightTitleEl.textContent = 'Errore di rete';
-    highlightOverviewEl.textContent = 'Impossibile caricare il contenuto in evidenza';
-  }
-}
-
-// 🎯 Collegamento pulsanti
-btnPlay.addEventListener('click', () => {
-  if (currentHighlighted && typeof playContent === 'function') {
-    playContent(currentHighlighted);
-  }
-});
-
-btnInfo.addEventListener('click', () => {
-  if (currentHighlighted && typeof openModal === 'function') {
-    openModal(currentHighlighted);
-  }
-});  
-    
-</script>
-    
 </body>
 </html>
