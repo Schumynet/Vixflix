@@ -2532,6 +2532,63 @@ document.addEventListener('DOMContentLoaded', () => {
   getTopRatedMovies();
   getNowPlayingMovies();
 });
+
+// section azione/Korean film
+const GENRE_MAP = {
+  action: 28,
+  fantasy: 14,
+  drama: 18,
+  scifi: 878,
+  horror: 27,
+  romantic: 10749,
+  'teen-drama': 10751 // Famiglia come base per teen drama
+};
+
+// 🔄 Caricamento per genere
+async function loadGenreSection(id, genreId) {
+  const container = document.getElementById(`carousel-${id}-container`);
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&sort_by=popularity.desc&language=it-IT`);
+    const data = await res.json();
+    container.innerHTML = '';
+    data.results.slice(0, 10).forEach(item => {
+      if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
+    });
+  } catch (err) {
+    console.error(`Errore nella sezione ${id}:`, err);
+  }
+}
+
+// 🇰🇷 Caricamento per contenuti coreani
+async function loadKoreanSection(id, type = 'movie') {
+  const container = document.getElementById(`carousel-${id}-container`);
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${API_URL}/discover/${type}?api_key=${API_KEY}&with_original_language=ko&sort_by=popularity.desc&language=it-IT`);
+    const data = await res.json();
+    container.innerHTML = '';
+    data.results.slice(0, 10).forEach(item => {
+      if (item.poster_path) container.appendChild(createMovieCard(item, type));
+    });
+  } catch (err) {
+    console.error(`Errore nella sezione ${id}:`, err);
+  }
+}
+
+// 🚀 Avvio al caricamento
+document.addEventListener('DOMContentLoaded', () => {
+  Object.entries(GENRE_MAP).forEach(([key, genreId]) => {
+    loadGenreSection(key, genreId);
+  });
+
+  loadKoreanSection('korean-drama', 'tv');
+  loadKoreanSection('korean-movie', 'movie');
+});
+
+        
    </script> 
     
 </body>
