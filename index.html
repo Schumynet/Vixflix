@@ -2640,7 +2640,7 @@ async function getKoreanMovies() {
 
 <script>
 
-// 🔗 Elementi DOM
+  // 🔗 Elementi DOM
 const highlightSection = document.getElementById('featured-highlight');
 const highlightTitleEl = document.querySelector('.highlight-title');
 const highlightOverviewEl = document.querySelector('.highlight-overview');
@@ -2673,14 +2673,24 @@ async function loadFeaturedHighlight() {
     }
 
     const randomItem = allContent[Math.floor(Math.random() * allContent.length)];
-    const detailsRes = await fetch(`${API_URL}/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT`);
+    const detailsRes = await fetch(`${API_URL}/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT&append_to_response=credits`);
     const details = await detailsRes.json();
 
-    currentHighlighted = { ...details, media_type: randomItem.media_type };
+    currentHighlighted = {
+      id: details.id,
+      media_type: randomItem.media_type,
+      title: details.title || details.name,
+      overview: details.overview,
+      poster_path: details.poster_path || details.backdrop_path,
+      backdrop_path: details.backdrop_path,
+      vote_average: details.vote_average,
+      genres: details.genres,
+      cast: details.credits?.cast?.slice(0, 5) || []
+    };
 
-    highlightSection.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${details.backdrop_path})`;
-    highlightTitleEl.textContent = details.title || details.name || 'Titolo non disponibile';
-    highlightOverviewEl.textContent = details.overview || 'Descrizione non disponibile';
+    highlightSection.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${currentHighlighted.backdrop_path})`;
+    highlightTitleEl.textContent = currentHighlighted.title;
+    highlightOverviewEl.textContent = currentHighlighted.overview;
   } catch (err) {
     console.error('Errore nel caricamento della sezione In Evidenza:', err);
     highlightTitleEl.textContent = 'Errore di rete';
@@ -2690,33 +2700,16 @@ async function loadFeaturedHighlight() {
 
 // 🎯 Collegamento pulsanti
 btnPlay.addEventListener('click', () => {
-  if (currentHighlighted) {
-    openModal({
-      id: currentHighlighted.id,
-      media_type: currentHighlighted.media_type,
-      title: currentHighlighted.title || currentHighlighted.name,
-      overview: currentHighlighted.overview,
-      poster_path: currentHighlighted.poster_path || currentHighlighted.backdrop_path,
-      vote_average: currentHighlighted.vote_average,
-      genre_ids: currentHighlighted.genre_ids
-    });
+  if (currentHighlighted && typeof playContent === 'function') {
+    playContent(currentHighlighted);
   }
 });
 
 btnInfo.addEventListener('click', () => {
-  if (currentHighlighted) {
-    openModal({
-      id: currentHighlighted.id,
-      media_type: currentHighlighted.media_type,
-      title: currentHighlighted.title || currentHighlighted.name,
-      overview: currentHighlighted.overview,
-      poster_path: currentHighlighted.poster_path || currentHighlighted.backdrop_path,
-      vote_average: currentHighlighted.vote_average,
-      genre_ids: currentHighlighted.genre_ids
-    });
+  if (currentHighlighted && typeof openModal === 'function') {
+    openModal(currentHighlighted);
   }
-});
-    
+});  
     
 </script>
     
