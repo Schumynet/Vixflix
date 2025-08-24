@@ -2640,19 +2640,22 @@ async function getKoreanMovies() {
 
 <script>
 
-async function getFeaturedHighlight() {
-  const section = document.getElementById('featured-highlight');
-  if (!section) return;
+// 🔗 Elementi DOM
+const highlightSection = document.getElementById('featured-highlight');
+const highlightTitleEl = document.querySelector('.highlight-title');
+const highlightOverviewEl = document.querySelector('.highlight-overview');
+const btnPlay = document.querySelector('.btn-play');
+const btnInfo = document.querySelector('.btn-info');
 
-  const titleEl = section.querySelector('.highlight-title');
-  const overviewEl = section.querySelector('.highlight-overview');
-  const btnPlay = section.querySelector('.btn-play');
-  const btnInfo = section.querySelector('.btn-info');
+// 🎬 Contenuto attualmente in evidenza
+let currentHighlighted = null;
 
+// 🚀 Carica un contenuto casuale per la sezione In Evidenza
+async function loadFeaturedHighlight() {
   try {
     const [moviesRes, tvRes] = await Promise.all([
-      fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=it-IT`),
-      fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=it-IT`)
+      fetch(`${API_URL}/movie/popular?api_key=${API_KEY}&language=it-IT`),
+      fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`)
     ]);
 
     const moviesData = await moviesRes.json();
@@ -2664,30 +2667,39 @@ async function getFeaturedHighlight() {
     ].filter(item => item.backdrop_path);
 
     if (allContent.length === 0) {
-      titleEl.textContent = 'Nessun contenuto disponibile';
-      overviewEl.textContent = 'Controlla la connessione o riprova più tardi.';
+      highlightTitleEl.textContent = 'Nessun contenuto disponibile';
+      highlightOverviewEl.textContent = 'Controlla la connessione o riprova più tardi.';
       return;
     }
 
     const randomItem = allContent[Math.floor(Math.random() * allContent.length)];
-
-    const detailsRes = await fetch(`https://api.themoviedb.org/3/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT`);
+    const detailsRes = await fetch(`${API_URL}/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT`);
     const details = await detailsRes.json();
 
-    const content = { ...details, media_type: randomItem.media_type };
+    currentHighlighted = { ...details, media_type: randomItem.media_type };
 
-    section.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${content.backdrop_path})`;
-    titleEl.textContent = content.title || content.name || 'Titolo non disponibile';
-    overviewEl.textContent = content.overview || 'Descrizione non disponibile';
-
-    btnPlay.onclick = () => playContent(content);
-    btnInfo.onclick = () => openModal(content);
+    highlightSection.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${details.backdrop_path})`;
+    highlightTitleEl.textContent = details.title || details.name || 'Titolo non disponibile';
+    highlightOverviewEl.textContent = details.overview || 'Descrizione non disponibile';
   } catch (err) {
-    console.error('Errore nel caricamento del contenuto in evidenza:', err);
-    titleEl.textContent = 'Errore di rete';
-    overviewEl.textContent = 'Impossibile caricare il contenuto';
+    console.error('Errore nel caricamento della sezione In Evidenza:', err);
+    highlightTitleEl.textContent = 'Errore di rete';
+    highlightOverviewEl.textContent = 'Impossibile caricare il contenuto in evidenza';
   }
+}
+
+// 🎯 Collegamento pulsanti
+btnPlay.addEventListener('click', () => {
+  if (currentHighlighted) {
+    window.location.href = `player.html?id=${currentHighlighted.id}&type=${currentHighlighted.media_type}`;
   }
+});
+
+btnInfo.addEventListener('click', () => {
+  if (currentHighlighted) {
+    openModal(currentHighlighted); // Funzione già presente nel tuo sistema
+  }
+});
     
 </script>
     
