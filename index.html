@@ -704,17 +704,7 @@
     <main class="relative z-20 -mt-20 scrollbar-hide">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <!-- Trending Movies -->
-
-<section id="carousel-favorites" class="carousel-section">
-  <h2 class="carousel-title">I tuoi Preferiti</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-favorites-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-favorites-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-favorites-container">&#10095;</button>
-  </div>
-</section>
-            
-<!-- 🎥 Film in tendenza -->
+          <!-- 🎥 Film in tendenza -->
 <section id="carousel-trending-movies" class="carousel-section">
   <h2 class="carousel-title">Film in tendenza</h2>
   <div class="carousel-wrapper">
@@ -2692,29 +2682,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
    </script> 
 
-<script>
 
-function addToFavorites(item) {
-  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-  if (!favorites.find(f => f.id === item.id && f.media_type === item.media_type)) {
-    favorites.push({ id: item.id, media_type: item.media_type });
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-  }
-}
-
-async function loadFavoritesSection() {
-  const container = document.getElementById('carousel-favorites-container');
-  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-  container.innerHTML = '';
-
-  for (const item of favorites) {
-    const res = await fetch(`${API_URL}/${item.media_type}/${item.id}?api_key=${API_KEY}&language=it-IT`);
-    const data = await res.json();
-    if (data.poster_path) container.appendChild(createMovieCard(data, item.media_type));
-  }
-}
-    
-</script>
 
     
 </body>
