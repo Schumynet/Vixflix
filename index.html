@@ -2649,6 +2649,7 @@ function getFeaturedHighlight() {
   const btnPlay = section.querySelector('.btn-play');
   const btnInfo = section.querySelector('.btn-info');
 
+  // Carica contenuti popolari (film + serie TV)
   Promise.all([
     fetch(`${API_URL}/movie/popular?api_key=${API_KEY}&language=it-IT`).then(res => res.json()),
     fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`).then(res => res.json())
@@ -2667,6 +2668,7 @@ function getFeaturedHighlight() {
 
       const randomItem = allContent[Math.floor(Math.random() * allContent.length)];
 
+      // Carica i dettagli completi del contenuto selezionato
       return fetch(`${API_URL}/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT`)
         .then(res => res.json())
         .then(details => ({ ...details, media_type: randomItem.media_type }));
@@ -2674,19 +2676,9 @@ function getFeaturedHighlight() {
     .then(content => {
       if (!content) return;
 
+      // Imposta sfondo, titolo e descrizione
       section.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${content.backdrop_path})`;
-      titleEl.textContent = content.title || content.name || 'Titolo non disponibile';
-      overviewEl.textContent = content.overview || 'Descrizione non disponibile';
-
-      btnPlay.onclick = () => playContent(content);
-      btnInfo.onclick = () => openModal(content);
-    })
-    .catch(err => {
-      console.error('Errore nella sezione In Evidenza:', err);
-      titleEl.textContent = 'Errore di rete';
-      overviewEl.textContent = 'Impossibile caricare il contenuto';
-    });
-}
+      titleEl
     
 </script>
     
