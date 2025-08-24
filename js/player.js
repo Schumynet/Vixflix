@@ -936,3 +936,16 @@ document.querySelector('.scroll-btn.left').addEventListener('click', function() 
 document.querySelector('.scroll-btn.right').addEventListener('click', function() {
   document.getElementById('genres-list').scrollBy({ left: 150, behavior: 'smooth' });
 });
+
+document.querySelectorAll('.carousel-arrow').forEach(button => {
+  button.addEventListener('click', () => {
+    const targetId = button.getAttribute('data-target');
+    const container = document.getElementById(targetId);
+    const scrollAmount = container.offsetWidth * 0.8;
+
+    container.scrollBy({
+      left: button.classList.contains('left') ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  });
+});
