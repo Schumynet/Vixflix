@@ -1880,7 +1880,7 @@ async function loadAvailableContent() {
     await loadAvailableContent();
 
     // Then load all data
-            loadFeaturedHighlight(); // nuova sezione evidenza
+            
     getRandomHeroContent(); // ✅ corretto
     getTrendingMovies();
     getPopularTv();
@@ -1896,7 +1896,8 @@ loadGenreMovies(18, 'carousel-dramma');         // Dramma
 loadGenreMovies(878, 'carousel-fantascienza');  // Fantascienza
 loadGenreMovies(10749, 'carousel-romance');     // Romance
 loadGenreMovies(53, 'carousel-thriller');       // Thriller
-
+loadFeaturedHighlight(); // nuova sezione evidenza
+            
     document.getElementById('search-button').addEventListener('click', () => searchMedia());
 document.getElementById('search-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') searchMedia();
