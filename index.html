@@ -2690,11 +2690,31 @@ async function loadFeaturedHighlight() {
 
 // 🎯 Collegamento pulsanti
 btnPlay.addEventListener('click', () => {
-  openModal(currentHighlighted);
+  if (currentHighlighted) {
+    openModal({
+      id: currentHighlighted.id,
+      media_type: currentHighlighted.media_type,
+      title: currentHighlighted.title || currentHighlighted.name,
+      overview: currentHighlighted.overview,
+      poster_path: currentHighlighted.poster_path || currentHighlighted.backdrop_path,
+      vote_average: currentHighlighted.vote_average,
+      genre_ids: currentHighlighted.genre_ids
+    });
+  }
 });
 
 btnInfo.addEventListener('click', () => {
-  openModal(currentHighlighted);
+  if (currentHighlighted) {
+    openModal({
+      id: currentHighlighted.id,
+      media_type: currentHighlighted.media_type,
+      title: currentHighlighted.title || currentHighlighted.name,
+      overview: currentHighlighted.overview,
+      poster_path: currentHighlighted.poster_path || currentHighlighted.backdrop_path,
+      vote_average: currentHighlighted.vote_average,
+      genre_ids: currentHighlighted.genre_ids
+    });
+  }
 });
     
     
