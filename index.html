@@ -2755,7 +2755,44 @@ document.addEventListener('DOMContentLoaded', () => {
 }); 
     </script>
 
+<script>
 
+let currentHighlighted = null;
+
+async function loadFeaturedHighlight() {
+  try {
+    const [moviesRes, tvRes] = await Promise.all([
+      fetch(`${API_URL}/movie/popular?api_key=${API_KEY}&language=it-IT`),
+      fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`)
+    ]);
+
+    const moviesData = await moviesRes.json();
+    const tvData = await tvRes.json();
+
+    const allContent = [
+      ...moviesData.results.map(item => ({ ...item, media_type: 'movie' })),
+      ...tvData.results.map(item => ({ ...item, media_type: 'tv' }))
+    ].filter(item => item.backdrop_path);
+
+    const randomItem = allContent[Math.floor(Math.random() * allContent.length)];
+    const detailsRes = await fetch(`${API_URL}/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT`);
+    const details = await detailsRes.json();
+
+    currentHighlighted = { ...details, media_type: randomItem.media_type };
+
+    const highlightSection = document.getElementById('featured-highlight');
+    const highlightTitleEl = document.querySelector('.highlight-title');
+    const highlightOverviewEl = document.querySelector('.highlight-overview');
+
+    highlightSection.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${details.backdrop_path})`;
+    highlightTitleEl.textContent = details.title || details.name || 'Titolo non disponibile';
+    highlightOverviewEl.textContent = details.overview || 'Descrizione non disponibile';
+  } catch (err) {
+    console.error('Errore nel caricamento della sezione In Evidenza:', err);
+  }
+}
+    
+</script>
     
 </body>
 </html>
