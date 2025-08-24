@@ -1880,6 +1880,7 @@ async function loadAvailableContent() {
     await loadAvailableContent();
 
     // Then load all data
+            loadFeaturedHighlight(); // nuova sezione evidenza
     getRandomHeroContent(); // ✅ corretto
     getTrendingMovies();
     getPopularTv();
@@ -2754,66 +2755,6 @@ document.addEventListener('DOMContentLoaded', () => {
     </script>
 
 
-
-    <script>
-
-const highlightSection = document.getElementById('featured-highlight');
-const highlightTitleEl = document.querySelector('.highlight-title');
-const highlightOverviewEl = document.querySelector('.highlight-overview');
-const btnPlay = document.querySelector('.btn-play');
-const btnInfo = document.querySelector('.btn-info');
-
-let currentHighlighted = null;
-
-async function loadFeaturedHighlight() {
-  try {
-    const [moviesRes, tvRes] = await Promise.all([
-      fetch(`${API_URL}/movie/popular?api_key=${API_KEY}&language=it-IT`),
-      fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`)
-    ]);
-
-    const moviesData = await moviesRes.json();
-    const tvData = await tvRes.json();
-
-    const allContent = [
-      ...moviesData.results.map(item => ({ ...item, media_type: 'movie' })),
-      ...tvData.results.map(item => ({ ...item, media_type: 'tv' }))
-    ].filter(item => item.backdrop_path);
-
-    const randomItem = allContent[Math.floor(Math.random() * allContent.length)];
-    const detailsRes = await fetch(`${API_URL}/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT`);
-    const details = await detailsRes.json();
-
-    currentHighlighted = { ...details, media_type: randomItem.media_type };
-
-    highlightSection.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${details.backdrop_path})`;
-    highlightTitleEl.textContent = details.title || details.name || 'Titolo non disponibile';
-    highlightOverviewEl.textContent = details.overview || 'Descrizione non disponibile';
-  } catch (err) {
-    console.error('Errore nel caricamento della sezione In Evidenza:', err);
-    highlightTitleEl.textContent = 'Errore di rete';
-    highlightOverviewEl.textContent = 'Impossibile caricare il contenuto in evidenza';
-  }
-}
-
-// 🎬 Interazioni dei bottoni
-btnPlay.addEventListener('click', () => {
-  if (currentHighlighted) {
-    playContent(currentHighlighted); // Funzione già presente nel tuo sistema
-  }
-});
-
-btnInfo.addEventListener('click', () => {
-  if (currentHighlighted) {
-    openModal(currentHighlighted); // Funzione già presente nel tuo sistema
-  }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  loadFeaturedHighlight();
-});
-        
-    </script>
     
 </body>
 </html>
