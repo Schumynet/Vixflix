@@ -2640,7 +2640,7 @@ async function getKoreanMovies() {
 
 <script>
 
-function getFeaturedHighlight() {
+async function getFeaturedHighlight() {
   const section = document.getElementById('featured-highlight');
   if (!section) return;
 
@@ -2649,43 +2649,44 @@ function getFeaturedHighlight() {
   const btnPlay = section.querySelector('.btn-play');
   const btnInfo = section.querySelector('.btn-info');
 
-  Promise.all([
-    fetch(`${API_URL}/movie/popular?api_key=${API_KEY}&language=it-IT`).then(res => res.json()),
-    fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`).then(res => res.json())
-  ])
-    .then(([moviesData, tvData]) => {
-      const allContent = [
-        ...moviesData.results.map(item => ({ ...item, media_type: 'movie' })),
-        ...tvData.results.map(item => ({ ...item, media_type: 'tv' }))
-      ].filter(item => item.backdrop_path);
+  try {
+    const [moviesRes, tvRes] = await Promise.all([
+      fetch(`${API_URL}/movie/popular?api_key=${API_KEY}&language=it-IT`),
+      fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`)
+    ]);
 
-      if (allContent.length === 0) {
-        titleEl.textContent = 'Nessun contenuto disponibile';
-        overviewEl.textContent = 'Controlla la connessione o riprova più tardi.';
-        return;
-      }
+    const moviesData = await moviesRes.json();
+    const tvData = await tvRes.json();
 
-      const randomItem = allContent[Math.floor(Math.random() * allContent.length)];
+    const allContent = [
+      ...moviesData.results.map(item => ({ ...item, media_type: 'movie' })),
+      ...tvData.results.map(item => ({ ...item, media_type: 'tv' }))
+    ].filter(item => item.backdrop_path);
 
-      return fetch(`${API_URL}/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT`)
-        .then(res => res.json())
-        .then(details => ({ ...details, media_type: randomItem.media_type }));
-    })
-    .then(content => {
-      if (!content || !content.backdrop_path) return;
+    if (allContent.length === 0) {
+      titleEl.textContent = 'Nessun contenuto disponibile';
+      overviewEl.textContent = 'Controlla la connessione o riprova più tardi.';
+      return;
+    }
 
-      section.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${content.backdrop_path})`;
-      titleEl.textContent = content.title || content.name || 'Titolo non disponibile';
-      overviewEl.textContent = content.overview || 'Descrizione non disponibile';
+    const randomItem = allContent[Math.floor(Math.random() * allContent.length)];
 
-      btnPlay.onclick = () => playContent(content);
-      btnInfo.onclick = () => openModal(content);
-    })
-    .catch(err => {
-      console.error('Errore nella sezione In Evidenza:', err);
-      titleEl.textContent = 'Errore di rete';
-      overviewEl.textContent = 'Impossibile caricare il contenuto';
-    });
+    const detailsRes = await fetch(`${API_URL}/${randomItem.media_type}/${randomItem.id}?api_key=${API_KEY}&language=it-IT`);
+    const details = await detailsRes.json();
+
+    const content = { ...details, media_type: randomItem.media_type };
+
+    section.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${content.backdrop_path})`;
+    titleEl.textContent = content.title || content.name || 'Titolo non disponibile';
+    overviewEl.textContent = content.overview || 'Descrizione non disponibile';
+
+    btnPlay.onclick = () => playContent(content);
+    btnInfo.onclick = () => openModal(content);
+  } catch (err) {
+    console.error('Errore nel caricamento del contenuto in evidenza:', err);
+    titleEl.textContent = 'Errore di rete';
+    overviewEl.textContent = 'Impossibile caricare il contenuto';
+  }
 }
     
 </script>
