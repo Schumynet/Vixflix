@@ -2690,15 +2690,11 @@ async function loadFeaturedHighlight() {
 
 // 🎯 Collegamento pulsanti
 btnPlay.addEventListener('click', () => {
-  if (currentHighlighted && typeof playContent === 'function') {
-    playContent(currentHighlighted);
-  }
+  openModal(currentHighlighted);
 });
 
 btnInfo.addEventListener('click', () => {
-  if (currentHighlighted && typeof openModal === 'function') {
-    openModal(currentHighlighted);
-  }
+  openModal(currentHighlighted);
 });
     
     
