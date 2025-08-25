@@ -705,50 +705,51 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <!-- Trending Movies -->
             <!-- Film in tendenza -->
+<!-- Film in tendenza -->
 <section id="movie-trend" class="mb-12 relative">
-  <h2 id="trending" class="text-xl font-bold mb-4">Film in tendenza</h2>
-  <div class="absolute top-0 right-0 flex gap-2">
+  <h2 class="text-xl font-bold mb-4">Film in tendenza</h2>
+  <div class="relative">
     <button class="carousel-arrow left" data-target="trending-movies">◀</button>
     <button class="carousel-arrow right" data-target="trending-movies">▶</button>
-  </div>
-  <div id="trending-movies" class="flex overflow-x-auto gap-4 pb-2 scroll-smooth">
-    <!-- Card placeholder -->
+    <div id="trending-movies" class="carousel-track">
+      <!-- Card placeholder -->
+    </div>
   </div>
 </section>
 
 <!-- Serie TV popolari -->
 <section id="tv-popular" class="mb-12 relative">
   <h2 class="text-xl font-bold mb-4">Serie TV popolari</h2>
-  <div class="absolute top-0 right-0 flex gap-2">
+  <div class="relative">
     <button class="carousel-arrow left" data-target="popular-tv">◀</button>
     <button class="carousel-arrow right" data-target="popular-tv">▶</button>
-  </div>
-  <div id="popular-tv" class="flex overflow-x-auto gap-4 pb-2 scroll-smooth">
-    <!-- Card placeholder -->
+    <div id="popular-tv" class="carousel-track">
+      <!-- Card placeholder -->
+    </div>
   </div>
 </section>
 
 <!-- Film più votati -->
 <section id="critics" class="mb-12 relative">
   <h2 class="text-xl font-bold mb-4">Film più votati</h2>
-  <div class="absolute top-0 right-0 flex gap-2">
+  <div class="relative">
     <button class="carousel-arrow left" data-target="top-rated-movies">◀</button>
     <button class="carousel-arrow right" data-target="top-rated-movies">▶</button>
-  </div>
-  <div id="top-rated-movies" class="flex overflow-x-auto gap-4 pb-2 scroll-smooth">
-    <!-- Card placeholder -->
+    <div id="top-rated-movies" class="carousel-track">
+      <!-- Card placeholder -->
+    </div>
   </div>
 </section>
 
 <!-- Film al cinema -->
 <section id="new" class="mb-12 relative">
   <h2 class="text-xl font-bold mb-4">Film al cinema</h2>
-  <div class="absolute top-0 right-0 flex gap-2">
+  <div class="relative">
     <button class="carousel-arrow left" data-target="upcoming-movies">◀</button>
     <button class="carousel-arrow right" data-target="upcoming-movies">▶</button>
-  </div>
-  <div id="upcoming-movies" class="flex overflow-x-auto gap-4 pb-2 scroll-smooth">
-    <!-- Card placeholder -->
+    <div id="upcoming-movies" class="carousel-track">
+      <!-- Card placeholder -->
+    </div>
   </div>
 </section>
         </div>
@@ -2327,6 +2328,20 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
 
 <script>
 document.querySelectorAll('.carousel-arrow').forEach(button => {
+  button.addEventListener('click', () => {
+    const targetId = button.getAttribute('data-target');
+    const container = document.getElementById(targetId);
+    if (!container) return;
+
+    const scrollAmount = container.offsetWidth * 0.8;
+    const direction = button.classList.contains('left') ? -scrollAmount : scrollAmount;
+
+    container.scrollBy({
+      left: direction,
+      behavior: 'smooth'
+    });
+  });
+});document.querySelectorAll('.carousel-arrow').forEach(button => {
   button.addEventListener('click', () => {
     const targetId = button.getAttribute('data-target');
     const container = document.getElementById(targetId);
