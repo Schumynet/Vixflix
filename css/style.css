@@ -1279,7 +1279,7 @@ backdrop-filter: blur(12.5px);
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   z-index: 1000;
 }
 
@@ -1287,7 +1287,7 @@ backdrop-filter: blur(12.5px);
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
   border: none;
-  padding: 12px;
+  padding: 14px;
   font-size: 20px;
   cursor: pointer;
   border-radius: 50%;
@@ -1297,4 +1297,4 @@ backdrop-filter: blur(12.5px);
 .scroll-arrow:hover {
   background-color: rgba(255, 255, 255, 0.8);
   color: black;
-}
+        }
