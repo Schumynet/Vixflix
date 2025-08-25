@@ -704,116 +704,53 @@
     <main class="relative z-20 -mt-20 scrollbar-hide">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <!-- Trending Movies -->
-            <section id="movie-trend" class="mb-12">
-                <h2   id="trending" class="text-xl font-bold mb-4">Film in tendenza</h2>
-                <div id="trending-movies" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <!-- Loading skeleton -->
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                </div>
-            </section>
+            <!-- Film in tendenza -->
+<section id="movie-trend" class="mb-12 relative">
+  <h2 id="trending" class="text-xl font-bold mb-4">Film in tendenza</h2>
+  <div class="absolute top-0 right-0 flex gap-2">
+    <button class="carousel-arrow left" data-target="trending-movies">◀</button>
+    <button class="carousel-arrow right" data-target="trending-movies">▶</button>
+  </div>
+  <div id="trending-movies" class="flex overflow-x-auto gap-4 pb-2 scroll-smooth">
+    <!-- Card placeholder -->
+  </div>
+</section>
 
-            <!-- Popular TV Shows -->
-            <section id="tv-popular" class="mb-12">
-                <h2 class="text-xl font-bold mb-4">Serie TV popolari</h2>
-                <div id="popular-tv" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <!-- Loading skeleton -->
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                </div>
-            </section>
+<!-- Serie TV popolari -->
+<section id="tv-popular" class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-4">Serie TV popolari</h2>
+  <div class="absolute top-0 right-0 flex gap-2">
+    <button class="carousel-arrow left" data-target="popular-tv">◀</button>
+    <button class="carousel-arrow right" data-target="popular-tv">▶</button>
+  </div>
+  <div id="popular-tv" class="flex overflow-x-auto gap-4 pb-2 scroll-smooth">
+    <!-- Card placeholder -->
+  </div>
+</section>
 
-            <!-- Top Rated Movies -->
-            <section id="critics" class="mb-12">
-                <h2 class="text-xl font-bold mb-4">Film più votati</h2>
-                <div id="top-rated-movies" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <!-- Loading skeleton -->
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                </div>
-            </section>
+<!-- Film più votati -->
+<section id="critics" class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-4">Film più votati</h2>
+  <div class="absolute top-0 right-0 flex gap-2">
+    <button class="carousel-arrow left" data-target="top-rated-movies">◀</button>
+    <button class="carousel-arrow right" data-target="top-rated-movies">▶</button>
+  </div>
+  <div id="top-rated-movies" class="flex overflow-x-auto gap-4 pb-2 scroll-smooth">
+    <!-- Card placeholder -->
+  </div>
+</section>
 
-            <!-- Upcoming Movies -->
-            <section id="new" class="mb-12">
-                <h2 class="text-xl font-bold mb-4">Film al cinema</h2>
-                <div id="upcoming-movies" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <!-- Loading skeleton -->
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                    <div class="animate-pulse">
-                        <div class="bg-gray-800 rounded-lg h-64"></div>
-                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
-                    </div>
-                </div>
-            </section>
+<!-- Film al cinema -->
+<section id="new" class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-4">Film al cinema</h2>
+  <div class="absolute top-0 right-0 flex gap-2">
+    <button class="carousel-arrow left" data-target="upcoming-movies">◀</button>
+    <button class="carousel-arrow right" data-target="upcoming-movies">▶</button>
+  </div>
+  <div id="upcoming-movies" class="flex overflow-x-auto gap-4 pb-2 scroll-smooth">
+    <!-- Card placeholder -->
+  </div>
+</section>
         </div>
     </main>
 
@@ -2387,5 +2324,24 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
       .catch(err => console.error('❌ Service Worker errore:', err));
   }
 </script>
+
+<script>
+document.querySelectorAll('.carousel-arrow').forEach(button => {
+  button.addEventListener('click', () => {
+    const targetId = button.getAttribute('data-target');
+    const container = document.getElementById(targetId);
+    if (!container) return;
+
+    const scrollAmount = container.offsetWidth * 0.8;
+    const direction = button.classList.contains('left') ? -scrollAmount : scrollAmount;
+
+    container.scrollBy({
+      left: direction,
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
+    
 </body>
 </html>
