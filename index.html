@@ -752,6 +752,107 @@
     </div>
   </div>
 </section>
+
+            <!-- Azione -->
+<section class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-4">Azione</h2>
+  <div class="relative">
+    <button class="carousel-arrow left" data-target="carousel-action-container">◀</button>
+    <button class="carousel-arrow right" data-target="carousel-action-container">▶</button>
+    <div id="carousel-action-container" class="carousel-track"></div>
+  </div>
+</section>
+
+<!-- Fantasy -->
+<section class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-4">Fantasy</h2>
+  <div class="relative">
+    <button class="carousel-arrow left" data-target="carousel-fantasy-container">◀</button>
+    <button class="carousel-arrow right" data-target="carousel-fantasy-container">▶</button>
+    <div id="carousel-fantasy-container" class="carousel-track"></div>
+  </div>
+</section>
+
+<!-- Fantascienza -->
+<section class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-4">Fantascienza</h2>
+  <div class="relative">
+    <button class="carousel-arrow left" data-target="carousel-scifi-container">◀</button>
+    <button class="carousel-arrow right" data-target="carousel-scifi-container">▶</button>
+    <div id="carousel-scifi-container" class="carousel-track"></div>
+  </div>
+</section>
+
+<!-- Dramma -->
+<section class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-4">Dramma</h2>
+  <div class="relative">
+    <button class="carousel-arrow left" data-target="carousel-drama-container">◀</button>
+    <button class="carousel-arrow right" data-target="carousel-drama-container">▶</button>
+    <div id="carousel-drama-container" class="carousel-track"></div>
+  </div>
+</section>
+
+<!-- Horror -->
+<section class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-4">Horror</h2>
+  <div class="relative">
+    <button class="carousel-arrow left" data-target="carousel-horror-container">◀</button>
+    <button class="carousel-arrow right" data-target="carousel-horror-container">▶</button>
+    <div id="carousel-horror-container" class="carousel-track"></div>
+  </div>
+</section>
+
+<!-- War -->
+<section class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-4">Guerra</h2>
+  <div class="relative">
+    <button class="carousel-arrow left" data-target="carousel-war-container">◀</button>
+    <button class="carousel-arrow right" data-target="carousel-war-container">▶</button>
+    <div id="carousel-war-container" class="carousel-track"></div>
+  </div>
+</section>
+
+<!-- Western -->
+<section class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-4">Western</h2>
+  <div class="relative">
+    <button class="carousel-arrow left" data-target="carousel-western-container">◀</button>
+    <button class="carousel-arrow right" data-target="carousel-western-container">▶</button>
+    <div id="carousel-western-container" class="carousel-track"></div>
+  </div>
+</section>
+
+<!-- Musical -->
+<section class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-4">Musical</h2>
+  <div class="relative">
+    <button class="carousel-arrow left" data-target="carousel-musical-container">◀</button>
+    <button class="carousel-arrow right" data-target="carousel-musical-container">▶</button>
+    <div id="carousel-musical-container" class="carousel-track"></div>
+  </div>
+</section>
+
+<!-- Korean Drama -->
+<section class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-4">Korean Drama</h2>
+  <div class="relative">
+    <button class="carousel-arrow left" data-target="carousel-korean-drama-container">◀</button>
+    <button class="carousel-arrow right" data-target="carousel-korean-drama-container">▶</button>
+    <div id="carousel-korean-drama-container" class="carousel-track"></div>
+  </div>
+</section>
+
+<!-- Korean Movie -->
+<section class="mb-12 relative">
+  <h2 class="text-xl font-bold mb-4">Korean Movie</h2>
+  <div class="relative">
+    <button class="carousel-arrow left" data-target="carousel-korean-movie-container">◀</button>
+    <button class="carousel-arrow right" data-target="carousel-korean-movie-container">▶</button>
+    <div id="carousel-korean-movie-container" class="carousel-track"></div>
+  </div>
+</section>
+            
         </div>
     </main>
 
@@ -2357,6 +2458,92 @@ document.querySelectorAll('.carousel-arrow').forEach(button => {
   });
 });
 </script>
+
+    <script>
+const GENRE_MAP = {
+  action: 28,
+  fantasy: 14,
+  scifi: 878,
+  drama: 18,
+  horror: 27,
+  war: 10752,
+  western: 37,
+  musical: 10402
+};
+
+function createMovieCard(item, type = 'movie') {
+  const card = document.createElement('div');
+  card.className = 'movie-card';
+  card.dataset.id = item.id;
+  card.dataset.type = type;
+
+  const img = document.createElement('img');
+  img.src = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
+  img.alt = item.title || item.name;
+
+  const info = document.createElement('div');
+  info.className = 'card-info';
+
+  const title = document.createElement('div');
+  title.className = 'card-title';
+  title.textContent = item.title || item.name;
+
+  const rating = document.createElement('div');
+  rating.className = 'card-rating';
+  rating.textContent = `⭐ ${item.vote_average.toFixed(1)}`;
+
+  info.appendChild(title);
+  info.appendChild(rating);
+  card.appendChild(img);
+  card.appendChild(info);
+
+  return card;
+}
+
+async function loadSection(containerId, endpoint, type = 'movie') {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const url = `${API_URL}/${endpoint}?api_key=${API_KEY}&language=it-IT`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    container.innerHTML = '';
+    data.results.slice(0, 10).forEach(item => {
+      if (item.poster_path) container.appendChild(createMovieCard(item, type));
+    });
+  } catch (err) {
+    console.error(`Errore nella sezione ${containerId}:`, err);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  Object.entries(GENRE_MAP).forEach(([key, genreId]) => {
+    const endpoint = `discover/movie?with_genres=${genreId}&sort_by=popularity.desc`;
+    loadSection(`carousel-${key}-container`, endpoint);
+  });
+
+  loadSection('carousel-korean-drama-container', 'discover/tv?with_original_language=ko&sort_by=popularity.desc', 'tv');
+  loadSection('carousel-korean-movie-container', 'discover/movie?with_original_language=ko&sort_by=popularity.desc');
+});
+
+document.querySelectorAll('.carousel-arrow').forEach(button => {
+  button.addEventListener('click', () => {
+    const targetId = button.getAttribute('data-target');
+    const container = document.getElementById(targetId);
+    if (!container) return;
+
+    const scrollAmount = container.offsetWidth * 0.8;
+    const direction = button.classList.contains('left') ? -scrollAmount : scrollAmount;
+
+    container.scrollBy({
+      left: direction,
+      behavior: 'smooth'
+    });
+  });
+});
+</script>y
     
 </body>
 </html>
