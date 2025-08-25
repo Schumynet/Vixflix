@@ -2426,9 +2426,14 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
 <script>
 
 const API_URL = 'https://api.themoviedb.org/3';
-const API_KEY = 'TUO_API_KEY'; // ← Inserisci la tua API key TMDB
+const API_KEY = 'be78689897669066bef6906e501b0e10'; // ← Copia la tua API Key v3 da TMDB
 
 const GENRE_MAP = {
+  'trending-movies': 'trending/movie/week',
+  'popular-tv': 'tv/popular',
+  'top-rated-movies': 'movie/top_rated',
+  'now-playing': 'movie/now_playing',
+
   action: 28,
   drama: 18,
   fantasy: 14,
@@ -2443,12 +2448,70 @@ const GENRE_MAP = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  Object.entries(GENRE_MAP).forEach(([key, config]) => {
+  Object.entries(GENRE_MAP).forEach(([key, value]) => {
     const containerId = `carousel-${key}-container`;
-    if (config.endpoint) {
-      loadFromEndpoint(containerId, config.endpoint, config.type);
-    } else if (config.genreId) {
-      loadByGenre(containerId, config.genreId, config.type
+
+    if (typeof value === 'number') {
+      loadGenreSection(containerId, value);
+    } else if (value.endsWith('-tv')) {
+      const country = value.split('-')[0];
+      loadCountrySection(containerId, country, 'tv');
+    } else if (value.endsWith('-movie')) {
+      const country = value.split('-')[0];
+      loadCountrySection(containerId, country, 'movie');
+    } else {
+      loadEndpointSection(containerId, value);
+    }
+  });
+});
+
+async function loadGenreSection(containerId, genreId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&sort_by=popularity.desc&language=it-IT`);
+    const data = await res.json();
+    container.innerHTML = '';
+    data.results.slice(0, 10).forEach(item => {
+      if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
+    });
+  } catch (err) {
+    console.error(`Errore nella sezione ${containerId}:`, err);
+  }
+}
+
+async function loadCountrySection(containerId, countryCode, type) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${API_URL}/discover/${type}?api_key=${API_KEY}&with_origin_country=${countryCode}&sort_by=popularity.desc&language=it-IT`);
+    const data = await res.json();
+    container.innerHTML = '';
+    data.results.slice(0, 10).forEach(item => {
+      if (item.poster_path) container.appendChild(createMovieCard(item, type));
+    });
+  } catch (err) {
+    console.error(`Errore nella sezione ${containerId}:`, err);
+  }
+}
+
+async function loadEndpointSection(containerId, endpoint) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${API_URL}/${endpoint}?api_key=${API_KEY}&language=it-IT`);
+    const data = await res.json();
+    container.innerHTML = '';
+    data.results.slice(0, 10).forEach(item => {
+      if (item.poster_path) container.appendChild(createMovieCard(item, endpoint.includes('tv') ? 'tv' : 'movie'));
+    });
+  } catch (err) {
+    console.error(`Errore nella sezione ${containerId}:`, err);
+  }
+}
     
 </script>
 
