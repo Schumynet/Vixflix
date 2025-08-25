@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>LeleFlix</title>
+  <title>VixFlix</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icon.svg" type="image/svg+xml">    
   <script src="https://cdn.tailwindcss.com"></script>
@@ -2429,22 +2429,22 @@ const API_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'TUO_API_KEY'; // ← Inserisci la tua API key TMDB
 
 const GENRE_MAP = {
-  'trending-movies': { type: 'movie', endpoint: 'trending/movie/week' },
-  'popular-tv': { type: 'tv', endpoint: 'tv/popular' },
-  'top-rated-movies': { type: 'movie', endpoint: 'movie/top_rated' },
-  'now-playing': { type: 'movie', endpoint: 'movie/now_playing' },
+  'trending-movies': 'trending/movie/week',
+  'popular-tv': 'tv/popular',
+  'top-rated-movies': 'movie/top_rated',
+  'now-playing': 'movie/now_playing',
 
-  action: { type: 'movie', genreId: 28 },
-  drama: { type: 'movie', genreId: 18 },
-  fantasy: { type: 'movie', genreId: 14 },
-  scifi: { type: 'movie', genreId: 878 },
-  crime: { type: 'movie', genreId: 80 },
-  war: { type: 'movie', genreId: 10752 },
-  western: { type: 'movie', genreId: 37 },
-  musical: { type: 'movie', genreId: 10402 },
+  action: 28,
+  drama: 18,
+  fantasy: 14,
+  scifi: 878,
+  crime: 80,
+  war: 10752,
+  western: 37,
+  musical: 10402,
 
-  'korean-drama': { type: 'tv', originCountry: 'KR' },
-  'korean-movie': { type: 'movie', originCountry: 'KR' }
+  'korean-drama': 'KR-tv',
+  'korean-movie': 'KR-movie'
 };
 
 document.addEventListener('DOMContentLoaded', () => {
