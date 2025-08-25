@@ -2426,6 +2426,7 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
 <script>
 
     // 🔧 Funzione generica per creare card
+// 🔧 Funzione generica per creare card
 function createMovieCard(item, type = 'movie') {
   const card = document.createElement('div');
   card.className = 'movie-card';
@@ -2450,16 +2451,19 @@ function createMovieCard(item, type = 'movie') {
   card.appendChild(img);
   card.appendChild(info);
 
+  // 🧩 Modal integrato con sistema del sito
   card.addEventListener('click', () => {
     if (typeof openModal === 'function') {
       openModal({
         id: item.id,
         media_type: type,
         title: item.title || item.name,
-        overview: item.overview,
+        overview: item.overview || 'Descrizione non disponibile.',
         poster_path: item.poster_path || item.backdrop_path,
         vote_average: item.vote_average,
-        genre_ids: item.genre_ids
+        genre_ids: item.genre_ids || [],
+        release_date: item.release_date || item.first_air_date || '',
+        original_language: item.original_language || ''
       });
     }
   });
@@ -2549,7 +2553,7 @@ document.querySelectorAll('.carousel-arrow').forEach(button => {
   });
 });
 
-// 🚀 Avvio al caricamento
+// 🚀 Avvio al caricamento (sezioni speciali)
 document.addEventListener('DOMContentLoaded', () => {
   getTrendingMovies();
   getPopularTVShows();
@@ -2557,7 +2561,7 @@ document.addEventListener('DOMContentLoaded', () => {
   getNowPlayingMovies();
 });
 
-// section azione/Korean film
+// 🎬 Sezioni per genere
 const GENRE_MAP = {
   action: 28,
   fantasy: 14,
@@ -2576,7 +2580,6 @@ const GENRE_MAP = {
   western: 37
 };
 
-// 🔄 Caricamento per genere
 async function loadGenreSection(id, genreId) {
   const container = document.getElementById(`carousel-${id}-container`);
   if (!container) return;
@@ -2593,7 +2596,7 @@ async function loadGenreSection(id, genreId) {
   }
 }
 
-// 🇰🇷 Caricamento per contenuti coreani
+// 🇰🇷 Sezioni coreane
 async function loadKoreanSection(id, type = 'movie') {
   const container = document.getElementById(`carousel-${id}-container`);
   if (!container) return;
@@ -2610,7 +2613,7 @@ async function loadKoreanSection(id, type = 'movie') {
   }
 }
 
-// 🚀 Avvio al caricamento
+// 🚀 Avvio al caricamento (generi e coreani)
 document.addEventListener('DOMContentLoaded', () => {
   Object.entries(GENRE_MAP).forEach(([key, genreId]) => {
     loadGenreSection(key, genreId);
@@ -2620,20 +2623,6 @@ document.addEventListener('DOMContentLoaded', () => {
   loadKoreanSection('korean-movie', 'movie');
 });
 
-<!-- Card -->
-<div class="card" data-title="Titolo della card" data-description="Descrizione della card">
-  <img src="immagine.jpg" alt="Immagine">
-</div>
-
-<!-- Modal -->
-<div id="modal" class="modal hidden">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2 id="modal-title"></h2>
-    <p id="modal-description"></p>
-    <button id="play-button">▶ Play</button>
-  </div>
-</div>
     
 </script>
 
