@@ -2425,143 +2425,8 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
 
 <script>
 
-    // 🔧 Funzione generica per creare card
-// 🔧 Funzione generica per creare card
-function createMovieCard(item, type = 'movie') {
-  const card = document.createElement('div');
-  card.className = 'movie-card';
-
-  const img = document.createElement('img');
-  img.src = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
-  img.alt = item.title || item.name;
-
-  const info = document.createElement('div');
-  info.className = 'card-info';
-
-  const title = document.createElement('div');
-  title.className = 'card-title';
-  title.textContent = item.title || item.name;
-
-  const rating = document.createElement('div');
-  rating.className = 'card-rating';
-  rating.textContent = `⭐ ${item.vote_average.toFixed(1)}`;
-
-  info.appendChild(title);
-  info.appendChild(rating);
-  card.appendChild(img);
-  card.appendChild(info);
-
-  // 🧩 Modal integrato con sistema del sito
-  card.addEventListener('click', () => {
-    if (typeof openModal === 'function') {
-      openModal({
-        id: item.id,
-        media_type: type,
-        title: item.title || item.name,
-        overview: item.overview || 'Descrizione non disponibile.',
-        poster_path: item.poster_path || item.backdrop_path,
-        vote_average: item.vote_average,
-        genre_ids: item.genre_ids || [],
-        release_date: item.release_date || item.first_air_date || '',
-        original_language: item.original_language || ''
-      });
-    }
-  });
-
-  return card;
-}
-
-// 🔄 Funzioni per ogni sezione
-async function getTrendingMovies() {
-  const container = document.getElementById('carousel-trending-movies-container');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`${API_URL}/trending/movie/week?api_key=${API_KEY}&language=it-IT`);
-    const data = await res.json();
-    container.innerHTML = '';
-    data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
-    });
-  } catch (err) {
-    console.error('Errore Film in tendenza:', err);
-  }
-}
-
-async function getPopularTVShows() {
-  const container = document.getElementById('carousel-popular-tv-container');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`);
-    const data = await res.json();
-    container.innerHTML = '';
-    data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, 'tv'));
-    });
-  } catch (err) {
-    console.error('Errore Serie TV popolari:', err);
-  }
-}
-
-async function getTopRatedMovies() {
-  const container = document.getElementById('carousel-top-rated-movies-container');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`${API_URL}/movie/top_rated?api_key=${API_KEY}&language=it-IT`);
-    const data = await res.json();
-    container.innerHTML = '';
-    data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
-    });
-  } catch (err) {
-    console.error('Errore Film più votati:', err);
-  }
-}
-
-async function getNowPlayingMovies() {
-  const container = document.getElementById('carousel-now-playing-container');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`${API_URL}/movie/now_playing?api_key=${API_KEY}&language=it-IT`);
-    const data = await res.json();
-    container.innerHTML = '';
-    data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
-    });
-  } catch (err) {
-    console.error('Errore Film al cinema:', err);
-  }
-}
-
-// 🧭 Scroll con frecce (senza scrollbar visibile)
-document.querySelectorAll('.carousel-arrow').forEach(button => {
-  button.addEventListener('click', () => {
-    const targetId = button.getAttribute('data-target');
-    const container = document.getElementById(targetId);
-    if (!container) return;
-
-    const scrollAmount = container.offsetWidth * 0.8;
-    const direction = button.classList.contains('left') ? -scrollAmount : scrollAmount;
-
-    container.scrollBy({
-      left: direction,
-      behavior: 'smooth'
-    });
-  });
-});
-
-// 🚀 Avvio al caricamento (sezioni speciali)
-document.addEventListener('DOMContentLoaded', () => {
-  getTrendingMovies();
-  getPopularTVShows();
-  getTopRatedMovies();
-  getNowPlayingMovies();
-});
-
-// 🎬 Sezioni per genere
+        
+<script>
 const GENRE_MAP = {
   action: 28,
   fantasy: 14,
@@ -2580,17 +2445,11 @@ const GENRE_MAP = {
   western: 37
 };
 
-async function loadGenreSection(id, genreId) {
-  const container = document.getElementById(`carousel-${id}-container`);
-  if (!container) return;
-
-  try {
-    const res = await fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&sort_by=popularity.desc&language=it-IT`);
-    const data = await res.json();
-// 🔧 Funzione generica per creare card
 function createMovieCard(item, type = 'movie') {
   const card = document.createElement('div');
   card.className = 'movie-card';
+  card.dataset.id = item.id;
+  card.dataset.type = type;
 
   const img = document.createElement('img');
   img.src = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
@@ -2615,45 +2474,53 @@ function createMovieCard(item, type = 'movie') {
   return card;
 }
 
-// 🔄 Funzioni per ogni sezione
-async function getTrendingMovies() {
-  const container = document.getElementById('carousel-trending-movies-container');
+async function loadSection(containerId, url, type = 'movie') {
+  const container = document.getElementById(containerId);
   if (!container) return;
 
   try {
-    const res = await fetch(`${API_URL}/trending/movie/week?api_key=${API_KEY}&language=it-IT`);
+    const res = await fetch(url);
     const data = await res.json();
     container.innerHTML = '';
     data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
+      if (item.poster_path) container.appendChild(createMovieCard(item, type));
     });
   } catch (err) {
-    console.error('Errore Film in tendenza:', err);
+    console.error(`Errore nella sezione ${containerId}:`, err);
   }
 }
 
-async function getPopularTVShows() {
-  const container = document.getElementById('carousel-popular-tv-container');
-  if (!container) return;
+document.addEventListener('DOMContentLoaded', () => {
+  loadSection('carousel-trending-movies-container', `${API_URL}/trending/movie/week?api_key=${API_KEY}&language=it-IT`);
+  loadSection('carousel-popular-tv-container', `${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`, 'tv');
+  loadSection('carousel-top-rated-movies-container', `${API_URL}/movie/top_rated?api_key=${API_KEY}&language=it-IT`);
+  loadSection('carousel-now-playing-container', `${API_URL}/movie/now_playing?api_key=${API_KEY}&language=it-IT`);
 
-  try {
-    const res = await fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`);
-    const data = await res.json();
-    container.innerHTML = '';
-    data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, 'tv'));
+  Object.entries(GENRE_MAP).forEach(([key, genreId]) => {
+    loadSection(`carousel-${key}-container`, `${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&sort_by=popularity.desc&language=it-IT`);
+  });
+
+  loadSection('carousel-korean-drama-container', `${API_URL}/discover/tv?api_key=${API_KEY}&with_original_language=ko&sort_by=popularity.desc&language=it-IT`, 'tv');
+  loadSection('carousel-korean-movie-container', `${API_URL}/discover/movie?api_key=${API_KEY}&with_original_language=ko&sort_by=popularity.desc&language=it-IT`);
+});
+
+document.querySelectorAll('.carousel-arrow').forEach(button => {
+  button.addEventListener('click', () => {
+    const targetId = button.getAttribute('data-target');
+    const container = document.getElementById(targetId);
+    if (!container) return;
+
+    const scrollAmount = container.offsetWidth * 0.8;
+    const direction = button.classList.contains('left') ? -scrollAmount : scrollAmount;
+
+    container.scrollBy({
+      left: direction,
+      behavior: 'smooth'
     });
-  } catch (err) {
-    console.error('Errore Serie TV popolari:', err);
-  }
-}
-
-async function getTopRatedMovies() {
-  const container = document.getElementById('carousel-top-rated-movies-container');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`${API_URL}/movie/top
+  });
+});
+</script>
+  
     
 </script>
 
