@@ -2587,42 +2587,73 @@ async function loadGenreSection(id, genreId) {
   try {
     const res = await fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&sort_by=popularity.desc&language=it-IT`);
     const data = await res.json();
+// 🔧 Funzione generica per creare card
+function createMovieCard(item, type = 'movie') {
+  const card = document.createElement('div');
+  card.className = 'movie-card';
+
+  const img = document.createElement('img');
+  img.src = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
+  img.alt = item.title || item.name;
+
+  const info = document.createElement('div');
+  info.className = 'card-info';
+
+  const title = document.createElement('div');
+  title.className = 'card-title';
+  title.textContent = item.title || item.name;
+
+  const rating = document.createElement('div');
+  rating.className = 'card-rating';
+  rating.textContent = `⭐ ${item.vote_average.toFixed(1)}`;
+
+  info.appendChild(title);
+  info.appendChild(rating);
+  card.appendChild(img);
+  card.appendChild(info);
+
+  return card;
+}
+
+// 🔄 Funzioni per ogni sezione
+async function getTrendingMovies() {
+  const container = document.getElementById('carousel-trending-movies-container');
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${API_URL}/trending/movie/week?api_key=${API_KEY}&language=it-IT`);
+    const data = await res.json();
     container.innerHTML = '';
     data.results.slice(0, 10).forEach(item => {
       if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
     });
   } catch (err) {
-    console.error(`Errore nella sezione ${id}:`, err);
+    console.error('Errore Film in tendenza:', err);
   }
 }
 
-// 🇰🇷 Sezioni coreane
-async function loadKoreanSection(id, type = 'movie') {
-  const container = document.getElementById(`carousel-${id}-container`);
+async function getPopularTVShows() {
+  const container = document.getElementById('carousel-popular-tv-container');
   if (!container) return;
 
   try {
-    const res = await fetch(`${API_URL}/discover/${type}?api_key=${API_KEY}&with_original_language=ko&sort_by=popularity.desc&language=it-IT`);
+    const res = await fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`);
     const data = await res.json();
     container.innerHTML = '';
     data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, type));
+      if (item.poster_path) container.appendChild(createMovieCard(item, 'tv'));
     });
   } catch (err) {
-    console.error(`Errore nella sezione ${id}:`, err);
+    console.error('Errore Serie TV popolari:', err);
   }
 }
 
-// 🚀 Avvio al caricamento (generi e coreani)
-document.addEventListener('DOMContentLoaded', () => {
-  Object.entries(GENRE_MAP).forEach(([key, genreId]) => {
-    loadGenreSection(key, genreId);
-  });
+async function getTopRatedMovies() {
+  const container = document.getElementById('carousel-top-rated-movies-container');
+  if (!container) return;
 
-  loadKoreanSection('korean-drama', 'tv');
-  loadKoreanSection('korean-movie', 'movie');
-});
-
+  try {
+    const res = await fetch(`${API_URL}/movie/top
     
 </script>
 
