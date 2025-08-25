@@ -704,219 +704,117 @@
     <main class="relative z-20 -mt-20 scrollbar-hide">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <!-- Trending Movies -->
-<!-- 🎥 Film in tendenza -->
-<section id="carousel-trending-movies" class="carousel-section">
-  <h2 class="carousel-title">Film in tendenza</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-trending-movies-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-trending-movies-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-trending-movies-container">&#10095;</button>
-  </div>
-</section>
+            <section id="movie-trend" class="mb-12">
+                <h2   id="trending" class="text-xl font-bold mb-4">Film in tendenza</h2>
+                <div id="trending-movies" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <!-- Loading skeleton -->
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                </div>
+            </section>
 
-<!-- 📺 Serie TV popolari -->
-<section id="carousel-popular-tv" class="carousel-section">
-  <h2 class="carousel-title">Serie TV popolari</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-popular-tv-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-popular-tv-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-popular-tv-container">&#10095;</button>
-  </div>
-</section>
+            <!-- Popular TV Shows -->
+            <section id="tv-popular" class="mb-12">
+                <h2 class="text-xl font-bold mb-4">Serie TV popolari</h2>
+                <div id="popular-tv" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <!-- Loading skeleton -->
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                </div>
+            </section>
 
-<!-- ⭐ Film più votati -->
-<section id="carousel-top-rated-movies" class="carousel-section">
-  <h2 class="carousel-title">Film più votati</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-top-rated-movies-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-top-rated-movies-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-top-rated-movies-container">&#10095;</button>
-  </div>
-</section>
+            <!-- Top Rated Movies -->
+            <section id="critics" class="mb-12">
+                <h2 class="text-xl font-bold mb-4">Film più votati</h2>
+                <div id="top-rated-movies" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <!-- Loading skeleton -->
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                </div>
+            </section>
 
-<!-- 🎬 Film al cinema -->
-<section id="carousel-now-playing" class="carousel-section">
-  <h2 class="carousel-title">Film al cinema</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-now-playing-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-now-playing-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-now-playing-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 🔫 Azione -->
-<section id="carousel-action" class="carousel-section">
-  <h2 class="carousel-title">Azione</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-action-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-action-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-action-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 🧙 Fantasy -->
-<section id="carousel-fantasy" class="carousel-section">
-  <h2 class="carousel-title">Fantasy</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-fantasy-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-fantasy-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-fantasy-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 🎭 Dramma -->
-<section id="carousel-drama" class="carousel-section">
-  <h2 class="carousel-title">Dramma</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-drama-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-drama-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-drama-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 🚀 Fantascienza -->
-<section id="carousel-scifi" class="carousel-section">
-  <h2 class="carousel-title">Fantascienza</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-scifi-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-scifi-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-scifi-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 👻 Horror -->
-<section id="carousel-horror" class="carousel-section">
-  <h2 class="carousel-title">Horror</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-horror-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-horror-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-horror-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 🎓 Dramma adolescenziale -->
-<section id="carousel-teen-drama" class="carousel-section">
-  <h2 class="carousel-title">Dramma adolescenziale</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-teen-drama-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-teen-drama-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-teen-drama-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 💘 Romantico -->
-<section id="carousel-romantic" class="carousel-section">
-  <h2 class="carousel-title">Romantico</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-romantic-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-romantic-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-romantic-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 🎤 Musical -->
-<section id="carousel-musical" class="carousel-section">
-  <h2 class="carousel-title">Musical</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-musical-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-musical-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-musical-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 🕵️‍♂️ Mistero -->
-<section id="carousel-mystery" class="carousel-section">
-  <h2 class="carousel-title">Mistero</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-mystery-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-mystery-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-mystery-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 🧠 Documentario -->
-<section id="carousel-documentary" class="carousel-section">
-  <h2 class="carousel-title">Documentario</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-documentary-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-documentary-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-documentary-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 🧑‍⚖️ Crimine -->
-<section id="carousel-crime" class="carousel-section">
-  <h2 class="carousel-title">Crimine</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-crime-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-crime-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-crime-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 🏃‍♂️ Avventura -->
-<section id="carousel-adventure" class="carousel-section">
-  <h2 class="carousel-title">Avventura</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-adventure-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-adventure-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-adventure-container">&#10095;</button>
-  </div>
-</section>
-
-
-
-<!-- 🔪 Thriller -->
-<section id="carousel-thriller" class="carousel-section">
-  <h2 class="carousel-title">Thriller</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-thriller-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-thriller-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-thriller-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- ⚔️ War -->
-<section id="carousel-war" class="carousel-section">
-  <h2 class="carousel-title">Guerra</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-war-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-war-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-war-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 🤠 Western -->
-<section id="carousel-western" class="carousel-section">
-  <h2 class="carousel-title">Western</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-western-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-western-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-western-container">&#10095;</button>
-  </div>
-</section>
-            
-
-<!-- 🇰🇷 Korean Drama -->
-<section id="carousel-korean-drama" class="carousel-section">
-  <h2 class="carousel-title">Korean Drama</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-korean-drama-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-korean-drama-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-korean-drama-container">&#10095;</button>
-  </div>
-</section>
-
-<!-- 🇰🇷 Korean Movie -->
-<section id="carousel-korean-movie" class="carousel-section">
-  <h2 class="carousel-title">Korean Movie</h2>
-  <div class="carousel-wrapper">
-    <button class="carousel-arrow left" data-target="carousel-korean-movie-container">&#10094;</button>
-    <div class="carousel-container" id="carousel-korean-movie-container"></div>
-    <button class="carousel-arrow right" data-target="carousel-korean-movie-container">&#10095;</button>
-  </div>
-</section>   
-       
+            <!-- Upcoming Movies -->
+            <section id="new" class="mb-12">
+                <h2 class="text-xl font-bold mb-4">Film al cinema</h2>
+                <div id="upcoming-movies" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <!-- Loading skeleton -->
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                    <div class="animate-pulse">
+                        <div class="bg-gray-800 rounded-lg h-64"></div>
+                        <div class="h-4 bg-gray-800 rounded mt-2 w-3/4"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <section id="search-results-section" class="hidden px-4 sm:px-6 lg:px-8 py-8">
@@ -2482,205 +2380,12 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
         
     </script>
 
-    <script>
-
-// 🔧 Funzione generica per creare card
-function createMovieCard(item, type = 'movie') {
-  const card = document.createElement('div');
-  card.className = 'movie-card';
-
-  const img = document.createElement('img');
-  img.src = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
-  img.alt = item.title || item.name;
-
-  const info = document.createElement('div');
-  info.className = 'card-info';
-
-  const title = document.createElement('div');
-  title.className = 'card-title';
-  title.textContent = item.title || item.name;
-
-  const rating = document.createElement('div');
-  rating.className = 'card-rating';
-  rating.textContent = `⭐ ${item.vote_average.toFixed(1)}`;
-
-  info.appendChild(title);
-  info.appendChild(rating);
-  card.appendChild(img);
-  card.appendChild(info);
-
-  card.addEventListener('click', () => {
-    if (typeof openModal === 'function') {
-      openModal({
-        id: item.id,
-        media_type: type,
-        title: item.title || item.name,
-        overview: item.overview,
-        poster_path: item.poster_path || item.backdrop_path,
-        vote_average: item.vote_average,
-        genre_ids: item.genre_ids
-      });
-    }
-  });
-
-  return card;
-}
-
-// 🔄 Funzioni per ogni sezione
-async function getTrendingMovies() {
-  const container = document.getElementById('carousel-trending-movies-container');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`${API_URL}/trending/movie/week?api_key=${API_KEY}&language=it-IT`);
-    const data = await res.json();
-    container.innerHTML = '';
-    data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
-    });
-  } catch (err) {
-    console.error('Errore Film in tendenza:', err);
+      <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(reg => console.log('✅ Service Worker registrato:', reg))
+      .catch(err => console.error('❌ Service Worker errore:', err));
   }
-}
-
-async function getPopularTVShows() {
-  const container = document.getElementById('carousel-popular-tv-container');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`);
-    const data = await res.json();
-    container.innerHTML = '';
-    data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, 'tv'));
-    });
-  } catch (err) {
-    console.error('Errore Serie TV popolari:', err);
-  }
-}
-
-async function getTopRatedMovies() {
-  const container = document.getElementById('carousel-top-rated-movies-container');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`${API_URL}/movie/top_rated?api_key=${API_KEY}&language=it-IT`);
-    const data = await res.json();
-    container.innerHTML = '';
-    data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
-    });
-  } catch (err) {
-    console.error('Errore Film più votati:', err);
-  }
-}
-
-async function getNowPlayingMovies() {
-  const container = document.getElementById('carousel-now-playing-container');
-  if (!container) return;
-
-  try {
-    const res = await fetch(`${API_URL}/movie/now_playing?api_key=${API_KEY}&language=it-IT`);
-    const data = await res.json();
-    container.innerHTML = '';
-    data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
-    });
-  } catch (err) {
-    console.error('Errore Film al cinema:', err);
-  }
-}
-
-// 🧭 Scroll con frecce (senza scrollbar visibile)
-document.querySelectorAll('.carousel-arrow').forEach(button => {
-  button.addEventListener('click', () => {
-    const targetId = button.getAttribute('data-target');
-    const container = document.getElementById(targetId);
-    if (!container) return;
-
-    const scrollAmount = container.offsetWidth * 0.8;
-    const direction = button.classList.contains('left') ? -scrollAmount : scrollAmount;
-
-    container.scrollBy({
-      left: direction,
-      behavior: 'smooth'
-    });
-  });
-});
-
-// 🚀 Avvio al caricamento
-document.addEventListener('DOMContentLoaded', () => {
-  getTrendingMovies();
-  getPopularTVShows();
-  getTopRatedMovies();
-  getNowPlayingMovies();
-});
-
-// section azione/Korean film
-const GENRE_MAP = {
-  action: 28,
-  fantasy: 14,
-  drama: 18,
-  scifi: 878,
-  horror: 27,
-  romantic: 10749,
-  'teen-drama': 10751,
-  musical: 10402,
-  mystery: 9648,
-  documentary: 99,
-  crime: 80,
-  adventure: 12,
-  thriller: 53,
-  war: 10752,
-  western: 37
-};
-
-// 🔄 Caricamento per genere
-async function loadGenreSection(id, genreId) {
-  const container = document.getElementById(`carousel-${id}-container`);
-  if (!container) return;
-
-  try {
-    const res = await fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&sort_by=popularity.desc&language=it-IT`);
-    const data = await res.json();
-    container.innerHTML = '';
-    data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
-    });
-  } catch (err) {
-    console.error(`Errore nella sezione ${id}:`, err);
-  }
-}
-
-// 🇰🇷 Caricamento per contenuti coreani
-async function loadKoreanSection(id, type = 'movie') {
-  const container = document.getElementById(`carousel-${id}-container`);
-  if (!container) return;
-
-  try {
-    const res = await fetch(`${API_URL}/discover/${type}?api_key=${API_KEY}&with_original_language=ko&sort_by=popularity.desc&language=it-IT`);
-    const data = await res.json();
-    container.innerHTML = '';
-    data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, type));
-    });
-  } catch (err) {
-    console.error(`Errore nella sezione ${id}:`, err);
-  }
-}
-
-// 🚀 Avvio al caricamento
-document.addEventListener('DOMContentLoaded', () => {
-  Object.entries(GENRE_MAP).forEach(([key, genreId]) => {
-    loadGenreSection(key, genreId);
-  });
-
-  loadKoreanSection('korean-drama', 'tv');
-  loadKoreanSection('korean-movie', 'movie');
-});
-
-        
-   </script> 
-    
+</script>
 </body>
 </html>
