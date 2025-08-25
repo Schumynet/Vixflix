@@ -2425,48 +2425,160 @@ document.getElementById('modal-play-button').addEventListener('click', () => {
 
 <script>
 
-const API_URL = 'https://api.themoviedb.org/3';
-const API_KEY = 'be78689897669066bef6906e501b0e10'; // ← Copia la tua API Key v3 da TMDB
+    // 🔧 Funzione generica per creare card
+function createMovieCard(item, type = 'movie') {
+  const card = document.createElement('div');
+  card.className = 'movie-card';
 
-const GENRE_MAP = {
-  'trending-movies': 'trending/movie/week',
-  'popular-tv': 'tv/popular',
-  'top-rated-movies': 'movie/top_rated',
-  'now-playing': 'movie/now_playing',
+  const img = document.createElement('img');
+  img.src = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
+  img.alt = item.title || item.name;
 
-  action: 28,
-  drama: 18,
-  fantasy: 14,
-  scifi: 878,
-  crime: 80,
-  war: 10752,
-  western: 37,
-  musical: 10402,
+  const info = document.createElement('div');
+  info.className = 'card-info';
 
-  'korean-drama': 'KR-tv',
-  'korean-movie': 'KR-movie'
-};
+  const title = document.createElement('div');
+  title.className = 'card-title';
+  title.textContent = item.title || item.name;
 
-document.addEventListener('DOMContentLoaded', () => {
-  Object.entries(GENRE_MAP).forEach(([key, value]) => {
-    const containerId = `carousel-${key}-container`;
+  const rating = document.createElement('div');
+  rating.className = 'card-rating';
+  rating.textContent = `⭐ ${item.vote_average.toFixed(1)}`;
 
-    if (typeof value === 'number') {
-      loadGenreSection(containerId, value);
-    } else if (value.endsWith('-tv')) {
-      const country = value.split('-')[0];
-      loadCountrySection(containerId, country, 'tv');
-    } else if (value.endsWith('-movie')) {
-      const country = value.split('-')[0];
-      loadCountrySection(containerId, country, 'movie');
-    } else {
-      loadEndpointSection(containerId, value);
+  info.appendChild(title);
+  info.appendChild(rating);
+  card.appendChild(img);
+  card.appendChild(info);
+
+  card.addEventListener('click', () => {
+    if (typeof openModal === 'function') {
+      openModal({
+        id: item.id,
+        media_type: type,
+        title: item.title || item.name,
+        overview: item.overview,
+        poster_path: item.poster_path || item.backdrop_path,
+        vote_average: item.vote_average,
+        genre_ids: item.genre_ids
+      });
     }
+  });
+
+  return card;
+}
+
+// 🔄 Funzioni per ogni sezione
+async function getTrendingMovies() {
+  const container = document.getElementById('carousel-trending-movies-container');
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${API_URL}/trending/movie/week?api_key=${API_KEY}&language=it-IT`);
+    const data = await res.json();
+    container.innerHTML = '';
+    data.results.slice(0, 10).forEach(item => {
+      if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
+    });
+  } catch (err) {
+    console.error('Errore Film in tendenza:', err);
+  }
+}
+
+async function getPopularTVShows() {
+  const container = document.getElementById('carousel-popular-tv-container');
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${API_URL}/tv/popular?api_key=${API_KEY}&language=it-IT`);
+    const data = await res.json();
+    container.innerHTML = '';
+    data.results.slice(0, 10).forEach(item => {
+      if (item.poster_path) container.appendChild(createMovieCard(item, 'tv'));
+    });
+  } catch (err) {
+    console.error('Errore Serie TV popolari:', err);
+  }
+}
+
+async function getTopRatedMovies() {
+  const container = document.getElementById('carousel-top-rated-movies-container');
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${API_URL}/movie/top_rated?api_key=${API_KEY}&language=it-IT`);
+    const data = await res.json();
+    container.innerHTML = '';
+    data.results.slice(0, 10).forEach(item => {
+      if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
+    });
+  } catch (err) {
+    console.error('Errore Film più votati:', err);
+  }
+}
+
+async function getNowPlayingMovies() {
+  const container = document.getElementById('carousel-now-playing-container');
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${API_URL}/movie/now_playing?api_key=${API_KEY}&language=it-IT`);
+    const data = await res.json();
+    container.innerHTML = '';
+    data.results.slice(0, 10).forEach(item => {
+      if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
+    });
+  } catch (err) {
+    console.error('Errore Film al cinema:', err);
+  }
+}
+
+// 🧭 Scroll con frecce (senza scrollbar visibile)
+document.querySelectorAll('.carousel-arrow').forEach(button => {
+  button.addEventListener('click', () => {
+    const targetId = button.getAttribute('data-target');
+    const container = document.getElementById(targetId);
+    if (!container) return;
+
+    const scrollAmount = container.offsetWidth * 0.8;
+    const direction = button.classList.contains('left') ? -scrollAmount : scrollAmount;
+
+    container.scrollBy({
+      left: direction,
+      behavior: 'smooth'
+    });
   });
 });
 
-async function loadGenreSection(containerId, genreId) {
-  const container = document.getElementById(containerId);
+// 🚀 Avvio al caricamento
+document.addEventListener('DOMContentLoaded', () => {
+  getTrendingMovies();
+  getPopularTVShows();
+  getTopRatedMovies();
+  getNowPlayingMovies();
+});
+
+// section azione/Korean film
+const GENRE_MAP = {
+  action: 28,
+  fantasy: 14,
+  drama: 18,
+  scifi: 878,
+  horror: 27,
+  romantic: 10749,
+  'teen-drama': 10751,
+  musical: 10402,
+  mystery: 9648,
+  documentary: 99,
+  crime: 80,
+  adventure: 12,
+  thriller: 53,
+  war: 10752,
+  western: 37
+};
+
+// 🔄 Caricamento per genere
+async function loadGenreSection(id, genreId) {
+  const container = document.getElementById(`carousel-${id}-container`);
   if (!container) return;
 
   try {
@@ -2477,41 +2589,36 @@ async function loadGenreSection(containerId, genreId) {
       if (item.poster_path) container.appendChild(createMovieCard(item, 'movie'));
     });
   } catch (err) {
-    console.error(`Errore nella sezione ${containerId}:`, err);
+    console.error(`Errore nella sezione ${id}:`, err);
   }
 }
 
-async function loadCountrySection(containerId, countryCode, type) {
-  const container = document.getElementById(containerId);
+// 🇰🇷 Caricamento per contenuti coreani
+async function loadKoreanSection(id, type = 'movie') {
+  const container = document.getElementById(`carousel-${id}-container`);
   if (!container) return;
 
   try {
-    const res = await fetch(`${API_URL}/discover/${type}?api_key=${API_KEY}&with_origin_country=${countryCode}&sort_by=popularity.desc&language=it-IT`);
+    const res = await fetch(`${API_URL}/discover/${type}?api_key=${API_KEY}&with_original_language=ko&sort_by=popularity.desc&language=it-IT`);
     const data = await res.json();
     container.innerHTML = '';
     data.results.slice(0, 10).forEach(item => {
       if (item.poster_path) container.appendChild(createMovieCard(item, type));
     });
   } catch (err) {
-    console.error(`Errore nella sezione ${containerId}:`, err);
+    console.error(`Errore nella sezione ${id}:`, err);
   }
 }
 
-async function loadEndpointSection(containerId, endpoint) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
+// 🚀 Avvio al caricamento
+document.addEventListener('DOMContentLoaded', () => {
+  Object.entries(GENRE_MAP).forEach(([key, genreId]) => {
+    loadGenreSection(key, genreId);
+  });
 
-  try {
-    const res = await fetch(`${API_URL}/${endpoint}?api_key=${API_KEY}&language=it-IT`);
-    const data = await res.json();
-    container.innerHTML = '';
-    data.results.slice(0, 10).forEach(item => {
-      if (item.poster_path) container.appendChild(createMovieCard(item, endpoint.includes('tv') ? 'tv' : 'movie'));
-    });
-  } catch (err) {
-    console.error(`Errore nella sezione ${containerId}:`, err);
-  }
-}
+  loadKoreanSection('korean-drama', 'tv');
+  loadKoreanSection('korean-movie', 'movie');
+});
     
 </script>
 
